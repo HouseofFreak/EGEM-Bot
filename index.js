@@ -16,7 +16,7 @@ const bot = new Discord.Client({disableEveryone:true});
 
 var web3 = new Web3();
 
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:9656'));
+web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
 bot.on('ready', ()=>{
 	console.log("Bot is ready for work");
@@ -35,12 +35,12 @@ function sendCoins(address,value,message,name){
 		// recive latest array
 		if(name != 1){
 			let author = bot.users.find('username',name);
-			author.send("Hi "+name+" , you are lucky man.\n Check hash: http://www.gander.tech/tx/"+ hash);
+			author.send("Hi "+name+" , you are lucky man.\n Check hash: https://explorer.egem.io/tx/"+ hash);
 		} else {
-			message.channel.send("Tip was sent. \n Check hash: http://www.gander.tech/tx/"+ hash)
+			message.channel.send("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash)
 		}
-		
-	    
+
+
 	})
 	.on('error', console.error);
 }
@@ -63,12 +63,12 @@ function raining(amount,message){
 	// if use wrong amount (string or something)
 	var camount = amount/Object.keys(latest).length;
 	var weiAmount = camount*Math.pow(10,18);
-	
+
 	message.channel.send("It just **rained** on **" + Object.keys(latest).length + "** users. Check pm's." );
-	
+
 	function rainSend(addresses){
 		for(const address of Object.keys(addresses)){
-			
+
 			let name = addresses[address];
 			sendCoins(address,weiAmount,message,name);
 		}
@@ -100,7 +100,7 @@ function getPrice(){
 
 
 bot.on('message',async message => {
-	
+
 	// Not admins cannot use bot in general channel
 	if(message.channel.name === 'general' && !message.member.hasPermission('ADMINISTRATOR')) return;
 	if(message.author.bot) return;
@@ -110,10 +110,10 @@ bot.on('message',async message => {
 	var message = message;
 	let args = message.content.split(' ');
 
-	if(message.content.startsWith(prefix + "sendToAddress ")){ 
+	if(message.content.startsWith(prefix + "sendToAddress ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/send' command.");
-		} 
+		}
 		let address = args[1];
 		let amount = Number(args[2]);
 		// if use wrong amount (string or something)
@@ -122,10 +122,10 @@ bot.on('message',async message => {
 
 		if(web3.utils.isAddress(args[1])){
 			if(amount>10){
-				message.channel.send("You try to send more that 10 EXP.");
+				message.channel.send("You try to send more that 10 EGEM.");
 			} else {
 				// main function
-				message.channel.send("You try to send " + amount + " EXP to " + address + " address.");
+				message.channel.send("You try to send " + amount + " EGEM to " + address + " address.");
 				sendCoins(address,weiAmount,message,1);
 			}
 		} else {
@@ -141,12 +141,12 @@ bot.on('message',async message => {
 		let amount = Number(args[2]);
 		// if use wrong amount (string or something)
 		if (!amount) return message.channel.send("Error - you've entered wrong amount.");
-		
+
 		let weiAmount = amount*Math.pow(10,18);
 		let data = getJson();
 		if(Object.keys(data).includes(user)){
 			let address = data[user];
-			message.channel.send("You try to send " + amount+ " EXP to @"+user  );
+			message.channel.send("You try to send " + amount+ " EGEM to @"+user  );
 			sendCoins(address,weiAmount,message,1); // main function
 		} else {
 			message.channel.send("This user is not registered.");
@@ -154,21 +154,21 @@ bot.on('message',async message => {
 
 	}
 
-	if(message.content.startsWith(prefix + "rain")){		
+	if(message.content.startsWith(prefix + "rain")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
-		} 
+		}
 		var amount = Number(args[1]);
 		if (!amount) return message.channel.send("Error - you've entered wrong amount");
 		// main func
 		raining(amount,message);
-		
+
 	}
 	//
 	if(message.content.startsWith(prefix + "coming ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
-		} 	
+		}
 		let amount = Number(args[1]);
 		//if use wrong amount (string or something)
 		if(!amount) return message.channel.send("Error - you've entered wrong amount");
@@ -176,12 +176,12 @@ bot.on('message',async message => {
 		if(!time) return message.channel.send("Please, set hours correctly");
 		 // 1 hour = 3 600 000 milliseconds
 		message.channel.send("Raining will be after **" + args[2] + "** hours.");
-		
+
 		// main func
 		setTimeout(function(){
 			raining(amount,message);
 		},time);
-		
+
 	}
 
 	if(message.content.startsWith(prefix + "balance")){
@@ -196,11 +196,11 @@ bot.on('message',async message => {
 					if(!error){
 						var balance = (result/Math.pow(10,18)).toFixed(3);
 						if(balance > 10000){
-								message.channel.send("This balance has: **" + balance + "** EXP (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EXP whale.");
+								message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM whale.");
 						} else if(balance == 0){
-								message.channel.send("This balance empty, it has: **" + balance + "** EXP.");
+								message.channel.send("This balance empty, it has: **" + balance + "** EGEM.");
 						} else {
-								message.channel.send("Your balance is **" + balance + "** EXP (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), you need more EXP  to become a whale.");
+								message.channel.send("Your balance is **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), you need more EGEM  to become a whale.");
 						}
 					}
 				})
@@ -212,11 +212,11 @@ bot.on('message',async message => {
 				if(!error){
 					var balance = (result/Math.pow(10,18)).toFixed(3);
 					if(balance > 10000){
-						message.channel.send("This balance has: **" + balance + "** EXP (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are Exp whale.");
+						message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are EGEM whale.");
 					} else if(balance == 0){
-						message.channel.send("This balance empty, it has: **" + balance + "** EXP.");
+						message.channel.send("This balance empty, it has: **" + balance + "** EGEM.");
 					} else {
-						message.channel.send("Your balance is **" + balance + "** EXP (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), you need more EXP  to become a whale.");
+						message.channel.send("Your balance is **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), you need more EGEM  to become a whale.");
 					}
 				} else {
 					message.channel.send("Oops, some problem occured with your address.");
@@ -224,29 +224,29 @@ bot.on('message',async message => {
 			})
 		} else {
 			message.channel.send("Wrong address, try another one.");
-		}	
+		}
 	}
 
 	if(message.content === prefix + "getaddress"){
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(3) + "** EXP.");
+		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(3) + "** EGEM.");
 	}
-	
+
 	if(message.content.startsWith("/register")){
 		var author = message.author.username;
 		var address = args[1];
 
-		if(web3.utils.isAddress(args[1])){	
-			var data = getJson();			
-			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){		
+		if(web3.utils.isAddress(args[1])){
+			var data = getJson();
+			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
 				data[author] = address;
 				message.channel.send("@" + author + " registered new address: " + address);
-				
+
 				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
 				  if (err) throw err;
 				  console.log('The file has been saved.');
-				});	
-				
+				});
+
 			} else {
 				message.channel.send("You have already registered.");
 			}
@@ -266,7 +266,7 @@ bot.on('message',async message => {
 					fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
 				  		if (err) throw err;
 				  		console.log('The file has been changed.');
-					});	
+					});
 					message.channel.send("@" + author + " changed register address to " + address);
 				} else {
 					message.channel.send("Use another address if you're trying to change your old one.")
@@ -280,7 +280,7 @@ bot.on('message',async message => {
 	}
 	//-------------------------------------
 	if(message.content == prefix + "list"){
-		var data = getJson();	
+		var data = getJson();
 		message.channel.send("Total amount of registered users is **" + Object.keys(data).length+ "**.");
 
 	}
@@ -295,13 +295,13 @@ bot.on('message',async message => {
 	}
 
 	if(message.content === prefix + "help"){
-		message.channel.send("ExpTipBit commands:\n"+
-			"**"+prefix+"balance** *<address>* -  show EXP balance on the following address \n"+
-			"**"+prefix+"sendToAddress** *<address>* *<amount>* - send EXP to the following address (Admin Only)\n"+
-			"**"+prefix+"send** *<name>* *<amount>* send EXP to the following user (Admin Only)\n"+
-			"**"+prefix+"rain** *<amount>* - send EXP to all registered and online address's (Admin Only).\n"+
+		message.channel.send("EGEM Bot commands:\n"+
+			"**"+prefix+"balance** *<address>* -  show EGEM balance on the following address \n"+
+			"**"+prefix+"sendToAddress** *<address>* *<amount>* - send EGEM to the following address (Admin Only)\n"+
+			"**"+prefix+"send** *<name>* *<amount>* send EGEM to the following user (Admin Only)\n"+
+			"**"+prefix+"rain** *<amount>* - send EGEM to all registered and online address's (Admin Only).\n"+
 			"**"+prefix+"coming** *<amount>* *<numOfHrs>* - rain will be after N hours (Admin Only). \n"+
-			"**"+prefix+"getaddress** - shows bot address so everyone can fund it. \n" + 
+			"**"+prefix+"getaddress** - shows bot address so everyone can fund it. \n" +
 			"**"+prefix+"register** *<address>*  - saves user address and name to db. \n"+
 			"**"+prefix+"changeRegister** *<address>* -  change your registered address.\n"+
 			"**"+prefix+"checkRegister** -  find whether you're registered or not.\n"+
