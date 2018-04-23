@@ -249,13 +249,17 @@ bot.on('message',async message => {
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
 		+ "Ticker Symbol: " + "EGEM \n"
+		+ "----------------------------------------------- \n"
 		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
-		+ "open.BTC 24h: " + get24h()  + " BTC \n"
+		+ "open.BTC 24h Vol: " + get24h()  + " BTC \n"
+		+ "----------------------------------------------- \n"
     + "bridge.BTC Price: " + "" + getMPrice2() + " BTC" + " \n"
-    + "bridge.BTC 24h: " + get24h2()  + " BTC \n"
+    + "bridge.BTC 24h Vol: " + get24h2()  + " BTC \n"
+		+ "----------------------------------------------- \n"
 		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
-		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(1) + " USD \n"
-		+ "Circulation: " + Number(sup).toFixed(1) + " EGEM \n"
+		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
+		+ "----------------------------------------------- \n"
+		+ "Supply: " + Number(sup).toFixed(2) + " EGEM \n"
     + "Block Height: " + getBlock()
     + " ```"
 	);
