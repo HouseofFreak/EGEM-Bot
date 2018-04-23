@@ -109,16 +109,16 @@ function getOnline(){
 }
 
 function getJson(){
-	return JSON.parse(fs.readFileSync('data/users.json'));
+				return JSON.parse(fs.readFileSync('data/users.json'));
 }
 function getPrice(){
-	return JSON.parse(fs.readFileSync('data/usdprice.txt'));
+				return JSON.parse(fs.readFileSync('data/usdprice.txt'));
 }
 function getMPrice(){
-	return JSON.parse(fs.readFileSync('data/mprice.txt'));
+				return JSON.parse(fs.readFileSync('data/mprice.txt'));
 }
 function get24h(){
-	return JSON.parse(fs.readFileSync('data/m24h.txt'));
+				return JSON.parse(fs.readFileSync('data/m24h.txt'));
 }
 function getMPrice2(){
         return JSON.parse(fs.readFileSync('data/mprice2.txt'));
@@ -127,7 +127,7 @@ function get24h2(){
         return JSON.parse(fs.readFileSync('data/m24h2.txt'));
 }
 function getBlock(){
-	return JSON.parse(fs.readFileSync('data/block.txt'));
+				return JSON.parse(fs.readFileSync('data/block.txt'));
 }
 function getRlist(){
         return JSON.parse(fs.readFileSync('data/rlist.txt'));
@@ -137,9 +137,10 @@ function getSupply(){
 }
 
 const responseObject = {
-  "ella": "Hey we don't talk about that coin here.",
+  "ella": "Hey we don't talk about that coin in here.",
   "wat": "Say what?",
-  "lol": "rofl"
+  "lol": "rofl",
+	"when moon?": "When you stop asking, how about that."
 }
 
 bot.on('message',async message => {
@@ -235,12 +236,11 @@ bot.on('message',async message => {
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
 
-        if(message.content === prefix + "btslist"){
-		var data = getRlist();
-		var name = Object.keys(data);
-                message.channel.send("List of Users on BITSHARES with EGEM. \n **" + name + "**.");
-
-        }
+  if(message.content === prefix + "btslist"){
+					var data = getRlist();
+					var name = Object.keys(data);
+          message.channel.send("List of Users on BITSHARES with EGEM. \n **" + name + "**.");
+  }
 
 	if(message.content === prefix + "coin"){
 		let sup = getBlock()*9-5000;
@@ -251,13 +251,13 @@ bot.on('message',async message => {
 		+ "Ticker Symbol: " + "EGEM \n"
 		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
 		+ "open.BTC 24h: " + get24h()  + " BTC \n"
-                + "bridge.BTC Price: " + "" + getMPrice2() + " BTC" + " \n"
-                + "bridge.BTC 24h: " + get24h2()  + " BTC \n"
+    + "bridge.BTC Price: " + "" + getMPrice2() + " BTC" + " \n"
+    + "bridge.BTC 24h: " + get24h2()  + " BTC \n"
 		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
 		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(1) + " USD \n"
 		+ "Circulation: " + Number(sup).toFixed(1) + " EGEM \n"
-	        + "Block Height: " + getBlock()
-	        + " ```"
+    + "Block Height: " + getBlock()
+    + " ```"
 	);
 	}
 
@@ -357,7 +357,6 @@ bot.on('message',async message => {
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
 		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
 		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
-		+ "K2 Mining #2 (EU) http://egem.k2mining.eu \n"
 		+ "-----------------------------------------------  \n"
 		+ "Talk to a admin to get added to this list."
 	);
@@ -602,6 +601,7 @@ bot.on('message',async message => {
 			prefix+"block - shows the semi current block number (15sec updates). \n"+
 			prefix+"getblock <number> - lookup the info of the block. \n"+
 			prefix+"tx <txhash> - lookup the info of the transaction. \n"+
+			prefix+"btslist - lookup who is holding EGEM on Bitshares. \n"+
 			prefix+"coin - Show the price/cap/supply." + "```"
 		);
 	}
@@ -619,20 +619,6 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith(prefix + "adminhelp")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/adminhelp' command");
-		}
-		message.channel.send("EGEM Admin Commands:\n"+
-			"```" + prefix+"sendToAddress <address> <amount> - send EGEM to the following address\n"+
-			prefix+"send <name> <amount> send EGEM to the following user\n"+
-			prefix+"rain <amount> - send EGEM to all registered and online address's.\n"+
-			prefix+"online - see list of all online and registered users for raindrops.\n"+
-			prefix+"onlinetotal - see the list of every online user.\n"+
-			prefix+"coming <amount> <numOfHrs> - rain will be after N hours." + "```"
-		);
-	}
-
-	if(message.content.startsWith(prefix + "1help")){
-		if(!message.member.hasRole('TESTROLE')){
 			return message.channel.send("You cannot use '/adminhelp' command");
 		}
 		message.channel.send("EGEM Admin Commands:\n"+
