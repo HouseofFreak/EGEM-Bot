@@ -145,8 +145,7 @@ const responseObject = {
 	"ok": "No, no i am not.",
   "lol": "rofl",
 	"Lol": "Silly human",
-	"when moon?": "When you stop asking, how about that.",
-	"/balance": "haha o man look at that person bag..."
+	"when moon?": "When you stop asking, how about that."
 }
 
 bot.on('message',async message => {
