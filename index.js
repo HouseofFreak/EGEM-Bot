@@ -247,8 +247,6 @@ bot.on('message',async message => {
 		let price = getPrice();
 		let priceAvg = price*getMPrice();
 		let btsAssets = web3.eth.getBalance("0x5488f1d22a47fee54cf77a36caa899c9db28b513");
-		console.log(btsAssets);
-		console.log(balance);
 		let balance = (btsAssets/Math.pow(10,18)).toFixed(8);
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
@@ -268,6 +266,8 @@ bot.on('message',async message => {
     + "Block Height: " + getBlock()
     + " ```"
 	);
+	console.log(btsAssets);
+	console.log(balance);
 	}
 
 	if(message.content === prefix + "lambo"){
