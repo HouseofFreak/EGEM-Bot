@@ -270,7 +270,7 @@ bot.on('message',async message => {
 		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
 		+ "----------------------------------------------- \n"
 		+ "Total Supply: " + Number(sup).toFixed(2) + " EGEM \n"
-		+ "BTS Assets:" +  + " EGEM \n"
+		+ "BTS Assets:" + balance + " EGEM \n"
     + "Block Height: " + getBlock()
     + " ```"
 	);
