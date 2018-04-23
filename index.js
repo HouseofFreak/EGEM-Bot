@@ -249,7 +249,11 @@ bot.on('message',async message => {
 		let btsAssets = "0x5488f1d22a47fee54cf77a36caa899c9db28b513";
 		web3.eth.getBalance(btsAssets, (error,result)=>{
 			if(!error){
-
+				if(result){
+					var balance = (result/Math.pow(10,18)).toFixed(8);
+				} else {
+					var balance = "0";
+				}
 			}
 		})
 		message.channel.send("Coin Info: \n"+
@@ -266,7 +270,7 @@ bot.on('message',async message => {
 		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
 		+ "----------------------------------------------- \n"
 		+ "Total Supply: " + Number(sup).toFixed(2) + " EGEM \n"
-		+ "BTS Assets:" + (result/Math.pow(10,18)).toFixed(8) + " EGEM \n"
+		+ "BTS Assets:" +  + " EGEM \n"
     + "Block Height: " + getBlock()
     + " ```"
 	);
