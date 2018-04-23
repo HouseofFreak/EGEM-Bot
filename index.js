@@ -246,9 +246,11 @@ bot.on('message',async message => {
 		let sup = getBlock()*9-5000;
 		let price = getPrice();
 		let priceAvg = price*getMPrice();
+		let btsAssets = web3.eth.getBalance("0x5488f1d22a47fee54cf77a36caa899c9db28b513");
+		let balance = (btsAssets/Math.pow(10,18)).toFixed(8);
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
-		+ "Ticker Symbol: " + "EGEM \n"
+		+ "Ticker: " + "EGEM \n"
 		+ "----------------------------------------------- \n"
 		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
 		+ "open.BTC 24h Vol: " + get24h()  + " BTC \n"
@@ -259,7 +261,8 @@ bot.on('message',async message => {
 		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
 		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
 		+ "----------------------------------------------- \n"
-		+ "Supply: " + Number(sup).toFixed(2) + " EGEM \n"
+		+ "Total Supply: " + Number(sup).toFixed(2) + " EGEM \n"
+		+ "BTS Assets:" + Number(balance) + " EGEM \n"
     + "Block Height: " + getBlock()
     + " ```"
 	);
