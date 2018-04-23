@@ -12,15 +12,19 @@ const randomWord = require('random-word');
 const botSettings = require("./config.json");
 const price = require("./price.js");
 const block = require("./getblock.js");
+const mprice = require("./getprice.js");
+const rlist = require("./getlist.js");
+const supply = require("./getsup.js");
 
 // Load the full build.
 var _ = require('lodash');
 
-// update price every 5 min
+// update data
 setInterval(price,300000);
-
-// update price every 15 sec
 setInterval(block,9000);
+setInterval(mprice,9000);
+setInterval(rlist,9000);
+setInterval(supply,9000);
 
 const prefix = botSettings.prefix;
 
@@ -28,7 +32,7 @@ const bot = new Discord.Client({disableEveryone:true});
 
 var web3 = new Web3();
 
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
+web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 
 bot.on('ready', ()=>{
 	console.log("EGEM Discord Bot is Online.");
@@ -110,16 +114,33 @@ function getJson(){
 function getPrice(){
 	return JSON.parse(fs.readFileSync('data/usdprice.txt'));
 }
+function getMPrice(){
+	return JSON.parse(fs.readFileSync('data/mprice.txt'));
+}
+function get24h(){
+	return JSON.parse(fs.readFileSync('data/m24h.txt'));
+}
+function getMPrice2(){
+        return JSON.parse(fs.readFileSync('data/mprice2.txt'));
+}
+function get24h2(){
+        return JSON.parse(fs.readFileSync('data/m24h2.txt'));
+}
 function getBlock(){
 	return JSON.parse(fs.readFileSync('data/block.txt'));
+}
+function getRlist(){
+        return JSON.parse(fs.readFileSync('data/rlist.txt'));
+}
+function getSupply(){
+        return JSON.parse(fs.readFileSync('data/supply.txt'));
 }
 
 const responseObject = {
   "ella": "Hey we don't talk about that coin here.",
   "wat": "Say what?",
   "lol": "rofl"
-};
-
+}
 
 bot.on('message',async message => {
 
@@ -214,59 +235,72 @@ bot.on('message',async message => {
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
 
+        if(message.content === prefix + "btslist"){
+		var data = getRlist();
+		var name = Object.keys(data);
+                message.channel.send("List of Users on BITSHARES with EGEM. \n **" + name + "**.");
+
+        }
+
 	if(message.content === prefix + "coin"){
 		let sup = getBlock()*9-5000;
 		let price = getPrice();
+		let priceAvg = price*getMPrice();
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
 		+ "Ticker Symbol: " + "EGEM \n"
-		+ "Current Price: " + "$" + getPrice() + " USD" + " (SET PRICE NO EXCHANGE DATA YET)\n"
-		+ "24h Volume: " + "N/A \n"
-		+ "Market Cap: " + "$" + new Intl.NumberFormat('us-US').format(parseInt(sup*price)) + " USD \n"
-		+ "Circulation: " + sup + ". ```"
+		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
+		+ "open.BTC 24h: " + get24h()  + " BTC \n"
+                + "bridge.BTC Price: " + "" + getMPrice2() + " BTC" + " \n"
+                + "bridge.BTC 24h: " + get24h2()  + " BTC \n"
+		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
+		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(1) + " USD \n"
+		+ "Circulation: " + Number(sup).toFixed(1) + " EGEM \n"
+	        + "Block Height: " + getBlock()
+	        + " ```"
 	);
 	}
 
 	if(message.content === prefix + "lambo"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "402995";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Lamborghini Aventador, Vroom Vroooom!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Lamborghini Aventador, Vroom Vroooom!");
 	}
 
 	if(message.content === prefix + "bugatti"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "1902995";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Bugatti Veyron, Vroom Vroooom!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Bugatti Veyron, Vroom Vroooom!");
 	}
 
 	if(message.content === prefix + "tesla"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "80700";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!");
 	}
 
 	if(message.content === prefix + "prius"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "29850";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Toyota Prius V, Vroom Vroooom!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Toyota Prius V, Vroom Vroooom!");
 	}
 
 	if(message.content === prefix + "subaru"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "49495";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Subaru WRX STI, Vroom Vroooom!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Subaru WRX STI, Vroom Vroooom!");
 	}
 
 	if(message.content === prefix + "porsche"){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let cost = "92150";
 		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + getPrice() + " USD" + " to get a Porsche 911, Vroom Vroooom!");
+		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Porsche 911, Vroom Vroooom!");
 	}
 
 	if(message.content === prefix + "egem"){
@@ -321,8 +355,6 @@ bot.on('message',async message => {
 		+ "Reverse Gainz: http://egem.reversegainz.info/ \n"
 		+ "Protonmine: http://egem.protonmine.io/ \n"
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
-		+ "Panda Mine (CN):  \n"
-		+ "Cryptobitpool (EU): http://egem.cryptobitpool.eu/ \n"
 		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
 		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
 		+ "K2 Mining #2 (EU) http://egem.k2mining.eu \n"
@@ -397,7 +429,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content.startsWith(prefix + "balance")){
-		let price = getPrice();
+		let price = getPrice()*getMPrice();
 		let author = message.author.username;
 		let address = args[1];
 		if(address == null){
