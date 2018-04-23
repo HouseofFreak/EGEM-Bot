@@ -37,6 +37,5 @@ ehthumbs.db
 Thumbs.db
 
 
-data/users.json
 config.json
-data/
+data/*.*
