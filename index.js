@@ -10,11 +10,12 @@ const fs = require("fs");
 const randomWord = require('random-word');
 
 const botSettings = require("./config.json");
-const price = require("./price.js");
-const block = require("./getblock.js");
-const mprice = require("./getprice.js");
-const rlist = require("./getlist.js");
-const supply = require("./getsup.js");
+
+const price = require("./gets/btcprice.js");
+const block = require("./gets/getblock.js");
+const mprice = require("./gets/getprice.js");
+const rlist = require("./gets/getlist.js");
+const supply = require("./gets/getsup.js");
 
 // Load the full build.
 var _ = require('lodash');
@@ -139,8 +140,13 @@ function getSupply(){
 const responseObject = {
   "ella": "Hey we don't talk about that coin in here.",
   "wat": "Say what?",
+	"What": "Did you hear that?",
+	"Ok": "Time for me to leave...",
+	"ok": "No, no i am not.",
   "lol": "rofl",
-	"when moon?": "When you stop asking, how about that."
+	"Lol": "Silly human",
+	"when moon?": "When you stop asking, how about that.",
+	"/balance": "haha o man look at that person bag..."
 }
 
 bot.on('message',async message => {
