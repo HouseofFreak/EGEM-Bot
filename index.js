@@ -255,6 +255,7 @@ bot.on('message',async message => {
 					var balance = "0";
 				}
 			}
+			return balance;
 		})
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
