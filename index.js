@@ -371,6 +371,16 @@ bot.on('message',async message => {
 	);
 	}
 
+	if(message.content === prefix + "markets"){
+		return message.channel.send(", \n"
+		+	"List of Markets: \n"
+		+ "----------------------------------------------- \n"
+		+ "List coming soon! \n"
+		+ "-----------------------------------------------  \n"
+		+ "Having trouble contact a admin."
+	);
+	}
+
 	if(message.content.startsWith(prefix + "tx ")){
 		let tx = args[1];
 		web3.eth.getTransaction(args[1], (error,result)=>{
@@ -644,6 +654,7 @@ bot.on('message',async message => {
 		message.channel.send("EGEM General Commands:\n"+
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
+			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
 			prefix+"fundbot - shows bot address so anyone can fund it, and its balance. \n" +
 			prefix+"rolldice  -  returns a number from 1-12 and a random word.\n"+
 			prefix+"register <address>  - saves user address and name to db. \n"+
