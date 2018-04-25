@@ -14,6 +14,7 @@ const botSettings = require("./config.json");
 const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
 const mprice = require("./gets/getprice.js");
+const gprice = require("./gets/getprice0.js");
 const rlist = require("./gets/getlist.js");
 const supply = require("./gets/getsup.js");
 
@@ -23,8 +24,9 @@ var _ = require('lodash');
 // update data
 setInterval(price,300000);
 setInterval(block,9000);
-setInterval(mprice,9000);
-setInterval(rlist,9000);
+setInterval(mprice,27000);
+setInterval(gprice,27000);
+setInterval(rlist,27000);
 setInterval(supply,9000);
 
 const prefix = botSettings.prefix;
@@ -118,6 +120,12 @@ function getPrice(){
 function getMPrice(){
 				return JSON.parse(fs.readFileSync('data/mprice.txt'));
 }
+function getGPrice(){
+				return JSON.parse(fs.readFileSync('data/gravprice.txt'));
+}
+function get24hgrav(){
+				return JSON.parse(fs.readFileSync('data/m24hgrav.txt'));
+}
 function get24h(){
 				return JSON.parse(fs.readFileSync('data/m24h.txt'));
 }
@@ -142,9 +150,10 @@ const responseObject = {
   "wat": "Say what?",
 	"What": "Did you hear that?",
 	"Ok": "Time for me to leave...",
-	"ok": "No, no i am not.",
+	"ok": "No, no i am not ok...",
   "lol": "rofl",
 	"Lol": "Silly human",
+	"rofl": "Get up off the floor dammit...",
 	"when moon?": "When you stop asking, how about that."
 }
 
@@ -250,10 +259,13 @@ bot.on('message',async message => {
 	if(message.content === prefix + "coin"){
 		let sup = getBlock()*9-5000;
 		let price = getPrice();
-		let priceAvg = price*getMPrice();
+		let priceAvg = price*getGPrice();
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
 		+ "Ticker: " + "EGEM \n"
+		+ "----------------------------------------------- \n"
+		+ "Graviex BTC Price: " + "" + getGPrice() + " BTC" + " \n"
+		+ "Graviex 24h Vol: " + get24hgrav()  + " BTC \n"
 		+ "----------------------------------------------- \n"
 		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
 		+ "open.BTC 24h Vol: " + get24h()  + " BTC \n"
