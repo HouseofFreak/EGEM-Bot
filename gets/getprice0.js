@@ -7,9 +7,9 @@ const PRICESITE2 = 'https://graviex.net/api/v2/tickers/egembtc';
 var data = {};
 
 function getGPrice(){
-	request(PRICESITE2, (error, response, body)=>{
+	request(PRICESITE2, (error, response)=>{
 		try{
-			var dataCoin = JSON.parse(body);
+			var dataCoin = JSON.parse(response);
 		} catch (e) {
 			console.log("Api Graviex Problem: " + e);
 			return

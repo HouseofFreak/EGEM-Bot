@@ -7,9 +7,9 @@ const LISTSITE = 'https://cryptofresh.com/api/holders?asset=EGEM';
 var data = {};
 
 function getRlist(){
-	request(LISTSITE, (error, response, body)=>{
+	request(LISTSITE, (error, response)=>{
 		try{
-			var dataCoin = JSON.parse(body);
+			var dataCoin = JSON.parse(response);
 		} catch (e) {
 			console.log("Api BTS Assets Problem: " + e);
 			return
