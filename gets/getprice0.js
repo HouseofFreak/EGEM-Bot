@@ -8,14 +8,14 @@ var data = {};
 
 function getGPrice(){
 	request(PRICESITE2, (error, response)=>{
-		try{
-			var dataCoin = JSON.parse(response);
-		} catch (e) {
-			console.log("Api Graviex Problem: " + e);
-			return
-		}
-		var gPrice1 = dataCoin["ticker"]["last"];
-		var g24h1 = dataCoin["ticker"]["volbtc"];
+		// try{
+		// 	var dataCoin = JSON.parse(response);
+		// } catch (e) {
+		// 	console.log("Api Graviex Problem: " + e);
+		// 	return
+		// }
+		var gPrice1 = response["ticker"]["last"];
+		var g24h1 = response["ticker"]["volbtc"];
 		console.log(gPrice1);
 		console.log(g24h1);
 
