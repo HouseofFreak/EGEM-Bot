@@ -11,7 +11,7 @@ function getGPrice(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Problem" + e);
+			console.log("Api Graviex Problem" + e);
 			return
 		}
 		var gPrice1 = dataCoin["ticker"]["last"];

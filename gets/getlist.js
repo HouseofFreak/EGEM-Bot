@@ -11,7 +11,7 @@ function getRlist(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Problem" + e);
+			console.log("Api BTS Assets Problem" + e);
 			return
 		}
 		var rList = body.dataCoin;

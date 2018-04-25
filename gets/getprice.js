@@ -11,7 +11,7 @@ function getMPrice(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Problem" + e);
+			console.log("Api BTS Price Problem" + e);
 			return
 		}
 		var mPrice1 = dataCoin["OPEN.BTC"]["price"];
