@@ -11,10 +11,11 @@ function getRlist(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api BTS Assets Problem" + e);
+			console.log("Api BTS Assets Problem: " + e);
 			return
 		}
 		var rList = body.dataCoin;
+		console.log(rList);
 
 		fs.writeFile("data/rlist.txt",body,(err)=>{
 			if(err) throw err;

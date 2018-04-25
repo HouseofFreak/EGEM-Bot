@@ -11,7 +11,7 @@ function getPrice(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Coinmarket Problem" + e);
+			console.log("Api Coinmarket Problem: " + e);
 			return
 		}
 		var marketcapInfo = dataCoin[0];

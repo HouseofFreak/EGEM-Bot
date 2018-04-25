@@ -11,19 +11,19 @@ function getGPrice(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Graviex Problem" + e);
+			console.log("Api Graviex Problem: " + e);
 			return
 		}
 		var gPrice1 = dataCoin["ticker"]["last"];
 		var g24h1 = dataCoin["ticker"]["volbtc"];
+		console.log(gPrice1);
+		console.log(g24h1);
 
 		fs.writeFile("data/gravprice.txt",gPrice1,(err)=>{
 			if(err) throw err;
-			console.log(err);
 		});
 		fs.writeFile("data/m24grav.txt",g24h1,(err)=>{
 			if(err) throw err;
-			console.log(err);
 		});
 
 	});

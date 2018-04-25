@@ -11,7 +11,7 @@ function getBlock(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Block Problem" + e);
+			console.log("Api Block Problem: " + e);
 			return
 		}
 		var blockH = dataCoin["nodes"][0]["height"];

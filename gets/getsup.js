@@ -11,7 +11,7 @@ function getSupply(){
 		try{
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
-			console.log("Api Supply Problem" + e);
+			console.log("Api Supply Problem: " + e);
 			return
 		}
 		var blockH = dataCoin["nodes"][0]["height"];
