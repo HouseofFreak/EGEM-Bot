@@ -2,7 +2,7 @@
 var request = require("request");
 var fs = require("fs");
 
-const PRICESITE2 = 'https://graviex.net/api/v2/tickers/egembtc.json';
+const PRICESITE2 = 'https://graviex.net/api/v2/tickers/egembtc';
 
 var data = {};
 
@@ -19,9 +19,11 @@ function getGPrice(){
 
 		fs.writeFile("data/gravprice.txt",gPrice1,(err)=>{
 			if(err) throw err;
+			console.log(err);
 		});
 		fs.writeFile("data/m24grav.txt",g24h1,(err)=>{
 			if(err) throw err;
+			console.log(err);
 		});
 
 	});
