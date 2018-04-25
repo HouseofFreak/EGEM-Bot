@@ -2,30 +2,29 @@
 var request = require("request");
 var fs = require("fs");
 
-const PRICESITE2 = 'https://graviex.net/api/v2/tickers/egembtc';
+// const MARKETCAP = 'https://graviex.net/api/v2/tickers/egembtc.json';
+//
+// var data = {};
 
-var data = {};
+// function getGPrice(){
+// 	request.get(MARKETCAP, { json: true }, (error, response)=>{
+//
+// 		let data = JSON.parse(response);
+// 		console.log(data);
+//
+// 		//var data = dataCoin["ticker"];
+//
+//
+// 		// fs.writeFile("data/gravprice.txt",data,(err)=>{
+// 		// 	if(err) throw err;
+// 		// 	//console.log('File with price was updated');
+// 		// });
+// 	});
+// }
 
 function getGPrice(){
-	request(PRICESITE2, (error, response)=>{
-		// try{
-		// 	var dataCoin = JSON.parse(response);
-		// } catch (e) {
-		// 	console.log("Api Graviex Problem: " + e);
-		// 	return
-		// }
-		var gPrice1 = response["ticker"]["last"];
-		var g24h1 = response["ticker"]["volbtc"];
-		console.log(gPrice1);
-		console.log(g24h1);
 
-		fs.writeFile("data/gravprice.txt",gPrice1,(err)=>{
-			if(err) throw err;
-		});
-		fs.writeFile("data/m24grav.txt",g24h1,(err)=>{
-			if(err) throw err;
-		});
 
-	});
 }
+
 module.exports = getGPrice;

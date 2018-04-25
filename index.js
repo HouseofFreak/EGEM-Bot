@@ -14,8 +14,7 @@ const botSettings = require("./config.json");
 const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
 const mprice = require("./gets/getprice.js");
-const gprice = require("./gets/getprice0.js");
-const rlist = require("./gets/getlist.js");
+//const gprice = require("./gets/getprice0.js");
 const supply = require("./gets/getsup.js");
 
 // Load the full build.
@@ -25,8 +24,7 @@ var _ = require('lodash');
 setInterval(price,300000);
 setInterval(block,9000);
 setInterval(mprice,27000);
-setInterval(gprice,27000);
-setInterval(rlist,27000);
+//setInterval(gprice,9000);
 setInterval(supply,9000);
 
 const prefix = botSettings.prefix;
@@ -120,12 +118,7 @@ function getPrice(){
 function getMPrice(){
 				return JSON.parse(fs.readFileSync('data/mprice.txt'));
 }
-function getGPrice(){
-				return JSON.parse(fs.readFileSync('data/gravprice.txt'));
-}
-function get24hgrav(){
-				return JSON.parse(fs.readFileSync('data/m24hgrav.txt'));
-}
+
 function get24h(){
 				return JSON.parse(fs.readFileSync('data/m24h.txt'));
 }
@@ -137,9 +130,6 @@ function get24h2(){
 }
 function getBlock(){
 				return JSON.parse(fs.readFileSync('data/block.txt'));
-}
-function getRlist(){
-        return JSON.parse(fs.readFileSync('data/rlist.txt'));
 }
 function getSupply(){
         return JSON.parse(fs.readFileSync('data/supply.txt'));
@@ -250,28 +240,13 @@ bot.on('message',async message => {
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
 
-  if(message.content === prefix + "btslist"){
-					var data = getRlist();
-					var name = Object.keys(data);
-          message.channel.send("List of Users on BITSHARES with EGEM. \n **" + name + "**.");
-  }
-
 	if(message.content === prefix + "coin"){
 		let sup = getBlock()*9-5000;
 		let price = getPrice();
-		let priceAvg = price*getGPrice();
+		let priceAvg = price*getMPrice();
 		message.channel.send("Coin Info: \n"+
 		"```" + "Name: " + "EtherGem \n"
 		+ "Ticker: " + "EGEM \n"
-		+ "----------------------------------------------- \n"
-		+ "Graviex BTC Price: " + "" + getGPrice() + " BTC" + " \n"
-		+ "Graviex 24h Vol: " + get24hgrav()  + " BTC \n"
-		+ "----------------------------------------------- \n"
-		+ "open.BTC Price: " + "" + getMPrice() + " BTC" + " \n"
-		+ "open.BTC 24h Vol: " + get24h()  + " BTC \n"
-		+ "----------------------------------------------- \n"
-    + "bridge.BTC Price: " + "" + getMPrice2() + " BTC" + " \n"
-    + "bridge.BTC 24h Vol: " + get24h2()  + " BTC \n"
 		+ "----------------------------------------------- \n"
 		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
 		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
@@ -632,7 +607,6 @@ bot.on('message',async message => {
 			prefix+"block - shows the semi current block number (15sec updates). \n"+
 			prefix+"getblock <number> - lookup the info of the block. \n"+
 			prefix+"tx <txhash> - lookup the info of the transaction. \n"+
-			prefix+"btslist - lookup who is holding EGEM on Bitshares. \n"+
 			prefix+"coin - Show the price/cap/supply." + "```"
 		);
 	}

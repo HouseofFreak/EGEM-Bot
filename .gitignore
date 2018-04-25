@@ -39,3 +39,4 @@ Thumbs.db
 
 config.json
 data/*.*
+node_modules

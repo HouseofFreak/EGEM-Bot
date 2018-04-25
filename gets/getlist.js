@@ -9,6 +9,7 @@ var data = {};
 function getRlist(){
 	request(LISTSITE, (error, response, body)=>{
 		try{
+			console.log(body);
 			var dataCoin = JSON.parse(body);
 		} catch (e) {
 			console.log("Api BTS Assets Problem: " + e);
