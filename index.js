@@ -240,23 +240,6 @@ bot.on('message',async message => {
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
 
-	if(message.content === prefix + "coin"){
-		let sup = getBlock()*9-5000;
-		let price = getPrice();
-		let priceAvg = price*getMPrice();
-		message.channel.send("Coin Info: \n"+
-		"```" + "Name: " + "EtherGem \n"
-		+ "Ticker: " + "EGEM \n"
-		+ "----------------------------------------------- \n"
-		+ "Price AVG: $ " + Number(priceAvg).toFixed(4) + " USD \n"
-		+ "EST Market CAP: $ " + Number(sup*priceAvg).toFixed(2) + " USD \n"
-		+ "----------------------------------------------- \n"
-		+ "Total Supply: " + Number(sup).toFixed(2) + " EGEM \n"
-    + "Block Height: " + getBlock()
-    + " ```"
-	);
-	}
-
 	if(message.content === prefix + "lambo"){
 		let price = getPrice()*getMPrice();
 		let cost = "402995";
