@@ -11,20 +11,19 @@ const randomWord = require('random-word');
 
 const botSettings = require("./config.json");
 
-//const price = require("./gets/btcprice.js");
+const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
-//const mprice = require("./gets/getprice.js");
-//const gprice = require("./gets/getprice0.js");
+const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
 
 // Load the full build.
 var _ = require('lodash');
 
 // update data
-//setInterval(price,300000);
+setInterval(price,300000);
 setInterval(block,9000);
-//setInterval(mprice,27000);
-//setInterval(gprice,9000);
+setInterval(mprice,27000);
+
 setInterval(supply,9000);
 
 const prefix = botSettings.prefix;
@@ -111,6 +110,21 @@ function getOnline(){
 
 function getJson(){
 				return JSON.parse(fs.readFileSync('data/users.json'));
+}
+function getPrice(){
+				return JSON.parse(fs.readFileSync('data/usdprice.txt'));
+}
+function getMPrice(){
+				return JSON.parse(fs.readFileSync('data/mprice.txt'));
+}
+function get24h(){
+				return JSON.parse(fs.readFileSync('data/m24h.txt'));
+}
+function getMPrice2(){
+        return JSON.parse(fs.readFileSync('data/mprice2.txt'));
+}
+function get24h2(){
+        return JSON.parse(fs.readFileSync('data/m24h2.txt'));
 }
 function getBlock(){
 				return JSON.parse(fs.readFileSync('data/block.txt'));
@@ -310,7 +324,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content === prefix + "pools"){
-		return message.channel.send("``` \n"
+		return message.channel.send("```"
 		+	"List of Known Pools: \n"
 		+ "----------------------------------------------- \n"
 		+ "Dev Pool (US): https://pool.egem.io \n"
@@ -326,7 +340,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content === prefix + "markets"){
-		return message.channel.send("``` \n"
+		return message.channel.send("```"
 		+	"List of Markets: \n"
 		+ "----------------------------------------------- \n"
 		+ "/btsx - shows the stats on https://bitshares.org/ \n"
