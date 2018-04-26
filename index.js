@@ -11,9 +11,9 @@ const randomWord = require('random-word');
 
 const botSettings = require("./config.json");
 
-const price = require("./gets/btcprice.js");
+//const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
-const mprice = require("./gets/getprice.js");
+//const mprice = require("./gets/getprice.js");
 //const gprice = require("./gets/getprice0.js");
 const supply = require("./gets/getsup.js");
 
@@ -21,9 +21,9 @@ const supply = require("./gets/getsup.js");
 var _ = require('lodash');
 
 // update data
-setInterval(price,300000);
+//setInterval(price,300000);
 setInterval(block,9000);
-setInterval(mprice,27000);
+//setInterval(mprice,27000);
 //setInterval(gprice,9000);
 setInterval(supply,9000);
 
@@ -111,22 +111,6 @@ function getOnline(){
 
 function getJson(){
 				return JSON.parse(fs.readFileSync('data/users.json'));
-}
-function getPrice(){
-				return JSON.parse(fs.readFileSync('data/usdprice.txt'));
-}
-function getMPrice(){
-				return JSON.parse(fs.readFileSync('data/mprice.txt'));
-}
-
-function get24h(){
-				return JSON.parse(fs.readFileSync('data/m24h.txt'));
-}
-function getMPrice2(){
-        return JSON.parse(fs.readFileSync('data/mprice2.txt'));
-}
-function get24h2(){
-        return JSON.parse(fs.readFileSync('data/m24h2.txt'));
 }
 function getBlock(){
 				return JSON.parse(fs.readFileSync('data/block.txt'));
@@ -326,7 +310,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content === prefix + "pools"){
-		return message.channel.send(", \n"
+		return message.channel.send("``` \n"
 		+	"List of Known Pools: \n"
 		+ "----------------------------------------------- \n"
 		+ "Dev Pool (US): https://pool.egem.io \n"
@@ -337,19 +321,19 @@ bot.on('message',async message => {
 		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
 		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
 		+ "-----------------------------------------------  \n"
-		+ "Talk to a admin to get added to this list."
+		+ "Talk to a admin to get added to this list.```"
 	);
 	}
 
 	if(message.content === prefix + "markets"){
-		return message.channel.send(", \n"
+		return message.channel.send("``` \n"
 		+	"List of Markets: \n"
 		+ "----------------------------------------------- \n"
 		+ "/btsx - shows the stats on https://bitshares.org/ \n"
 		+ "/graviex - shows the stats for https://graviex.net/ \n"
 		+ "More coming in time! \n"
 		+ "-----------------------------------------------  \n"
-		+ "Having trouble contact a admin."
+		+ "Having trouble contact a admin.```"
 	);
 	}
 
