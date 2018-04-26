@@ -345,7 +345,9 @@ bot.on('message',async message => {
 		return message.channel.send(", \n"
 		+	"List of Markets: \n"
 		+ "----------------------------------------------- \n"
-		+ "List coming soon! \n"
+		+ "/btsx - shows the stats on https://bitshares.org/ \n"
+		+ "/graviex - shows the stats for https://graviex.net/ \n"
+		+ "More coming in time! \n"
 		+ "-----------------------------------------------  \n"
 		+ "Having trouble contact a admin."
 	);
