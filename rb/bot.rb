@@ -126,8 +126,7 @@ end
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 
-last = grav['ticker']['last'].to_i
-last2 = last.round(8)
+last = grav['ticker']['last']
 vol = grav['ticker']['vol']
 volbtc = grav['ticker']['volbtc']
 change = grav['ticker']['change']
@@ -136,7 +135,7 @@ event.respond "```
 
 ***Graviex Exchange***
 ----------
-Price: #{last2} BTC
+Price: #{last} BTC
 Change: #{change}
 24 Volume: #{vol} EGEM
 BTC Volume: #{volbtc}
