@@ -3,8 +3,33 @@ require 'discordrb'
 require 'httparty'
 
 config  = JSON.parse(File.read("token.json"))
+
 token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
+
+cars  = JSON.parse(File.read("data/cars.json"))
+lambo = cars["lambo"].to_f
+bugatti = cars["bugatti"].to_f
+tesla = cars["tesla"].to_f
+prius = cars["prius"].to_f
+subaru = cars["subaru"].to_f
+porsche = cars["porsche"].to_f
+
+
+bot.message(with_text: ['/lambo', '/Lambo']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+
+total = pAvg * lambo
+
+event.respond "
+You need #{total} EGEM at the current price of #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!
+"
+end
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
@@ -39,7 +64,6 @@ Marketcap: $ #{mcap} USD
 Price Avg: $ #{pAvg} USD
 ----------
 ```"
-
 end
 
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
@@ -65,7 +89,6 @@ EGEM Volume: #{vol}
 BTC Volume: #{volbtc}
 ----------
 ```"
-
 end
 
 bot.message(with_text: ['/btsx', '/Btsx']) do |event|
@@ -98,6 +121,5 @@ BTS: #{btslast}
 24h Vol: #{bts24} BTS
 ```"
 end
-
 
 bot.run
