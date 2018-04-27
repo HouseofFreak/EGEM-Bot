@@ -23,8 +23,7 @@ grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify =
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
-
-total = pAvg / lambo
+total = lambo / pAvg
 
 event.respond "
 You need #{total} EGEM at the current price of #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!
