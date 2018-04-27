@@ -24,7 +24,7 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 
-total = pAvg * lambo
+total = pAvg / lambo
 
 event.respond "
 You need #{total} EGEM at the current price of #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!
