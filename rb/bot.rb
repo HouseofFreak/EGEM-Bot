@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 require 'discordrb'
 require 'httparty'
+require 'web-eth'
+
+web3 = Web3::Eth::Rpc.new host: 'jsonrpc.egem.io/custom',
+                          port: 8545,
+                          connect_options: { use_ssl: true, read_timeout: 120 }
 
 config  = JSON.parse(File.read("token.json"))
 token = config["discord-token"]
@@ -9,7 +14,6 @@ bot = Discordrb::Bot.new token: "#{token}"
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-block_height = HTTParty.get("http://pool.egem.io/api/stats")
 
 buy = grav['ticker']['buy']
 sell = grav['ticker']['sell']
@@ -21,7 +25,7 @@ vol = grav['ticker']['vol']
 volbtc = grav['ticker']['volbtc']
 change = grav['ticker']['change']
 
-block_h = block_height['nodes'][1]['height']
+block_h = web3.eth.blockNumber
 supply = (block_h.to_i - 5000)*9
 
 btcp = btcprice[0]['price_usd'].to_f
@@ -97,6 +101,13 @@ bridge.XSH: #{shieldbtclast}
 BTS: #{btslast}
 24h Vol: #{bts24} BTS
 ```"
+end
+
+
+bot.message(bucket: :meems, with_text: ['/', '/Graviex']) do |event|
+
+event.respond ""
+
 end
 
 
