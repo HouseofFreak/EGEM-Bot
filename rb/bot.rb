@@ -16,8 +16,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = lambo / pAvg
-total2 = total.round(4)
-event.respond "You need #{total2} EGEM at the current price of $ #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Lamborghini Aventador, Vroom Vroooom!"
 end
 
 bugatti = cars["bugatti"].to_f
@@ -28,7 +29,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = bugatti / pAvg
-event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Bugatti Veyron, Vroom Vroooom!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Bugatti Veyron, Vroom Vroooom!"
 end
 
 tesla = cars["tesla"].to_f
@@ -39,7 +42,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = tesla / pAvg
-event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!"
 end
 
 prius = cars["prius"].to_f
@@ -50,7 +55,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = prius / pAvg
-event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Toyota Prius V, Vroom Vroooom!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Toyota Prius V, Vroom Vroooom!"
 end
 
 subaru = cars["subaru"].to_f
@@ -61,7 +68,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = subaru / pAvg
-event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Subaru WRX STI, Vroom Vroooom!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Subaru WRX STI, Vroom Vroooom!"
 end
 
 porsche = cars["porsche"].to_f
@@ -72,7 +81,9 @@ last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = porsche / pAvg
-event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Porsche 911, Vroom Vroooom!"
+pAvg2 = pAvg.round(4)
+total2 = total.round(2)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Porsche 911, Vroom Vroooom!"
 end
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|
@@ -96,6 +107,8 @@ supply = (block_h.to_i - 5000)*9
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 mcap = pAvg * supply
+pAvg2 = pAvg.round(4)
+mcap2 = mcap.round(2)
 
 event.respond "```
 ***Coin Status***
@@ -104,8 +117,8 @@ Name: EtherGem https://egem.io
 Ticker: EGEM
 Block Height: #{block_h}
 Supply: #{supply} EGEM
-Marketcap: $ #{mcap} USD
-Price Avg: $ #{pAvg} USD
+Marketcap: $ #{mcap2} USD
+Price Avg: $ #{pAvg2} USD
 ----------
 ```"
 end
