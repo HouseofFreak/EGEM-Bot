@@ -9,10 +9,11 @@ token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
 
 carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
+listAPI = [HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false ),HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false ),HTTParty.get("http://pool.egem.io/api/stats"),HTTParty.get("https://cryptofresh.com/api/asset/markets?asset=EGEM", :verify => false )]
 
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -23,8 +24,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/bugatti', '/Bugatti']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -35,8 +36,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/tesla', '/Tesla']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -47,8 +48,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/prius', '/Prius']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -59,8 +60,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/subaru', '/Subaru']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -71,8 +72,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/porsche', '/Porsche']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -83,8 +84,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/bmw', '/Bmw']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -95,8 +96,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/ferrari', '/Ferrari']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -107,8 +108,8 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/mercedes', '/Mercedes']) do |event|
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = listAPI[0]
+grav = listAPI[1]
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
@@ -119,9 +120,9 @@ event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to
 end
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
-btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-block_height = HTTParty.get("http://pool.egem.io/api/stats")
+btcprice = listAPI[0]
+grav = listAPI[1]
+block_height = listAPI[2]
 
 last = grav['ticker']['last'].to_f
 block_h = block_height['nodes'][1]['height']
@@ -146,7 +147,7 @@ Price Avg: $ #{pAvg2} USD
 end
 
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+grav = listAPI[1]
 
 last = grav['ticker']['last']
 vol = grav['ticker']['vol']
@@ -167,7 +168,7 @@ end
 
 bot.message(with_text: ['/btsx', '/Btsx']) do |event|
 
-response2 = HTTParty.get("https://cryptofresh.com/api/asset/markets?asset=EGEM", :verify => false )
+response2 = listAPI[3]
 
 openbtclast = response2['OPEN.BTC']['price'] * 10**8
 openbtc24 = response2['OPEN.BTC']['volume24']
