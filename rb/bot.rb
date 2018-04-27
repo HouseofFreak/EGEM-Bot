@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'discordrb'
 require 'httparty'
-require 'web-eth'
 
 web3 = Web3::Eth::Rpc.new host: 'jsonrpc.egem.io/custom',
                           port: 8545,
