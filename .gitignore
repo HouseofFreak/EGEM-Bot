@@ -40,3 +40,4 @@ Thumbs.db
 config.json
 data/*.*
 node_modules
+rb/token.json

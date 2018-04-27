@@ -442,7 +442,7 @@ bot.on('message',async message => {
 						} else if(balance > 250){
 								message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Octopus.");
 						} else if(balance > 100){
-									message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Snow Crab.");
+								message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Snow Crab.");
 						} else if(balance > 50){
 								message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Shrimp.");
 						} else if(balance > 5){
@@ -476,7 +476,7 @@ bot.on('message',async message => {
 					} else if(balance > 250){
 							message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Octopus.");
 					} else if(balance > 100){
-								message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Snow Crab.");
+							message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Snow Crab.");
 					} else if(balance > 50){
 							message.channel.send("This balance has: **" + balance + "** EGEM (or *"+new Intl.NumberFormat('us-US').format(parseInt(balance*price))+" USD*), congrats, you are an EGEM Shrimp.");
 					} else if(balance > 5){
