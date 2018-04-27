@@ -3,8 +3,8 @@ require 'discordrb'
 require 'httparty'
 
 config  = JSON.parse(File.read("token.json"))
-discord-token = config["discord-token"]
-bot = Discordrb::Bot.new token: "#{discord-token}"
+token = config["discord-token"]
+bot = Discordrb::Bot.new token: "#{token}"
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
