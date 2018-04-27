@@ -8,7 +8,7 @@ cars  = JSON.parse(File.read("data/cars.json"))
 token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
 
-carlist = ['cars["lambo"].to_f','cars["bugatti"].to_f','cars["tesla"].to_f','cars["prius"].to_f','cars["subaru"].to_f','cars["porsche"].to_f','cars["bmw"].to_f','cars["ferrari"].to_f','cars["mercedes"].to_f']
+carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
 
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
