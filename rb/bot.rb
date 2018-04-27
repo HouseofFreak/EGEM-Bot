@@ -126,9 +126,10 @@ end
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 
-last2 = grav['ticker']['last'].round(8)
-vol = grav['ticker']['vol'].round(2)
-volbtc = grav['ticker']['volbtc'].round(8)
+last = grav['ticker']['last'].to_f
+last2 = last.round(8)
+vol = grav['ticker']['vol']
+volbtc = grav['ticker']['volbtc']
 change = grav['ticker']['change']
 
 event.respond "```
