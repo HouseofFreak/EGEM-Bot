@@ -3,31 +3,76 @@ require 'discordrb'
 require 'httparty'
 
 config  = JSON.parse(File.read("token.json"))
+cars  = JSON.parse(File.read("data/cars.json"))
 
 token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
 
-cars  = JSON.parse(File.read("data/cars.json"))
 lambo = cars["lambo"].to_f
-bugatti = cars["bugatti"].to_f
-tesla = cars["tesla"].to_f
-prius = cars["prius"].to_f
-subaru = cars["subaru"].to_f
-porsche = cars["porsche"].to_f
-
-
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
-
 last = grav['ticker']['last'].to_f
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 total = lambo / pAvg
+total2 = total.round(4)
+event.respond "You need #{total2} EGEM at the current price of $ #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!"
+end
 
-event.respond "
-You need #{total} EGEM at the current price of #{pAvg} USD to get a Lamborghini Aventador, Vroom Vroooom!
-"
+bugatti = cars["bugatti"].to_f
+bot.message(with_text: ['/bugatti', '/Bugatti']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+total = bugatti / pAvg
+event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Bugatti Veyron, Vroom Vroooom!"
+end
+
+tesla = cars["tesla"].to_f
+bot.message(with_text: ['/tesla', '/Tesla']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+total = tesla / pAvg
+event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!"
+end
+
+prius = cars["prius"].to_f
+bot.message(with_text: ['/prius', '/Prius']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+total = prius / pAvg
+event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Toyota Prius V, Vroom Vroooom!"
+end
+
+subaru = cars["subaru"].to_f
+bot.message(with_text: ['/subaru', '/Subaru']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+total = subaru / pAvg
+event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Subaru WRX STI, Vroom Vroooom!"
+end
+
+porsche = cars["porsche"].to_f
+bot.message(with_text: ['/porsche', '/Porsche']) do |event|
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+last = grav['ticker']['last'].to_f
+btcp = btcprice[0]['price_usd'].to_f
+pAvg = btcp * last
+total = porsche / pAvg
+event.respond "You need #{total} EGEM at the current price of $ #{pAvg} USD to get a Porsche 911, Vroom Vroooom!"
 end
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|

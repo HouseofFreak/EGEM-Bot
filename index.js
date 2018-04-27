@@ -238,48 +238,6 @@ bot.on('message',async message => {
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
 
-	if(message.content === prefix + "lambo"){
-		let price = getPrice()*getMPrice();
-		let cost = "402995";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Lamborghini Aventador, Vroom Vroooom!");
-	}
-
-	if(message.content === prefix + "bugatti"){
-		let price = getPrice()*getMPrice();
-		let cost = "1902995";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Bugatti Veyron, Vroom Vroooom!");
-	}
-
-	if(message.content === prefix + "tesla"){
-		let price = getPrice()*getMPrice();
-		let cost = "80700";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Tesla Model X, Fshhhhhhhhhh Weeeeeee!");
-	}
-
-	if(message.content === prefix + "prius"){
-		let price = getPrice()*getMPrice();
-		let cost = "29850";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Toyota Prius V, Vroom Vroooom!");
-	}
-
-	if(message.content === prefix + "subaru"){
-		let price = getPrice()*getMPrice();
-		let cost = "49495";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Subaru WRX STI, Vroom Vroooom!");
-	}
-
-	if(message.content === prefix + "porsche"){
-		let price = getPrice()*getMPrice();
-		let cost = "92150";
-		let total = new Intl.NumberFormat('us-US').format(parseInt(cost/price));
-		message.channel.send("You need " + total + " EGEM at the current price of " + "$" + price + " USD" + " to get a Porsche 911, Vroom Vroooom!");
-	}
-
 	if(message.content === prefix + "egem"){
 		let txlink = "0x0ee61199c26766809dc5146d30fa7f54876f36f958fc31350abf0d0d9f9dea5b";
 		web3.eth.getTransaction(txlink, (error,result)=>{
