@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 require 'discordrb'
 require 'httparty'
+require 'web3-eth'
+
+web3 = Web3::Eth::Rpc.new host: 'jsonrpc.egem.io/custom',
+                          port: 8545,
+                          connect_options: { use_ssl: true, read_timeout: 120 }
 
 config  = JSON.parse(File.read("token.json"))
 cars  = JSON.parse(File.read("data/cars.json"))
@@ -194,6 +199,13 @@ bridge.XSH: #{shieldbtclast}
 BTS: #{btslast}
 24h Vol: #{bts24} BTS
 ```"
+end
+
+bot.message(with_text: ['/blk', '/Blk']) do |event|
+
+block = web3.eth.blockNumber
+
+event.respond "Current Block: #{block}"
 end
 
 bot.run
