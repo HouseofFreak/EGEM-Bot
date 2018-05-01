@@ -556,6 +556,9 @@ bot.on('message',async message => {
 		message.channel.send("EGEM Car List Commands:\n"+
 			"```" + prefix+"lambo - how many EGEM for a Lamborghini Aventador. \n"+
 			prefix+"bugatti - how many EGEM for a Bugatti Veyron. \n"+
+			prefix+"bmw - how many EGEM for a BMW M6 Coupé. \n"+
+			prefix+"ferrari - how many EGEM for a FERRARI 488 GTB. \n"+
+			prefix+"mercedes - how many EGEM for a Mercedes-AMG GT Roadster. \n"+
 			prefix+"tesla - how many EGEM for a Tesla Model X. \n"+
 			prefix+"subaru - how many EGEM for a Subaru WRX STI. \n"+
 			prefix+"porsche - how many EGEM for a Porsche 911. \n"+
