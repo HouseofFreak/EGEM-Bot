@@ -26,7 +26,7 @@ setInterval(mprice,27000);
 setInterval(supply,9000);
 
 let cooldown = new Set();
-let cdseconds = 5;
+let cdseconds = 7000000;
 
 const prefix = botSettings.prefix;
 
@@ -217,7 +217,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content.startsWith(prefix + "myrain")){
-		if (cooldown.has(message.author.id)) {
+		if(cooldown.has(message.author.id)) {
         message.channel.send("Wait 1 minute before getting typing this again. - " + message.author);
     } else {
         // the user can type the command ... your command code goes here :)
@@ -226,10 +226,10 @@ bot.on('message',async message => {
 			 	// main func
 			 	raining(amount,message);
         // Adds the user to the set so that they can't talk for x
-        cooldown.add(msg.author.id);
+        cooldown.add(message.author.id);
         setTimeout(() => {
           // Removes the user from the set after a minute
-          cooldown.delete(msg.author.id);
+          cooldown.delete(message.author.id);
         }, cdseconds);
     }
 	}
