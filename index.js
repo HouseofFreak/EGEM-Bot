@@ -92,9 +92,10 @@ function raining(amount,message){
 	}
 	// main function
 	rainSend(latest);
+	setInterval(rainSend,9000);
 }
 
-setInterval(rainSend,9000);
+
 
 
 // return array with names of online users
