@@ -94,14 +94,7 @@ function raining(amount,message){
 	rainSend(latest);
 }
 
-
-// random rain every x
-function randomRain(){
-	var amount = Math.floor((Math.random() * 10) + 1);
-	raining(amount);
-}
-
-setInterval(randomRain,9000);
+setInterval(raining,9000);
 
 
 // return array with names of online users
