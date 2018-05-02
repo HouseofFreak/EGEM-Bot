@@ -25,6 +25,8 @@ setInterval(block,9000);
 setInterval(mprice,27000);
 setInterval(supply,9000);
 
+const talkedRecently = new Set();
+
 const prefix = botSettings.prefix;
 
 const bot = new Discord.Client({disableEveryone:true});
@@ -213,14 +215,25 @@ bot.on('message',async message => {
 
 	}
 
-	if(message.content.startsWith(prefix + "randomrain")){
+	if(message.content.startsWith(prefix + "myrain")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/rain' command");
+			return message.channel.send("You cannot use '/myrain' command");
 		}
-		var amount = Math.floor((Math.random() * 100) + 1);
-		if (!amount) return message.channel.send("Error - you've entered wrong amount");
-		// main func
-		raining(amount,message);
+		if (talkedRecently.has(msg.author.id)) {
+            msg.channel.send("Wait 1 minute before getting typing this again. - " + msg.author);
+    } else {
+        // the user can type the command ... your command code goes here :)
+				var amount = Math.floor((Math.random() * 10) + 1);
+			 	if (!amount) return message.channel.send("Error - you've entered wrong amount");
+			 	// main func
+			 	raining(amount,message);
+        // Adds the user to the set so that they can't talk for a minute
+        talkedRecently.add(msg.author.id);
+        setTimeout(() => {
+          // Removes the user from the set after a minute
+          talkedRecently.delete(msg.author.id);
+        }, 60000);
+    }
 
 	}
 	//
