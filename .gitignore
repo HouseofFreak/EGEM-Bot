@@ -42,3 +42,4 @@ data/*.*
 node_modules
 rb/token.json
 package-lock.json
+data/users.json
