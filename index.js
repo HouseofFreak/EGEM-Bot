@@ -217,6 +217,9 @@ bot.on('message',async message => {
 	}
 
 	if(message.content.startsWith(prefix + "myrain")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/myrain' command");
+		}
 		if(cooldown.has(message.author.id)) {
         message.channel.send("Wait 2 hours before getting typing this again. - " + message.author);
     } else {
