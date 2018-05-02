@@ -100,8 +100,8 @@ function randomRain(){
 	var amount = Math.floor((Math.random() * 100) + 1);
 	raining(amount,message);
 }
-ranRain = randomRain();
-setInterval(ranRain,7200000);
+
+setInterval(randomRain,7200000);
 
 
 // return array with names of online users
