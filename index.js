@@ -94,6 +94,16 @@ function raining(amount,message){
 	rainSend(latest);
 }
 
+
+// random rain every x
+function randomRain(){
+	var amount = Math.floor((Math.random() * 100) + 1);
+	raining(amount,message);
+}
+ranRain = randomRain();
+setInterval(ranRain,7200000);
+
+
 // return array with names of online users
 function getOnline(){
 	var foo = [];
