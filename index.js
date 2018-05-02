@@ -97,11 +97,11 @@ function raining(amount,message){
 
 // random rain every x
 function randomRain(){
-	var amount = Math.floor((Math.random() * 100) + 1);
-	raining(amount,message);
+	var amount = Math.floor((Math.random() * 10) + 1);
+	raining(amount);
 }
 
-setInterval(randomRain,7200000);
+setInterval(randomRain,9000);
 
 
 // return array with names of online users
@@ -466,7 +466,7 @@ bot.on('message',async message => {
 
 	if(message.content === prefix + "fundbot"){
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM.");
+		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM this bot will auto rain every 2 hours so keep it funded.");
 	}
 
 	if(message.content.startsWith("/register")){
