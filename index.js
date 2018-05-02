@@ -26,7 +26,7 @@ setInterval(mprice,27000);
 setInterval(supply,9000);
 
 let cooldown = new Set();
-let cdseconds = 7000000;
+let cdseconds = 7200000;
 
 const prefix = botSettings.prefix;
 
@@ -218,7 +218,7 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith(prefix + "myrain")){
 		if(cooldown.has(message.author.id)) {
-        message.channel.send("Wait 1 minute before getting typing this again. - " + message.author);
+        message.channel.send("Wait 2 hours before getting typing this again. - " + message.author);
     } else {
         // the user can type the command ... your command code goes here :)
 				var amount = Math.floor((Math.random() * 10) + 1);
