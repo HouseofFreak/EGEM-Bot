@@ -23,7 +23,6 @@ var _ = require('lodash');
 setInterval(price,300000);
 setInterval(block,9000);
 setInterval(mprice,27000);
-
 setInterval(supply,9000);
 
 const prefix = botSettings.prefix;
@@ -92,7 +91,6 @@ function raining(amount,message){
 	}
 	// main function
 	rainSend(latest);
-	setInterval(rainSend,9000);
 }
 
 
@@ -214,7 +212,19 @@ bot.on('message',async message => {
 		raining(amount,message);
 
 	}
+
+	if(message.content.startsWith(prefix + "randomrain")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/rain' command");
+		}
+		var amount = Math.floor((Math.random() * 100) + 1);
+		if (!amount) return message.channel.send("Error - you've entered wrong amount");
+		// main func
+		raining(amount,message);
+
+	}
 	//
+
 	if(message.content.startsWith(prefix + "coming ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
