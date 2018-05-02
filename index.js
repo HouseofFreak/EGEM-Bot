@@ -213,7 +213,22 @@ bot.on('message',async message => {
 		if (!amount) return message.channel.send("Error - you've entered wrong amount");
 		// main func
 		raining(amount,message);
+	}
 
+	if(message.content.startsWith(prefix + "sprinkle")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/rain' command");
+		}
+		var amount = Math.floor((Math.random() * 10) + 1);
+		raining(amount,message);
+	}
+
+	if(message.content.startsWith(prefix + "downpour")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/rain' command");
+		}
+		var amount = Math.floor((Math.random() * 100) + 10);
+		raining(amount,message);
 	}
 
 	if(message.content.startsWith(prefix + "myrain")){
@@ -301,7 +316,7 @@ bot.on('message',async message => {
 	}
 
 	//roll the dice with lodash
-	if(message.content.startsWith(prefix + "rolldice")){
+	if(message.content.startsWith(prefix + "roll")){
 		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 		let number = _.sample(array);
 		let word = randomWord();
@@ -483,7 +498,7 @@ bot.on('message',async message => {
 
 	if(message.content === prefix + "fundbot"){
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM this bot will auto rain every 2 hours so keep it funded.");
+		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going.");
 	}
 
 	if(message.content.startsWith("/register")){
@@ -509,7 +524,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	if(message.content.startsWith(prefix + "changeRegister")){
+	if(message.content.startsWith(prefix + "changereg")){
 		var author = message.author.username;
 		var address = args[1];
 		if(web3.utils.isAddress(args[1])){
@@ -561,7 +576,7 @@ bot.on('message',async message => {
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
 	}
 
-	if(message.content == prefix + "checkRegister"){
+	if(message.content == prefix + "checkreg"){
 		let author = message.author.username;
 		let data = getJson();
 		if(Object.keys(data).includes(author)){
@@ -602,6 +617,8 @@ bot.on('message',async message => {
 			"```" + prefix+"sendToAddress <address> <amount> - send EGEM to the following address\n"+
 			prefix+"send <name> <amount> send EGEM to the following user\n"+
 			prefix+"rain <amount> - send EGEM to all registered and online address's.\n"+
+			prefix+"sprinkle - send 1-10 EGEM to all registered and online address's.\n"+
+			prefix+"downpour - send 10-100 EGEM to all registered and online address's.\n"+
 			prefix+"online - see list of all online and registered users for raindrops.\n"+
 			prefix+"onlinetotal - see the list of every online user.\n"+
 			prefix+"coming <amount> <numOfHrs> - rain will be after N hours." + "```"
@@ -614,13 +631,12 @@ bot.on('message',async message => {
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
 			prefix+"fundbot - shows bot address so anyone can fund it, and its balance. \n" +
-			prefix+"rolldice  -  returns a number from 1-12 and a random word.\n"+
-			prefix+"register <address>  - saves user address and name to db. \n"+
-			prefix+"changeRegister <address> -  change your registered address.\n"+
-			prefix+"checkRegister -  find whether you're registered or not.\n"+
-			prefix+"coinhelp -  EGEM Blockchain commands.\n"+
-			prefix+"carhelp -  List of cars and there EGEM required.\n"+
-			prefix+"adminhelp -  commands avaliable to admins.\n"+
+			prefix+"roll - toss dice and returns a number from 1-12 and a random word.\n"+
+			prefix+"register <address> - saves user address and name to db. \n"+
+			prefix+"changereg <address> - change your registered address.\n"+
+			prefix+"checkreg - find whether you're registered or not.\n"+
+			prefix+"coinhelp - EGEM Blockchain commands.\n"+
+			prefix+"carhelp - List of cars and there EGEM required.\n"+
 			prefix+"list - shows number of users registered for raindrops." + "```");
 	}
 })
