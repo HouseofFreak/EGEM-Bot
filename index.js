@@ -292,6 +292,7 @@ bot.on('message',async message => {
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
 		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
 		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
+		+ "CoMining.io https://comining.io/ \n"
 		+ "-----------------------------------------------  \n"
 		+ "Talk to a admin to get added to this list.```"
 	);
