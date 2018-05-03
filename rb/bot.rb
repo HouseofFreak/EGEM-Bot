@@ -196,4 +196,43 @@ BTS: #{btslast}
 ```"
 end
 
+bot.message(with_text: ['/convert', '/Convert']) do |event|
+egemprice = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
+ltcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/litecoin", :verify => false )
+ethprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/ethereum/", :verify => false )
+dogeprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/dogecoin/", :verify => false )
+
+btcp = btcprice[0]['price_usd'].to_f
+ltcp = ltcprice[0]['price_usd'].to_f
+ethp = ethprice[0]['price_usd'].to_f
+dogep = dogeprice[0]['price_usd'].to_f
+
+gemp = egemprice['ticker']['last'].to_f
+
+pAvg = btcp * gemp
+
+btcF = btcp / pAvg
+ethF = ethp / pAvg
+dgeF = dogep / pAvg
+ltcF = ltcp / pAvg
+
+outBTC = 1 / btcF
+outETH = 1 / ethF
+outDOGE = 1 / dgeF
+outLTC = 1 / ltcF
+
+
+event.respond "```
+
+***1 EGEM is equal to:***
+----------
+BTC: #{outBTC}
+ETH: #{outETH}
+Doge: #{outLTC}
+LTC: #{outDOGE}
+----------
+```"
+end
+
 bot.run
