@@ -9,6 +9,8 @@ token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
 
 carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
+lol_array = ["rofl", "Silly human", "To funny i forgot to laugh...", "lol", "Damn someone told a joke...", "Iv'e heard better jokes from my grandpa and he is a 486.", "giggle...giggle...", "Why are you laughing human?"]
+insult_array = ["Can you not read?", "I really hope you used my friend google before asking that...", "Even i don't have time for time garbage."]
 
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
@@ -251,8 +253,12 @@ event.respond "What is so damn funny?"
 end
 
 bot.message(with_text: ['lol', 'Lol']) do |event|
-lol_array = ["rofl", "Silly human", "To funny i forgot to laugh....", "lol"]
 response = lol_array.sample
+event.respond "#{response}"
+end
+
+bot.message(with_text: ['huh?', 'what?', 'what', 'huh']) do |event|
+response = insult_array.sample
 event.respond "#{response}"
 end
 
