@@ -209,6 +209,7 @@ ethp = ethprice[0]['price_usd'].to_f
 dogep = dogeprice[0]['price_usd'].to_f
 
 gemp = egemprice['ticker']['last'].to_f
+gemp2 = egemprice['ticker']['last']
 
 pAvg = btcp * gemp
 
@@ -217,7 +218,7 @@ ethF = ethp / pAvg
 dgeF = dogep / pAvg
 ltcF = ltcp / pAvg
 
-outBTC = gemp
+outBTC = gemp2
 outETH = 1 / ethF
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
