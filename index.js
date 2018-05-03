@@ -630,6 +630,7 @@ bot.on('message',async message => {
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
+			prefix+"convert - get a list of realtime conversions from EGEM to another coin. \n"+
 			prefix+"fundbot - shows bot address so anyone can fund it, and its balance. \n" +
 			prefix+"roll - toss dice and returns a number from 1-12 and a random word.\n"+
 			prefix+"register <address> - saves user address and name to db. \n"+
