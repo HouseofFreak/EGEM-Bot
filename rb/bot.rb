@@ -240,10 +240,20 @@ XSH: #{outXSH}
 DNR: #{outDNR}
 BTC: #{outBTC}
 ETH: #{outETH}
-Doge: #{outDOGE}
+DOGE: #{outDOGE}
 LTC: #{outLTC}
 ----------
 ```"
+end
+
+bot.message(with_text: ['Haha', 'haha']) do |event|
+event.respond "What is so damn funny?"
+end
+
+bot.message(with_text: ['lol', 'Lol']) do |event|
+lol_array = ["rofl", "Silly human", "To funny i forgot to laugh....", "lol"]
+response = lol_array.sample
+event.respond "#{response}"
 end
 
 bot.run

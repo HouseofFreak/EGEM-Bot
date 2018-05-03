@@ -139,15 +139,7 @@ function getSupply(){
 }
 
 const responseObject = {
-  "ella": "Hey we don't talk about that coin in here.",
-  "wat": "Say what?",
-	"What": "Did you hear that?",
-	"Ok": "Time for me to leave...",
-	"ok": "No, no i am not ok...",
-  "lol": "rofl",
-	"Lol": "Silly human",
-	"rofl": "Get up off the floor dammit...",
-	"when moon?": "When you stop asking, how about that."
+
 }
 
 bot.on('message',async message => {
