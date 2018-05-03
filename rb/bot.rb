@@ -217,7 +217,7 @@ ethF = ethp / pAvg
 dgeF = dogep / pAvg
 ltcF = ltcp / pAvg
 
-outBTC = gemp.round(8)
+outBTC = gemp
 outETH = 1 / ethF
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
