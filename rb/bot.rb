@@ -217,7 +217,7 @@ ethF = ethp / pAvg
 dgeF = dogep / pAvg
 ltcF = ltcp / pAvg
 
-outBTC = 1 / btcF
+outBTC = gemp.round(8)
 outETH = 1 / ethF
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
@@ -229,8 +229,8 @@ event.respond "```
 ----------
 BTC: #{outBTC}
 ETH: #{outETH}
-Doge: #{outLTC}
-LTC: #{outDOGE}
+Doge: #{outDOGE}
+LTC: #{outLTC}
 ----------
 ```"
 end
