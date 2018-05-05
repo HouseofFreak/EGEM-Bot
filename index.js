@@ -327,6 +327,7 @@ bot.on('message',async message => {
 		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
 		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
 		+ "CoMining.io https://comining.io/ \n"
+		+ "Dopeblocks https://dopeblocks.com/ \n"
 		+ "-----------------------------------------------  \n"
 		+ "Talk to a admin to get added to this list.```"
 	);
