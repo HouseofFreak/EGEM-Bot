@@ -241,7 +241,7 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF.to_i
+outETH = 1 / ethF.round(8)
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
 outXSH = 1 / xshF
