@@ -148,21 +148,35 @@ Price Avg: $ #{pAvg2} USD
 end
 
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
-grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+gravbtc = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+graveth = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 
-last = grav['ticker']['last']
-vol = grav['ticker']['vol']
-volbtc = grav['ticker']['volbtc']
-change = grav['ticker']['change']
+lastbtc = gravbtc['ticker']['last']
+volbtc = gravbtc['ticker']['vol']
+volbtc24 = gravbtc['ticker']['volbtc']
+changebtc = gravbtc['ticker']['change']
+
+lasteth = graveth['ticker']['last']
+voleth = graveth['ticker']['vol']
+voleth24 = graveth['ticker']['volbtc']
+changeeth = graveth['ticker']['change']
 
 event.respond "```
-
 ***Graviex Exchange***
 ----------
-Price: #{last} BTC
-Change: #{change}
-24 Volume: #{vol} EGEM
+EGEM / BTC
+----------
+Price: #{lastbtc} BTC
+Change: #{changebtc}
+24 Volume: #{volbtc24} EGEM
 BTC Volume: #{volbtc}
+----------
+EGEM / ETH
+----------
+Price: #{lasteth} ETH
+Change: #{changeeth}
+24 Volume: #{voleth24} EGEM
+ETH Volume: #{voleth}
 ----------
 ```"
 end
