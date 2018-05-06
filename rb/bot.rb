@@ -149,7 +149,7 @@ end
 
 bot.message(with_text: ['/graviex', '/Graviex']) do |event|
 gravbtc = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
-graveth = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+graveth = HTTParty.get("https://graviex.net/api/v2/tickers/egemeth.json", :verify => false )
 
 lastbtc = gravbtc['ticker']['last']
 volbtc = gravbtc['ticker']['vol']
