@@ -324,8 +324,6 @@ bot.on('message',async message => {
 		+ "Reverse Gainz: http://egem.reversegainz.info/ \n"
 		+ "Protonmine: http://egem.protonmine.io/ \n"
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
-		+ "Uncle Pool (HK): http://www.unclepool.com/ \n"
-		+ "K2 Mining #1 (US) http://egem-us.k2mining.net \n"
 		+ "CoMining.io https://comining.io/ \n"
 		+ "Dopeblocks https://dopeblocks.com/ \n"
 		+ "-----------------------------------------------  \n"
