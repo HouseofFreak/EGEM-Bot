@@ -168,15 +168,15 @@ EGEM / BTC
 ----------
 Price: #{lastbtc} BTC
 Change: #{changebtc}
-24 Volume: #{volbtc24} EGEM
-BTC Volume: #{volbtc}
+24 Volume: #{volbtc} EGEM
+BTC 24 Volume: #{volbtc24} BTC
 ----------
 EGEM / ETH
 ----------
 Price: #{lasteth} ETH
 Change: #{changeeth}
-24 Volume: #{voleth24} EGEM
-ETH Volume: #{voleth}
+24 Volume: #{voleth} EGEM
+ETH 24 Volume: #{voleth24} ETH
 ----------
 ```"
 end
