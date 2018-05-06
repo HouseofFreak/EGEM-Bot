@@ -241,12 +241,11 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF.round(8)
+outETH = 1 / ethF
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
 outXSH = 1 / xshF
 outDNR = 1 / dnrF
-
 
 event.respond "```
 
@@ -259,6 +258,8 @@ ETH: #{outETH}
 DOGE: #{outDOGE}
 LTC: #{outLTC}
 ----------
+
+
 ```"
 end
 
