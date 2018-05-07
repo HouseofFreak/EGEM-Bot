@@ -277,4 +277,17 @@ response = insult_array.sample
 event.respond "#{response}"
 end
 
+bot.message(with_text: ['/faq', '/Faq']) do |event|
+event.respond "```
+Q: Why does the network hashrate and difficulty jump all over the place?
+A: We uses a custom per block scheme that makes sure the average block time stays as close to 13 seconds as possible.
+
+Q: Whats the point of EtherGem, when i can use (insert name) coin?
+A: We see a world with many coins connected in many ways forming what has been labelled web3.0 and all serving different purposes connecting the world.
+
+Q: Why does the diff spike so hard sometimes?
+A: This was implemented to stop the fast block mining when say a nicehash miner hits the network.
+```"
+end
+
 bot.run
