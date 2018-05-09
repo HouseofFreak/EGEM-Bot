@@ -241,11 +241,11 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF
-outDOGE = 1 / dgeF
-outLTC = 1 / ltcF
-outXSH = 1 / xshF
-outDNR = 1 / dnrF
+outETH = 1 / ethF[0..-4].to_f
+outDOGE = 1 / dgeF[0..-4].to_f
+outLTC = 1 / ltcF[0..-4].to_f
+outXSH = 1 / xshF[0..-4].to_f
+outDNR = 1 / dnrF[0..-4].to_f
 
 event.respond "```
 
