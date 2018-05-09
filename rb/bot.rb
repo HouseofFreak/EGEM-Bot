@@ -221,12 +221,12 @@ dogeprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/dogecoin", :ve
 xshprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/shield-xsh", :verify => false )
 dnrprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/denarius-dnr", :verify => false )
 
-btcp = btcprice[0]['price_usd'][0..-4].to_f
-ltcp = ltcprice[0]['price_usd'][0..-4].to_f
-ethp = ethprice[0]['price_usd'][0..-4].to_f
-dogep = dogeprice[0]['price_usd'][0..-4].to_f
-xshp = xshprice[0]['price_usd'][0..-4].to_f
-dnrp = dnrprice[0]['price_usd'][0..-4].to_f
+btcp = btcprice[0]['price_usd'].to_f
+ltcp = ltcprice[0]['price_usd'].to_f
+ethp = ethprice[0]['price_usd'].to_f
+dogep = dogeprice[0]['price_usd'].to_f
+xshp = xshprice[0]['price_usd'].to_f
+dnrp = dnrprice[0]['price_usd'].to_f
 
 gemp = egemprice['ticker']['last'].to_f
 gemp2 = egemprice['ticker']['last']
@@ -241,11 +241,17 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF[0..-4].to_f
-outDOGE = 1 / dgeF[0..-4].to_f
-outLTC = 1 / ltcF[0..-4].to_f
-outXSH = 1 / xshF[0..-4].to_f
-outDNR = 1 / dnrF[0..-4].to_f
+outETH1 = 1 / ethF
+outDOGE1 = 1 / dgeF
+outLTC1 = 1 / ltcF
+outXSH1 = 1 / xshF
+outDNR1 = 1 / dnrF
+
+outETH = outETH1[0..-4].to_f
+outDOGE = outDOGE1[0..-4].to_f
+outLTC = outLTC1[0..-4].to_f
+outXSH = outXSH1[0..-4].to_f
+outDNR = outDNR1[0..-4].to_f
 
 event.respond "```
 
