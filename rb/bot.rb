@@ -223,7 +223,7 @@ dnrprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/denarius-dnr", 
 
 btcp = btcprice[0]['price_usd'].to_f
 ltcp = ltcprice[0]['price_usd'].to_f
-ethp = ethprice[0]['price_usd'].to_f
+ethp = ethprice[0]['price_usd'].to_f.round(8)
 dogep = dogeprice[0]['price_usd'].to_f
 xshp = xshprice[0]['price_usd'].to_f
 dnrp = dnrprice[0]['price_usd'].to_f
