@@ -221,12 +221,12 @@ dogeprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/dogecoin", :ve
 xshprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/shield-xsh", :verify => false )
 dnrprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/denarius-dnr", :verify => false )
 
-btcp = btcprice[0]['price_usd'].to_f
-ltcp = ltcprice[0]['price_usd'].to_f
-ethp = ethprice[0]['price_usd'].to_f
-dogep = dogeprice[0]['price_usd'].to_f
-xshp = xshprice[0]['price_usd'].to_f
-dnrp = dnrprice[0]['price_usd'].to_f
+btcp = btcprice[0]['price_usd'][0..-4].to_f
+ltcp = ltcprice[0]['price_usd'][0..-4].to_f
+ethp = ethprice[0]['price_usd'][0..-4].to_f
+dogep = dogeprice[0]['price_usd'][0..-4].to_f
+xshp = xshprice[0]['price_usd'][0..-4].to_f
+dnrp = dnrprice[0]['price_usd'][0..-4].to_f
 
 gemp = egemprice['ticker']['last'].to_f
 gemp2 = egemprice['ticker']['last']
