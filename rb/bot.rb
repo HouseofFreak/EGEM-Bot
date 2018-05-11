@@ -123,7 +123,7 @@ end
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-block_height = HTTParty.get("https://egem.protonmine.io/api/stats")
+block_height = HTTParty.get("https://pool.egem.io/api/stats")
 
 last = grav['ticker']['last'].to_f
 block_h = block_height['nodes'][1]['height']
@@ -223,7 +223,7 @@ dnrprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/denarius-dnr", 
 
 btcp = btcprice[0]['price_usd'].to_f
 ltcp = ltcprice[0]['price_usd'].to_f
-ethp = ethprice[0]['price_usd'].to_f.round(8)
+ethp = ethprice[0]['price_usd'].to_f
 dogep = dogeprice[0]['price_usd'].to_f
 xshp = xshprice[0]['price_usd'].to_f
 dnrp = dnrprice[0]['price_usd'].to_f
@@ -241,7 +241,7 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF.round(8)
+outETH = 1 / ethF
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
 outXSH = 1 / xshF
