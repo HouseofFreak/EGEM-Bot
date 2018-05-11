@@ -123,7 +123,7 @@ end
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
-block_height = HTTParty.get("https://pool.egem.io/api/stats")
+block_height = HTTParty.get("http://egem.minerpool.net/api/stats")
 
 last = grav['ticker']['last'].to_f
 block_h = block_height['nodes'][1]['height']
