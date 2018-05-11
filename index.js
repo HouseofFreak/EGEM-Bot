@@ -326,6 +326,7 @@ bot.on('message',async message => {
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
 		+ "CoMining.io https://comining.io/ \n"
 		+ "Dopeblocks https://dopeblocks.com/ \n"
+		+ "Clona.ru SOLO POOL http://clona.ru/ \n"
 		+ "-----------------------------------------------  \n"
 		+ "Talk to a admin to get added to this list.```"
 	);
