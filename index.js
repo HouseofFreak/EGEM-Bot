@@ -321,6 +321,7 @@ bot.on('message',async message => {
 		+ "----------------------------------------------- \n"
 		+ "Dev Pool (US): https://pool.egem.io \n"
 		+ "Minerpool.net (US/EU/ASIA): http://egem.minerpool.net/ \n"
+		+ "Ξpool.io (US/EU/ASIA): https://egem.epool.io/ \n"
 		+ "Reverse Gainz: http://egem.reversegainz.info/ \n"
 		+ "Protonmine: http://egem.protonmine.io/ \n"
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
