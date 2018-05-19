@@ -16,9 +16,8 @@ function getSupply(){
 		}
 		var blockH = dataCoin["nodes"][0]["height"];
 		var reward = "9";
-		var reduction1 = "5000";
-		var blockH2 = blockH - reduction1;
-		var result = blockH2*reward;
+		var result1 = blockH*reward;
+		var result = result1 - 5000;
 
 		fs.writeFile("/home/ubuntu/ridz/EGEM-Site/supply.txt",result,(err)=>{
 			if(err) throw err;

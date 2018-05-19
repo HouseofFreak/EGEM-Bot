@@ -127,7 +127,7 @@ block_height = HTTParty.get("https://pool.egem.io/api/stats")
 
 last = grav['ticker']['last'].to_f
 block_h = block_height['nodes'][0]['height']
-supply = (block_h.to_i - 5000)*9
+supply = (block_h.to_i * 9)-5000
 btcp = btcprice[0]['price_usd'].to_f
 pAvg = btcp * last
 mcap = pAvg * supply
