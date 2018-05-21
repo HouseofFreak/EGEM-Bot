@@ -214,6 +214,7 @@ end
 
 bot.message(with_text: ['/convert', '/Convert']) do |event|
 egemprice = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
+egemethprice = HTTParty.get("https://graviex.net/api/v2/tickers/egemeth.json", :verify => false )
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
 ltcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/litecoin", :verify => false )
 ethprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/ethereum", :verify => false )
@@ -231,6 +232,7 @@ dnrp = dnrprice[0]['price_usd'].to_f
 gemp = egemprice['ticker']['last'].to_f
 gemp2 = egemprice['ticker']['last']
 
+
 pAvg = btcp * gemp
 
 btcF = btcp / pAvg
@@ -241,7 +243,7 @@ xshF = xshp / pAvg
 dnrF = dnrp / pAvg
 
 outBTC = gemp2
-outETH = 1 / ethF
+outETH = egemethprice['ticker']['last']
 outDOGE = 1 / dgeF
 outLTC = 1 / ltcF
 outXSH = 1 / xshF
