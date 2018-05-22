@@ -147,7 +147,7 @@ bot.on('message',async message => {
 	// Not admins cannot use bot in general channel
 	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR')) return;
 	if(message.author.bot) return;
-	//if(message.channel.type === "dm") return;
+	if(message.channel.type === "dm") return;
 
 
 	var message = message;
@@ -316,7 +316,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content === prefix + "pools"){
-		return message.channel.send("```"
+		return message.channel.send(""
 		+	"List of Known Pools: \n"
 		+ "----------------------------------------------- \n"
 		+ "Dev Pool (US): https://pool.egem.io \n"
@@ -325,10 +325,12 @@ bot.on('message',async message => {
 		+ "Reverse Gainz: http://egem.reversegainz.info/ \n"
 		+ "Protonmine: http://egem.protonmine.io/ \n"
 		+ "Coins.Farm: https://coins.farm/pools/egem \n"
-		+ "Dopeblocks https://dopeblocks.com/ \n"
-		+ "Clona.ru SOLO POOL http://clona.ru/ \n"
+		+ "Dopeblocks: https://dopeblocks.com/ \n"
+		+ "Clona.ru SOLO POOL: http://clona.ru/ \n"
+		+ "UPOOL.IN:  http://egem.upool.in/ \n"
+		+ "ETHASH.FARM: http://egem.ethash.farm/ \n"
 		+ "-----------------------------------------------  \n"
-		+ "Talk to a admin to get added to this list.```"
+		+ "Talk to a admin to get added to this list."
 	);
 	}
 
