@@ -329,6 +329,9 @@ bot.on('message',async message => {
 		+ "Clona.ru SOLO POOL: http://clona.ru/ \n"
 		+ "UPOOL.IN:  http://egem.upool.in/ \n"
 		+ "ETHASH.FARM: http://egem.ethash.farm/ \n"
+		+ "p00l.org https://egem.p00l.org/\n"
+		+ "BYLT.GQ  https://egem.bylt.gq/ \n"
+		+ "XMINER.CF http://egem.xminer.cf/ \n"
 		+ "-----------------------------------------------  \n"
 		+ "Talk to a admin to get added to this list."
 	);
