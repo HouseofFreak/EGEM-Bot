@@ -164,14 +164,15 @@ changeeth = graveth['ticker']['change']
 event.respond "```
 ***Graviex Exchange***
 ----------
-EGEM / BTC
+EGEM / BTC - https://graviex.net/markets/egembtc
 ----------
 Price: #{lastbtc} BTC
 Change: #{changebtc}
 24 Volume: #{volbtc} EGEM
 BTC 24 Volume: #{volbtc24} BTC
+
 ----------
-EGEM / ETH
+EGEM / ETH - https://graviex.net/markets/egemeth
 ----------
 Price: #{lasteth} ETH
 Change: #{changeeth}
@@ -187,14 +188,19 @@ bbtc = HTTParty.get("https://bitebtc.com/api/v1/ticker?market=egem_btc", :verify
 lastbtc = bbtc['result']['price']
 volbtc = bbtc['result']['volume']
 changebtc = bbtc['result']['percent']
+avgbtc = bbtc['result']['average']
+lowbtc = bbtc['result']['low']
+highbtc = bbtc['result']['high']
 
 event.respond "```
 ***BiteBTC Exchange***
-https://bitebtc.com/trade/egem_btc
 ----------
-EGEM / BTC
+EGEM / BTC - https://bitebtc.com/trade/egem_btc
 ----------
 Price: #{lastbtc} BTC
+Average: #{avgbtc}
+High: #{highbtc}
+Low: #{lowbtc}
 Change: #{changebtc}
 24 Volume: #{volbtc} EGEM
 ----------
