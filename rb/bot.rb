@@ -184,9 +184,9 @@ end
 bot.message(with_text: ['/bitebtc', '/Bitebtc']) do |event|
 bbtc = HTTParty.get("https://bitebtc.com/api/v1/ticker?market=egem_btc", :verify => false )
 
-lastbtc = bbtc['price']
-volbtc = bbtc['volume']
-changebtc = bbtc['percent']
+lastbtc = bbtc['result']['price']
+volbtc = bbtc['result']['volume']
+changebtc = bbtc['result']['percent']
 
 event.respond "```
 ***BiteBTC Exchange***
