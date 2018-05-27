@@ -181,6 +181,26 @@ ETH 24 Volume: #{voleth24} ETH
 ```"
 end
 
+bot.message(with_text: ['/bitebtc', '/Bitebtc']) do |event|
+bbtc = HTTParty.get("https://bitebtc.com/api/v1/ticker?market=egem_btc", :verify => false )
+
+lastbtc = bbtc['price']
+volbtc = bbtc['volume']
+changebtc = bbtc['percent']
+
+event.respond "```
+***BiteBTC Exchange***
+https://bitebtc.com/trade/egem_btc
+----------
+EGEM / BTC
+----------
+Price: #{lastbtc} BTC
+Change: #{changebtc}
+24 Volume: #{volbtc} EGEM
+----------
+```"
+end
+
 bot.message(with_text: ['/btsx', '/Btsx']) do |event|
 
 response2 = HTTParty.get("https://cryptofresh.com/api/asset/markets?asset=EGEM", :verify => false )
@@ -269,7 +289,7 @@ bot.message(with_text: ['Haha', 'haha']) do |event|
 event.respond "What is so damn funny?"
 end
 
-bot.message(with_text: ['lol', 'Lol']) do |event|
+bot.message(with_text: ['lol', 'Lol', 'lel', 'Lel']) do |event|
 response = lol_array.sample
 event.respond "#{response}"
 end
