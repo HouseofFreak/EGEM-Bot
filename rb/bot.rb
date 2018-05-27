@@ -198,9 +198,9 @@ event.respond "```
 EGEM / BTC - https://bitebtc.com/trade/egem_btc
 ----------
 Price: #{lastbtc} BTC
-Average: #{avgbtc}
-High: #{highbtc}
-Low: #{lowbtc}
+Average: #{avgbtc} BTC
+High: #{highbtc} BTC
+Low: #{lowbtc} BTC
 Change: #{changebtc}
 24 Volume: #{volbtc} EGEM
 ----------
