@@ -223,24 +223,31 @@ bot.on('message',async message => {
 		raining(amount,message);
 	}
 
-	if(message.content.startsWith(prefix + "myrain")){
-		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/myrain' command");
-		}
+	if(message.content.startsWith(prefix + "selfrain ")){
 		if(cooldown.has(message.author.id)) {
-        message.channel.send("Wait 2 hours before getting typing this again. - " + message.author);
+      message.channel.send("Wait 2 hours before typing this again. - " + message.author);
     } else {
-        // the user can type the command ... your command code goes here :)
-				var amount = Math.floor((Math.random() * 10) + 1);
-			 	if (!amount) return message.channel.send("Error - you've entered wrong amount");
-			 	// main func
-			 	raining(amount,message);
-        // Adds the user to the set so that they can't talk for x
-        cooldown.add(message.author.id);
-        setTimeout(() => {
-          // Removes the user from the set after a minute
-          cooldown.delete(message.author.id);
-        }, cdseconds);
+			let user = args[1];
+			let amount = Number(args[2]);
+			// if use wrong amount (string or something)
+			if (!amount) return message.channel.send("Error - you've entered wrong amount.");
+
+			let weiAmount = amount*Math.pow(10,18);
+			let data = getJson();
+			if(Object.keys(data).includes(user)){
+				let address = data[user];
+				message.channel.send("A tip of " + amount+ " EGEM has been sent to @"+user  );
+				sendCoins(address,weiAmount,message,1); // main function
+				// Adds the user to the set so that they can't talk for x
+				cooldown.add(message.author.id);
+				setTimeout(() => {
+					// Removes the user from the set after a minute
+					cooldown.delete(message.author.id);
+				}, cdseconds);
+			} else {
+				message.channel.send("This user is not registered.");
+			}
+
     }
 	}
 	//
@@ -613,13 +620,13 @@ bot.on('message',async message => {
 		}
 		message.channel.send("EGEM Admin Commands:\n"+
 			"```" + prefix+"sendToAddress <address> <amount> - send EGEM to the following address\n"+
-			prefix+"send <name> <amount> send EGEM to the following user\n"+
+			prefix+"tip <name> <amount> send EGEM to the following user\n"+
 			prefix+"rain <amount> - send EGEM to all registered and online address's.\n"+
 			prefix+"sprinkle - send 1-10 EGEM to all registered and online address's.\n"+
 			prefix+"downpour - send 10-100 EGEM to all registered and online address's.\n"+
 			prefix+"online - see list of all online and registered users for raindrops.\n"+
 			prefix+"onlinetotal - see the list of every online user.\n"+
-			prefix+"coming <amount> <numOfHrs> - rain will be after N hours." + "```"
+			prefix+"forecast <amount> <numOfHrs> - rain will be after N hours." + "```"
 		);
 	}
 
