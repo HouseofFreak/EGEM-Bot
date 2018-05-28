@@ -318,4 +318,32 @@ A: This was implemented to stop the fast block mining when say a nicehash miner 
 ```"
 end
 
+bot.message(start_with: '/game') do |event|
+  # Pick a number between 1 and 10
+  magic = rand(1..10)
+
+
+  event.user.await(:guess) do |guess_event|
+    # Their message is a string - cast it to an integer
+    guess = guess_event.message.content.to_i
+
+    # If the block returns anything that *isn't* `false`, then the
+    # event handler will persist and continue to handle messages.
+    if guess == magic
+      # This returns `nil`, which will destroy the await so we don't reply anymore
+      guess_event.respond 'you win!'
+    else
+      # Let the user know if they guessed too high or low.
+      guess_event.respond(guess > magic ? 'too high' : 'too low')
+
+      # Return false so the await is not destroyed, and we continue to listen
+      false
+    end
+  end
+
+  # Let the user know we're  ready and listening..
+  event.respond 'Guess a number between 1 and 10..'
+end
+
+
 bot.run

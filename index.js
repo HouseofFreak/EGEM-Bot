@@ -176,7 +176,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	if(message.content.startsWith(prefix + "send " || prefix + "tip ")){
+	if(message.content.startsWith(prefix + "tip ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/send' command.");
 		}
