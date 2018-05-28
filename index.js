@@ -634,6 +634,7 @@ bot.on('message',async message => {
 		message.channel.send("EGEM General Commands:\n"+
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"faq - common asked questions. \n"+
+			prefix+"usertip <user> - tip a user or yourself every 2 hours. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
 			prefix+"convert - get a list of realtime conversions from EGEM to another coin. \n"+
