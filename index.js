@@ -223,11 +223,11 @@ bot.on('message',async message => {
 		raining(amount,message);
 	}
 
-	if(message.content.startsWith(prefix + "selfrain")){
+	if(message.content.startsWith(prefix + "usertip ")){
 		if(cooldown.has(message.author.id)) {
       message.channel.send("Wait 2 hours before typing this again. - " + message.author);
     } else {
-			let user = message.author;
+			let user = args[1];
 			let amount = Math.floor((Math.random() * 10) + 1);
 			// if use wrong amount (string or something)
 			if (!amount) return message.channel.send("Error - you've entered wrong amount.");
