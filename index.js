@@ -176,7 +176,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	if(message.content.startsWith(prefix + "send ")){
+	if(message.content.startsWith(prefix + "send " || prefix + "tip ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/send' command.");
 		}
@@ -189,7 +189,7 @@ bot.on('message',async message => {
 		let data = getJson();
 		if(Object.keys(data).includes(user)){
 			let address = data[user];
-			message.channel.send("You try to send " + amount+ " EGEM to @"+user  );
+			message.channel.send("A tip of " + amount+ " EGEM has been sent to @"+user  );
 			sendCoins(address,weiAmount,message,1); // main function
 		} else {
 			message.channel.send("This user is not registered.");
