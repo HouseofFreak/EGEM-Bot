@@ -228,7 +228,7 @@ bot.on('message',async message => {
       message.channel.send("Wait 2 hours before typing this again. - " + message.author);
     } else {
 			let user = args[1];
-			let amount = Math.floor((Math.random() * 1) + 1);
+			let amount = Math.floor((Math.random() * 1) + 0.1);
 			// if use wrong amount (string or something)
 			if (!amount) return message.channel.send("Error - you've entered wrong amount.");
 
