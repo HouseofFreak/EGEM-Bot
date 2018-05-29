@@ -374,4 +374,3 @@ end
 puts 'Commands loaded and online.'
 puts 'Bot is booting and ready to serve!'
 bot.run
-puts 'You can now detach from this screen.'
