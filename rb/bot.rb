@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'discordrb'
 require 'httparty'
+puts 'All dependicies loaded'
 
 config  = JSON.parse(File.read("token.json"))
 cars  = JSON.parse(File.read("data/cars.json"))
@@ -11,6 +12,7 @@ bot = Discordrb::Bot.new token: "#{token}"
 carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
 lol_array = ["rofl", "Silly human", "To funny i forgot to laugh...", "lol", "Damn someone told a joke...", "Iv'e heard better jokes from my grandpa and he is a 486.", "giggle...giggle...", "Why are you laughing human?"]
 insult_array = ["Can you not read?", "I really hope you used my friend google before asking that...", "Even i don't have time for this garbage."]
+puts 'Configs loaded'
 
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
@@ -322,7 +324,6 @@ bot.message(start_with: '/1in100') do |event|
   # Pick a number between 1 and 10
   magic = rand(1..100)
 
-
   event.user.await(:guess) do |guess_event|
     # Their message is a string - cast it to an integer
     guess = guess_event.message.content.to_i
@@ -345,5 +346,31 @@ bot.message(start_with: '/1in100') do |event|
   event.respond 'Let\'s play a game, pick a number between 1 and 100..'
 end
 
+bot.message(start_with: '/1in10') do |event|
+  # Pick a number between 1 and 10
+  magic = rand(1..10)
 
+  event.user.await(:guess) do |guess_event|
+    # Their message is a string - cast it to an integer
+    guess = guess_event.message.content.to_i
+
+    # If the block returns anything that *isn't* `false`, then the
+    # event handler will persist and continue to handle messages.
+    if guess == magic
+      # This returns `nil`, which will destroy the await so we don't reply anymore
+      guess_event.respond 'Congrats, you win!'
+    else
+      # Let the user know if they guessed too high or low.
+      guess_event.respond(guess > magic ? 'number too high please pick again.' : 'number too low pick a higher one.')
+
+      # Return false so the await is not destroyed, and we continue to listen
+      false
+    end
+  end
+
+  # Let the user know we're  ready and listening..
+  event.respond 'Let\'s play a game, pick a number between 1 and 10..'
+end
+
+puts 'Commands Loaded.'
 bot.run
