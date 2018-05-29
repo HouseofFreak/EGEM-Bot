@@ -320,7 +320,7 @@ A: This was implemented to stop the fast block mining when say a nicehash miner 
 ```"
 end
 
-bot.message(start_with: '/1in100') do |event|
+bot.message(start_with: '/1in100game') do |event|
   # Pick a number between 1 and 10
   magic = rand(1..100)
 
@@ -341,12 +341,11 @@ bot.message(start_with: '/1in100') do |event|
       false
     end
   end
-
   # Let the user know we're  ready and listening..
   event.respond 'Let\'s play a game, pick a number between 1 and 100..'
 end
 
-bot.message(start_with: '/1in10') do |event|
+bot.message(start_with: '/1in10game') do |event|
   # Pick a number between 1 and 10
   magic = rand(1..10)
 
@@ -367,7 +366,6 @@ bot.message(start_with: '/1in10') do |event|
       false
     end
   end
-
   # Let the user know we're  ready and listening..
   event.respond 'Let\'s play a game, pick a number between 1 and 10..'
 end
