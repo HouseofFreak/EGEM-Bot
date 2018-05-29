@@ -332,10 +332,10 @@ bot.message(start_with: '/1in100game') do |event|
     # event handler will persist and continue to handle messages.
     if guess == magic
       # This returns `nil`, which will destroy the await so we don't reply anymore
-      guess_event.respond 'Congrats, you win!'
+      guess_event.respond '1 in 100 :Congrats, you win!'
     else
       # Let the user know if they guessed too high or low.
-      guess_event.respond(guess > magic ? 'number too high please pick again.' : 'number too low pick a higher one.')
+      guess_event.respond(guess > magic ? '1 in 100: Number too high please pick again.' : '1 in 100: Number too low pick a higher one.')
 
       # Return false so the await is not destroyed, and we continue to listen
       false
@@ -357,10 +357,10 @@ bot.message(start_with: '/1in10game') do |event|
     # event handler will persist and continue to handle messages.
     if guess == magic
       # This returns `nil`, which will destroy the await so we don't reply anymore
-      guess_event.respond 'Congrats, you win!'
+      guess_event.respond '1 in 10: Congrats, you win!'
     else
       # Let the user know if they guessed too high or low.
-      guess_event.respond(guess > magic ? 'number too high please pick again.' : 'number too low pick a higher one.')
+      guess_event.respond(guess > magic ? '1 in 10: Number too high please pick again.' : '1 in 10: Number too low pick a higher one.')
 
       # Return false so the await is not destroyed, and we continue to listen
       false
