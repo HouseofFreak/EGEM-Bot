@@ -590,6 +590,7 @@ bot.on('message',async message => {
 			message.channel.send("You are not in the list, use **/register** command fist.");
 		}
 	}
+
 	if(message.content.startsWith(prefix + "coinhelp")){
 		message.channel.send("EGEM BlockChain Commands:\n"+
 			"```" + prefix+"balance <address> -  show EGEM balance on the following address \n"+
@@ -597,6 +598,13 @@ bot.on('message',async message => {
 			prefix+"getblock <number> - lookup the info of the block. \n"+
 			prefix+"tx <txhash> - lookup the info of the transaction. \n"+
 			prefix+"coin - Show the price/cap/supply." + "```"
+		);
+	}
+
+	if(message.content.startsWith(prefix + "gamelist")){
+		message.channel.send("EGEM Game List:\n"+
+			"```" + prefix+"1in10game - simple game of guess the number. \n"+
+			prefix+"1in100game - slightly harder numbers game." + "```"
 		);
 	}
 
@@ -634,6 +642,7 @@ bot.on('message',async message => {
 		message.channel.send("EGEM General Commands:\n"+
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"faq - common asked questions. \n"+
+			prefix+"gamelist - list of games to play in games room. \n"+
 			prefix+"usertip <user> - tip a user or yourself every 2 hours. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
