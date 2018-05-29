@@ -318,9 +318,9 @@ A: This was implemented to stop the fast block mining when say a nicehash miner 
 ```"
 end
 
-bot.message(start_with: '/game') do |event|
+bot.message(start_with: '/1in100') do |event|
   # Pick a number between 1 and 10
-  magic = rand(1..10)
+  magic = rand(1..100)
 
 
   event.user.await(:guess) do |guess_event|
@@ -331,10 +331,10 @@ bot.message(start_with: '/game') do |event|
     # event handler will persist and continue to handle messages.
     if guess == magic
       # This returns `nil`, which will destroy the await so we don't reply anymore
-      guess_event.respond 'you win!'
+      guess_event.respond 'Congrats, you win!'
     else
       # Let the user know if they guessed too high or low.
-      guess_event.respond(guess > magic ? 'too high' : 'too low')
+      guess_event.respond(guess > magic ? 'number too high please pick again.' : 'number too low pick a higher one.')
 
       # Return false so the await is not destroyed, and we continue to listen
       false
@@ -342,7 +342,7 @@ bot.message(start_with: '/game') do |event|
   end
 
   # Let the user know we're  ready and listening..
-  event.respond 'Guess a number between 1 and 10..'
+  event.respond 'Let\'s play a game, pick a number between 1 and 100..'
 end
 
 
