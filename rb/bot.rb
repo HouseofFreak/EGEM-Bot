@@ -10,7 +10,7 @@ token = config["discord-token"]
 bot = Discordrb::Bot.new token: "#{token}"
 
 carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
-lol_array = ["rofl", "Silly human", "To funny i forgot to laugh...", "lol", "Damn someone told a joke...", "Iv'e heard better jokes from my grandpa and he is a 486.", "giggle...giggle...", "Why are you laughing human?"]
+lol_array = ["rofl", "Silly human", "Really wish computers could pass gas...", "To funny i forgot to laugh...", "lol", "Damn someone told a joke...", "Iv'e heard better jokes from my grandpa and he is a 486.", "giggle...giggle...", "Why are you laughing human?", "If i short my cpu will the bad jokes stop?", "Do you have time to talk about our lord and savior, Satoshi?"]
 insult_array = ["Can you not read?", "I really hope you used my friend google before asking that...", "Even i don't have time for this garbage."]
 puts 'Configs and arrays loaded'
 
@@ -291,7 +291,6 @@ DOGE: #{outDOGE}
 LTC: #{outLTC}
 ----------
 
-
 ```"
 end
 
@@ -375,3 +374,4 @@ end
 puts 'Commands loaded and online.'
 puts 'Bot is booting and ready to serve!'
 bot.run
+puts 'You can now detach from this screen.'
