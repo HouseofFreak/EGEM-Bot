@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'discordrb'
 require 'httparty'
-puts 'All dependicies loaded'
+puts 'All requires loaded'
 
 config  = JSON.parse(File.read("token.json"))
 cars  = JSON.parse(File.read("data/cars.json"))
@@ -12,7 +12,7 @@ bot = Discordrb::Bot.new token: "#{token}"
 carlist = [cars["lambo"].to_f,cars["bugatti"].to_f,cars["tesla"].to_f,cars["prius"].to_f,cars["subaru"].to_f,cars["porsche"].to_f,cars["bmw"].to_f,cars["ferrari"].to_f,cars["mercedes"].to_f]
 lol_array = ["rofl", "Silly human", "To funny i forgot to laugh...", "lol", "Damn someone told a joke...", "Iv'e heard better jokes from my grandpa and he is a 486.", "giggle...giggle...", "Why are you laughing human?"]
 insult_array = ["Can you not read?", "I really hope you used my friend google before asking that...", "Even i don't have time for this garbage."]
-puts 'Configs loaded'
+puts 'Configs and arrays loaded'
 
 bot.message(with_text: ['/lambo', '/Lambo']) do |event|
 btcprice = HTTParty.get("https://api.coinmarketcap.com/v1/ticker/bitcoin", :verify => false )
@@ -121,6 +121,8 @@ pAvg2 = pAvg.round(4)
 total2 = total.round(2)
 event.respond "You need #{total2} EGEM at the current price of $ #{pAvg2} USD to get a Mercedes-AMG GT Roadster, Vroom Vroooom!"
 end
+
+puts 'Car list is loaded.'
 
 bot.message(with_text: ['/coin', '/Coin']) do |event|
 grav = HTTParty.get("https://graviex.net/api/v2/tickers/egembtc.json", :verify => false )
@@ -370,5 +372,6 @@ bot.message(start_with: '/1in10game') do |event|
   event.respond 'Let\'s play a game, pick a number between 1 and 10..'
 end
 
-puts 'Commands Loaded.'
+puts 'Commands loaded and online.'
+puts 'Bot is booting and ready to serve!'
 bot.run
