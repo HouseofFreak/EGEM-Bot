@@ -242,7 +242,24 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith(prefix + "usertip ")){
 		if(cooldown.has(message.author.id)) {
-      message.channel.send("Wait 2 hours before typing this again. - " + message.author);
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(0x00AE86)
+				.setDescription("User Tip:")
+				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("Wait 2 hours before typing this again. - " + message.author)
+
+				message.channel.send({embed})
     } else {
 			let user = args[1];
 			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
@@ -253,7 +270,23 @@ bot.on('message',async message => {
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
-				message.channel.send("A tip of " + amount+ " EGEM has been sent to "+user  );
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(0x00AE86)
+				.setDescription("User Tip:")
+				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("A tip of " + amount+ " EGEM has been sent to "+user  )
+
+				message.channel.send({embed})
 				sendCoins(address,weiAmount,message,1); // main function
 				// Adds the user to the set so that they can't talk for x
 				cooldown.add(message.author.id);
