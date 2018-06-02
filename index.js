@@ -53,7 +53,7 @@ function sendCoins(address,value,message,name){
 		// recive latest array
 		if(name != 1){
 			let fValue = value/Math.pow(10,18).toFixed(8);
-			let author = bot.users.find('username',name);
+			let author = bot.users.find('id',name);
 			author.send("Hi "+name+" , you are a lucky human. You just got " + fValue + " EGEM \n Check the following for your prize:\n  https://explorer.egem.io/tx/"+ hash);
 		} else {
 			message.channel.send("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash)
@@ -71,7 +71,7 @@ function raining(amount,message){
 	// online users
 	var onlineUsers = getOnline();
 	// create online and register array
-	var onlineAndRegister = Object.keys(data).filter(username => {return onlineUsers.indexOf(username)!=-1});
+	var onlineAndRegister = Object.keys(data).filter(id => {return onlineUsers.indexOf(id)!=-1});
 	// create object with name - address and name - values
 	var latest = {};
 	for (let user of onlineAndRegister) {
@@ -104,7 +104,7 @@ function getOnline(){
 	var foo = [];
 	var users = bot.users;
 	users.keyArray().forEach((val) => {
-		var userName = users.get(val).username;
+		var userName = users.get(val).id;
 		var status = users.get(val).presence.status;
 		if(status == "online"){
 			foo.push(userName);
@@ -165,7 +165,7 @@ bot.on('message',async message => {
 
 		if(web3.utils.isAddress(args[1])){
 			if(amount>100){
-				message.channel.send("You try to send more that 10 EGEM.");
+				message.channel.send("You can't send more than 100 EGEM.");
 			} else {
 				// main function
 				message.channel.send("You try to send " + amount + " EGEM to " + address + " address.");
@@ -236,7 +236,7 @@ bot.on('message',async message => {
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
-				message.channel.send("A tip of " + amount+ " EGEM has been sent to @"+user  );
+				message.channel.send("A tip of " + amount+ " EGEM has been sent to "+user  );
 				sendCoins(address,weiAmount,message,1); // main function
 				// Adds the user to the set so that they can't talk for x
 				cooldown.add(message.author.id);
