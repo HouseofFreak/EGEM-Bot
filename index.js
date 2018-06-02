@@ -528,9 +528,9 @@ bot.on('message',async message => {
 		  /*
 		   * Blank field, useful to create some space.
 		   */
-		  .addBlankField(true)
+		  .addBlankField(true);
 		  .addField("Balance: ", balance, true);
-			.addBlankField(true)
+			.addBlankField(true);
 			.addField("Transactions: ", txcount, true);
 
 		  message.channel.send({embed});
