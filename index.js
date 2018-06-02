@@ -505,25 +505,25 @@ bot.on('message',async message => {
 						var title = "null";
 						var balance = (result/Math.pow(10,18)).toFixed(8);
 						if(balance > 100000){
-							var title = "EGEM Super Whale";
+							var title = "EGEM Super Whale :egemflash: :whale:";
 						} else if(balance > 15000){
-							var title = "EGEM Humpback Whale";
+							var title = "EGEM Humpback Whale :whale:";
 						} else if(balance > 5000){
-							var title = "EGEM Killer Whale";
+							var title = "EGEM Killer Whale :whale2:";
 						} else if(balance > 1500){
-							var title = "EGEM Shark";
+							var title = "EGEM Shark :shark:";
 						} else if(balance > 750){
-							var title = "EGEM Dolphin";
+							var title = "EGEM Dolphin :dolphin:";
 						} else if(balance > 500){
-							var title = "EGEM Puffer Fish";
+							var title = "EGEM Puffer Fish :blowfish:";
 						} else if(balance > 250){
-							var title = "EGEM Octopus";
+							var title = "EGEM Octopus :octopus: ";
 						} else if(balance > 100){
 							var title = "EGEM Snow Crab :crab:";
 						} else if(balance > 50){
-							var title = "EGEM Shrimp";
+							var title = "EGEM Shrimp :shrimp:";
 						} else if(balance > 5){
-							var title = "EGEM Plankton";
+							var title = "EGEM Plankton :seedling:";
 						} else if(balance == 0){
 							var title = "This balance is empty.";
 						} else {
@@ -559,25 +559,25 @@ bot.on('message',async message => {
 					var title = "null";
 					var balance = (result/Math.pow(10,18)).toFixed(8);
 					if(balance > 100000){
-						var title = "EGEM Super Whale";
+						var title = "EGEM Super Whale :egemflash: :whale:";
 					} else if(balance > 15000){
-						var title = "EGEM Humpback Whale";
+						var title = "EGEM Humpback Whale :whale:";
 					} else if(balance > 5000){
-						var title = "EGEM Killer Whale";
+						var title = "EGEM Killer Whale :whale2:";
 					} else if(balance > 1500){
-						var title = "EGEM Shark";
+						var title = "EGEM Shark :shark:";
 					} else if(balance > 750){
-						var title = "EGEM Dolphin";
+						var title = "EGEM Dolphin :dolphin:";
 					} else if(balance > 500){
-						var title = "EGEM Puffer Fish";
+						var title = "EGEM Puffer Fish :blowfish:";
 					} else if(balance > 250){
-						var title = "EGEM Octopus";
+						var title = "EGEM Octopus :octopus: ";
 					} else if(balance > 100){
-						var title = "EGEM Snow Crab";
+						var title = "EGEM Snow Crab :crab:";
 					} else if(balance > 50){
-						var title = "EGEM Shrimp";
+						var title = "EGEM Shrimp :shrimp:";
 					} else if(balance > 5){
-						var title = "EGEM Plankton";
+						var title = "EGEM Plankton :seedling:";
 					} else if(balance == 0){
 						var title = "This balance is empty.";
 					} else {
