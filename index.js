@@ -270,6 +270,7 @@ bot.on('message',async message => {
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
+				const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
 				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 				/*
