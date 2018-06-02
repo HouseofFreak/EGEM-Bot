@@ -103,6 +103,24 @@ function raining(amount,message){
 	var weiAmount = camount*Math.pow(10,18);
 
 	message.channel.send("It just **rained** on **" + Object.keys(latest).length + "** users. Check pm's." );
+	const embed = new Discord.RichEmbed()
+		.setTitle("EGEM Discord Bot.")
+		.setAuthor("TheEGEMBot", egemspin)
+		/*
+		 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+		 */
+		.setColor(0x00AE86)
+		.setDescription("Raindrops:")
+		.setFooter("© EGEM.io", img32x32)
+		.setThumbnail(img32shard)
+		/*
+		 * Takes a Date object, defaults to current date.
+		 */
+		.setTimestamp()
+		.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+		.addField("It just **rained** on **" + Object.keys(latest).length + "** users. Check pm's.");
+
+		message.channel.send({embed});
 
 	function rainSend(addresses){
 		for(const address of Object.keys(addresses)){
