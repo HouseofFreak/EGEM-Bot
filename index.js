@@ -257,7 +257,7 @@ bot.on('message',async message => {
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Wait 2 hours. - " + message.author.id, "There is a time limit.")
+				.addField("Wait 2 hours. - " + message.author.username, "There is a time limit.")
 
 				message.channel.send({embed})
     } else {
