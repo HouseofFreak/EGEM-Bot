@@ -504,7 +504,7 @@ bot.on('message',async message => {
 	if(message.content === prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going. The bot has sent " + txcount + " transactions since its birth.");
+		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going. The bot has sent **" + txcount + "** transactions since its birth.");
 	}
 
 	if(message.content == prefix + "getid"){
