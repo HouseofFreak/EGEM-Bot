@@ -517,20 +517,7 @@ bot.on('message',async message => {
 		  color: 3447003,
 			title: "EGEM Bot Info:",
 	    url: "https://github.com/TeamEGEM/EGEM-Bot",
-	    description: "Here is the info on our bot.",
-	    fields: [{
-	        name: "Address",
-	        value: botSettings.address
-	      },
-	      {
-	        name: "Balance:",
-	        value: eval(balance)
-	      },
-	      {
-	        name: "TX Count:",
-	        value: eval(txcount)
-	      }
-	    ],
+	    description: "Bot Address:" + botSettings.address,
 	    timestamp: new Date(),
 	    footer: {
 	      text: "© EGEM.io"
