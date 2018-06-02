@@ -164,7 +164,7 @@ bot.on('message',async message => {
 		let weiAmount = amount*Math.pow(10,18);
 
 		if(web3.utils.isAddress(args[1])){
-			if(amount>10){
+			if(amount>100){
 				message.channel.send("You try to send more that 10 EGEM.");
 			} else {
 				// main function
@@ -508,6 +508,29 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith("/register")){
 		var author = message.author.username;
+		var address = args[1];
+
+		if(web3.utils.isAddress(args[1])){
+			var data = getJson();
+			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
+				data[author] = address;
+				message.channel.send("@" + author + " registered new address: " + address);
+
+				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
+				  if (err) throw err;
+				  console.log('The file has been saved.');
+				});
+
+			} else {
+				message.channel.send("You have already registered.");
+			}
+		} else {
+			message.channel.send("@" + author + " tried to register wrong address. Try another one. Correct format is **/register 0xAddress**");
+		}
+	}
+
+	if(message.content.startsWith("/regID")){
+		var author = message.author.id;
 		var address = args[1];
 
 		if(web3.utils.isAddress(args[1])){
