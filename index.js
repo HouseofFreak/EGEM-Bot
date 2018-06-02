@@ -257,7 +257,7 @@ bot.on('message',async message => {
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Wait 2 hours before typing this again. - " + message.author)
+				.addField("Wait 2 hours. - " + message.author.id, "There is a time limit.")
 
 				message.channel.send({embed})
     } else {
@@ -285,7 +285,7 @@ bot.on('message',async message => {
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("A tip of " + amount+ " EGEM has been sent to "+user  )
+				.addField(amount+ " EGEM has been sent to:",user )
 
 				message.channel.send({embed})
 				sendCoins(address,weiAmount,message,1); // main function
