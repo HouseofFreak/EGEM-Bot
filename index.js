@@ -532,7 +532,7 @@ bot.on('message',async message => {
 							 */
 							.setTimestamp()
 							.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-							.addField("This balance has: ", Number(balance).toFixed(8), true)
+							.addField("This balance has: ", balance, true)
 							.addField("This users rank is:", title);
 
 							message.channel.send({embed})
