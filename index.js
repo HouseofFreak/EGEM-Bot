@@ -510,7 +510,7 @@ bot.on('message',async message => {
 		  /*
 		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		   */
-		  .setColor(0x00AE86)
+		  .setColor(0x00E5FF)
 		  .setDescription("Current Bot Status:")
 		  .setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
