@@ -422,7 +422,7 @@ bot.on('message',async message => {
 		})
 	}
 
-	if(message.content.startsWith(prefix + "balance")){
+	if(message.content.startsWith(prefix + "bal")){
 		let price = getPrice()*getMPrice();
 		let author = message.author.id;
 		let address = args[1];
