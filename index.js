@@ -505,13 +505,13 @@ bot.on('message',async message => {
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		const embed = new Discord.RichEmbed()
-		  .setTitle("EGEM Discord Bot info.")
+		  .setTitle("EGEM Discord Bot.")
 		  .setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  /*
 		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		   */
 		  .setColor(0x00AE86)
-		  .setDescription("..")
+		  .setDescription("Current Bot Status:")
 		  .setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  /*
@@ -536,7 +536,26 @@ bot.on('message',async message => {
 	if(message.content == prefix + "getid"){
 		var user = message.author.username;
 		let author = message.author.id;
-		message.channel.send("@"+ user + " Your discord ID is: " + author);
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(0x00AE86)
+			.setDescription("User's Discord Id:")
+			.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+			.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("Username:", user)
+			.addBlankField(true)
+			.addField("Discord Id:", author, true);
+
+			message.channel.send({embed});
 	}
 
 	if(message.content == prefix + "checkreg"){
