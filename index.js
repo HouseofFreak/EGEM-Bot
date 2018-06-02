@@ -18,6 +18,7 @@ const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
 
 const img32x32 = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png";
+const egemspin = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/animated/egem_gray_28.gif";
 
 // update data
 setInterval(price,300000);
@@ -58,14 +59,14 @@ function sendCoins(address,value,message,name){
 		} else {
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
-				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setAuthor("TheEGEMBot", egemspin)
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
-				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setFooter("© EGEM.io", img32x32)
+				.setThumbnail(img32x32)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -244,14 +245,14 @@ bot.on('message',async message => {
 		if(cooldown.has(message.author.id)) {
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
-				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setAuthor("TheEGEMBot", egemspin)
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
-				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setFooter("© EGEM.io", img32x32)
+				.setThumbnail(img32x32)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -272,14 +273,14 @@ bot.on('message',async message => {
 				let address = data[user];
 				const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
-				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setAuthor("TheEGEMBot", egemspin)
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
-				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setFooter("© EGEM.io", img32x32)
+				.setThumbnail(img32x32)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -557,14 +558,14 @@ bot.on('message',async message => {
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		const embed = new Discord.RichEmbed()
 		  .setTitle("EGEM Discord Bot.")
-		  .setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  .setAuthor("TheEGEMBot", egemspin)
 		  /*
 		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		   */
 		  .setColor(0x00E5FF)
 		  .setDescription("Current Bot Status:")
-		  .setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  .setFooter("© EGEM.io", img32x32)
+		  .setThumbnail(img32x32)
 		  /*
 		   * Takes a Date object, defaults to current date.
 		   */
@@ -589,14 +590,14 @@ bot.on('message',async message => {
 		let author = message.author.id;
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
-			.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+			.setAuthor("TheEGEMBot", egemspin)
 			/*
 			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 			 */
 			.setColor(0x00AE86)
 			.setDescription("User's Discord Id:")
-			.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-			.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+			.setFooter("© EGEM.io", img32x32)
+			.setThumbnail(img32x32)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
@@ -630,14 +631,14 @@ bot.on('message',async message => {
 				data[author] = address;
 				const embed = new Discord.RichEmbed()
 					.setTitle("EGEM Discord Bot.")
-					.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setAuthor("TheEGEMBot", egemspin)
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
 					.setColor(0x00FF0C)
 					.setDescription("User Registration:")
-					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setFooter("© EGEM.io", img32x32)
+					.setThumbnail(img32x32)
 					/*
 					 * Takes a Date object, defaults to current date.
 					 */
@@ -656,14 +657,14 @@ bot.on('message',async message => {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setTitle("EGEM Discord Bot.")
-					.setAuthor("TheEGEMBot", img32x32)
+					.setAuthor("TheEGEMBot", egemspin)
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
 					.setColor(0xFF0000)
 					.setDescription("Registration Error:")
-					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setFooter("© EGEM.io", img32x32)
+					.setThumbnail(img32x32)
 					/*
 					 * Takes a Date object, defaults to current date.
 					 */
@@ -676,14 +677,14 @@ bot.on('message',async message => {
 		} else {
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
-				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setAuthor("TheEGEMBot", egemspin)
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(0xFF0000)
 				.setDescription("Registration Error:")
-				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setFooter("© EGEM.io", img32x32)
+				.setThumbnail(img32x32)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
