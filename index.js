@@ -739,7 +739,7 @@ bot.on('message',async message => {
 			 */
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-			.addField("Total count for raindrops. **" + Object.keys(data).length+ "**.")
+			.addField("Total count for raindrops.","**" + Object.keys(data).length+ "**.")
 
 		message.channel.send({embed});
 
