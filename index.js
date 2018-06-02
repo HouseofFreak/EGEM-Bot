@@ -102,7 +102,6 @@ function raining(amount,message){
 	var camount = amount/Object.keys(latest).length;
 	var weiAmount = camount*Math.pow(10,18);
 
-	message.channel.send("It just **rained** on **" + Object.keys(latest).length + "** users. Check pm's." );
 	const embed = new Discord.RichEmbed()
 		.setTitle("EGEM Discord Bot.")
 		.setAuthor("TheEGEMBot", egemspin)
@@ -118,7 +117,7 @@ function raining(amount,message){
 		 */
 		.setTimestamp()
 		.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-		.addField("It just **rained** on **" + Object.keys(latest).length + "** users. Check pm's.");
+		.addField("It just rained on " + Object.keys(latest).length + " users. Check pm's.", "Enjoy the weather everyone!");
 
 		message.channel.send({embed});
 
