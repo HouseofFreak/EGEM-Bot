@@ -720,10 +720,28 @@ bot.on('message',async message => {
 			message.channel.send("@"+user+" tried to register with wrong address. Correct format is **/register 0xAddress**");
 		}
 	}
+
 	//-------------------------------------
 	if(message.content == prefix + "list"){
 		var data = getJson();
-		message.channel.send("Total amount of registered users is **" + Object.keys(data).length+ "**.");
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(0x00AE86)
+			.setDescription("Registered Users:")
+			.setFooter("© EGEM.io", img32x32)
+			.setThumbnail(img32x32)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("Total count for raindrops. **" + Object.keys(data).length+ "**.")
+
+		message.channel.send({embed});
 
 	}
 
