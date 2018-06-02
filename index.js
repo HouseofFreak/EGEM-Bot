@@ -56,7 +56,24 @@ function sendCoins(address,value,message,name){
 			let author = bot.users.find('id',name);
 			author.send("Hi "+name+" , you are a lucky human. You just got " + fValue + " EGEM \n Check the following for your prize:\n  https://explorer.egem.io/tx/"+ hash);
 		} else {
-			message.channel.send("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash)
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(0x00AE86)
+				.setDescription("User Tip:")
+				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash)
+
+				message.channel.send({embed})
 		}
 
 
