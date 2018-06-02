@@ -515,7 +515,26 @@ bot.on('message',async message => {
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		message.channel.send({embed: {
 		  color: 3447003,
-		  description: botSettings.address
+			title: "EGEM Bot Info:",
+	    url: "https://github.com/TeamEGEM/EGEM-Bot",
+	    description: "Here is the info on our bot.",
+	    fields: [{
+	        name: "Address",
+	        value: botSettings.address
+	      },
+	      {
+	        name: "Balance:",
+	        value: balance
+	      },
+	      {
+	        name: "TX Count:",
+	        value: txcount
+	      }
+	    ],
+	    timestamp: new Date(),
+	    footer: {
+	      text: "© EGEM.io"
+	    }
 		}});
 	}
 
