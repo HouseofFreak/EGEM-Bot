@@ -518,6 +518,8 @@ bot.on('message',async message => {
 			title: "EGEM Bot Info:",
 	    url: "https://github.com/TeamEGEM/EGEM-Bot",
 	    description: "Bot Address: " + botSettings.address,
+			title: "EGEM Balance Info:",
+	    url: "https://github.com/TeamEGEM/EGEM-Bot",
 			description: "Balance: " + balance,
 	    timestamp: new Date(),
 	    footer: {
