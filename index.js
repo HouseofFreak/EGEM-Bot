@@ -577,7 +577,25 @@ bot.on('message',async message => {
 			var data = getJson();
 			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
 				data[author] = address;
-				message.channel.send("@" + user + " registered new address: " + address + " to there discord Id: " + author);
+				const embed = new Discord.RichEmbed()
+					.setTitle("EGEM Discord Bot.")
+					.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					/*
+					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+					 */
+					.setColor(0x00AE86)
+					.setDescription("User Registration:")
+					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					/*
+					 * Takes a Date object, defaults to current date.
+					 */
+					.setTimestamp()
+					.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+					.addField("New User Registered:", user)
+					.addField("Discord Id:", author, true);
+
+					message.channel.send({embed});
 
 				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
 				  if (err) throw err;
@@ -585,10 +603,44 @@ bot.on('message',async message => {
 				});
 
 			} else {
-				message.channel.send("You have already registered.");
+				const embed = new Discord.RichEmbed()
+					.setTitle("EGEM Discord Bot.")
+					.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					/*
+					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+					 */
+					.setColor(0x00AE86)
+					.setDescription("Registration Error:")
+					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					/*
+					 * Takes a Date object, defaults to current date.
+					 */
+					.setTimestamp()
+					.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+					.addField("User Already Registered")
+
+					message.channel.send({embed});
 			}
 		} else {
-			message.channel.send("@" + user + " tried to register wrong address. Try another one. Correct format is **/register 0xAddress**");
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(0x00AE86)
+				.setDescription("Registration Error:")
+				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("Tried to register wrong address. Try another one. Correct format is **/register 0xAddress**")
+
+				message.channel.send({embed});
 		}
 	}
 
