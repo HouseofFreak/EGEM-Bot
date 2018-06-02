@@ -504,36 +504,10 @@ bot.on('message',async message => {
 	if(message.content === prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-
-		const embed = new Discord.RichEmbed()
-		  .setTitle("Discord Bot Info:")
-		  .setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-		  /*
-		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-		   */
-		  .setColor(0x00AE86)
-		  .setDescription("Here is the current bot info.")
-		  .setFooter("Bot footer", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-		  .setImage("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
-		  /*
-		   * Takes a Date object, defaults to current date.
-		   */
-		  .setTimestamp()
-		  .setURL("")
-		  /*
-		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
-		   */
-		  .addField("Address", botSettings.address, true)
-		  /*
-		   * Blank field, useful to create some space.
-		   */
-		  .addBlankField(true);
-		  .addField("Balance: ", balance, true);
-			.addBlankField(true);
-			.addField("Transactions: ", txcount, true);
-
-		  message.channel.send({embed});
+		message.channel.send("Discord Bot Info: \n"
+		+	"Address: " + botSettings.address + " \n"
+		+ "Balance: **" + Number(balance).toFixed(8) + "** EGEM. \n"
+		+ "**" + txcount + "** transactions have been sent since its birth.");
 	}
 
 	if(message.content == prefix + "getid"){
