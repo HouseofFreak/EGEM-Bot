@@ -502,7 +502,7 @@ bot.on('message',async message => {
 			if(data[author]){
 				web3.eth.getBalance(data[author], (error,result)=>{
 					if(!error){
-						let var = "";
+						let title = "";
 						var balance = (result/Math.pow(10,18)).toFixed(8);
 						if(balance > 100000){ let title = "EGEM Super Whale";
 						} else if(balance > 15000){ let title = "EGEM Humpback Whale";
