@@ -1,5 +1,6 @@
 "use strcit";
-
+// Load the full build.
+var _ = require('lodash');
 const Web3 = require("web3");
 const Discord = require("discord.js");
 const BigNumber = require('bignumber.js');
@@ -16,8 +17,7 @@ const block = require("./gets/getblock.js");
 const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
 
-// Load the full build.
-var _ = require('lodash');
+const img32x32 = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png";
 
 // update data
 setInterval(price,300000);
@@ -656,7 +656,7 @@ bot.on('message',async message => {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setTitle("EGEM Discord Bot.")
-					.setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+					.setAuthor("TheEGEMBot", img32x32)
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
