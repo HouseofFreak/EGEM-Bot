@@ -519,7 +519,7 @@ bot.on('message',async message => {
 						} else if(balance > 250){
 							var title = "EGEM Octopus";
 						} else if(balance > 100){
-							var title = "EGEM Snow Crab";
+							var title = "EGEM Snow Crab :crab:";
 						} else if(balance > 50){
 							var title = "EGEM Shrimp";
 						} else if(balance > 5){
