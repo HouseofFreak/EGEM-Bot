@@ -638,7 +638,7 @@ bot.on('message',async message => {
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Tried to register wrong address. Try another one. Correct format is **/register 0xAddress**",)
+				.addField("Tried to register wrong address. Try another one.", "Correct format is **/register 0xAddress**")
 
 				message.channel.send({embed});
 		}
