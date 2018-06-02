@@ -510,6 +510,15 @@ bot.on('message',async message => {
 		+ "**" + txcount + "** transactions have been sent since its birth.");
 	}
 
+	if(message.content === prefix + "info"){
+		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
+		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
+		message.channel.send({embed: {
+		  color: 3447003,
+		  description: botSettings.address
+		}});
+	}
+
 	if(message.content == prefix + "getid"){
 		var user = message.author.username;
 		let author = message.author.id;
