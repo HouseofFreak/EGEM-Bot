@@ -505,35 +505,35 @@ bot.on('message',async message => {
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 
-				message.channel.send({embed: {
-		    color: 3447003,
-		    author: {
-		      name: client.user.username,
-		      icon_url: client.user.avatarURL
-		    },
-		    title: "Discord Bot Info:",
-		    url: "",
-		    description: "This is a test embed to showcase what they look like and what they can do.",
-		    fields: [{
-		        name: "Address:",
-		        value: botSettings.address
-		      },
-		      {
-		        name: "Balance: ",
-		        value: "You can put [masked links](http://google.com) inside of rich embeds."
-		      },
-		      {
-		        name: "Transcations: ",
-		        value: "**" + txcount + "** transactions have been sent since its birth."
-		      }
-		    ],
-		    timestamp: new Date(),
-		    footer: {
-		      icon_url: client.user.avatarURL,
-		      text: "© EGEM.io"
-		    }
-		  }
-		});
+		const embed = new Discord.RichEmbed()
+		  .setTitle("Discord Bot Info:")
+		  .setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  /*
+		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+		   */
+		  .setColor(0x00AE86)
+		  .setDescription("Here is the current bot info.")
+		  .setFooter("Bot footer", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  .setImage("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
+		  /*
+		   * Takes a Date object, defaults to current date.
+		   */
+		  .setTimestamp()
+		  .setURL("")
+		  /*
+		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
+		   */
+		  .addField("Address", botSettings.address, true)
+		  /*
+		   * Blank field, useful to create some space.
+		   */
+		  .addBlankField(true)
+		  .addField("Balance: ", balance, true);
+			.addBlankField(true)
+			.addField("Transactions: ", txcount, true);
+
+		  message.channel.send({embed});
 	}
 
 	if(message.content == prefix + "getid"){
