@@ -71,7 +71,7 @@ function sendCoins(address,value,message,name){
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash)
+				.addField("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash, "Please wait 2 hours to TIP again.")
 
 				message.channel.send({embed})
 		}
