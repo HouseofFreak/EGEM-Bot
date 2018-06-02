@@ -552,7 +552,6 @@ bot.on('message',async message => {
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 			.addField("Username:", user)
-			.addBlankField(true)
 			.addField("Discord Id:", author, true);
 
 			message.channel.send({embed});
