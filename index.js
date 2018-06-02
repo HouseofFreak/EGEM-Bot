@@ -506,6 +506,12 @@ bot.on('message',async message => {
 		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going.");
 	}
 
+	if(message.content == prefix + "getid"){
+		var user = message.author.username;
+		let author = message.author.id;
+		message.channel.send("@"+ user + " Your discord ID is: " + author);
+	}
+
 	if(message.content == prefix + "checkreg"){
 		var user = message.author.username;
 		let author = message.author.id;
