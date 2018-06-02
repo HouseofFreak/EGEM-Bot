@@ -510,25 +510,9 @@ bot.on('message',async message => {
 		+ "**" + txcount + "** transactions have been sent since its birth.");
 	}
 
-	if(message.content === prefix + "info"){
+	if(message.content == prefix + "info2"){
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send({embed: {
-		  color: 3447003,
-			title: "EGEM Bot Info:",
-	    url: "https://github.com/TeamEGEM/EGEM-Bot",
-	    description: "Bot Address: " + botSettings.address,
-			title: "EGEM Balance Info:",
-	    url: "https://github.com/TeamEGEM/EGEM-Bot",
-			description: "Balance: " + balance,
-	    timestamp: new Date(),
-	    footer: {
-	      text: "© EGEM.io"
-	    }
-		}});
-	}
-
-	if(message.content == prefix + "info2"){
 		const embed = new Discord.RichEmbed()
 		  .setTitle("EGEM Discord Bot info.")
 		  .setAuthor("TheEGEMBot", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
@@ -543,12 +527,12 @@ bot.on('message',async message => {
 		   * Takes a Date object, defaults to current date.
 		   */
 		  .setTimestamp()
-		  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-		  .addField("Bot Address:", "..")
+		  .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+		  .addField("Bot Address:", "0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd")
 		  /*
 		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
 		   */
-		  .addField("Balance", "..", true)
+		  .addField("Balance", Number(balance).toFixed(8), true)
 		  /*
 		   * Blank field, useful to create some space.
 		   */
