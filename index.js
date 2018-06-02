@@ -532,7 +532,7 @@ bot.on('message',async message => {
 			var data = getJson();
 			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
 				data[author] = address;
-				message.channel.send("@" + user + " registered new address: " + address + "to there discord Id: " + author);
+				message.channel.send("@" + user + " registered new address: " + address + " to there discord Id: " + author);
 
 				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
 				  if (err) throw err;
@@ -603,7 +603,12 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith(prefix + "coinhelp")){
 		message.channel.send("EGEM BlockChain Commands:\n"+
-			"```" + prefix+"balance <address> -  show EGEM balance on the following address \n"+
+			"```" + prefix+"bal <address> -  show EGEM balance on the following address \n"+
+			prefix+"getid - this number is needed to use /usertip. \n"+
+			prefix+"register <address> - saves user address and name to db. \n"+
+			prefix+"changereg <address> - change your registered address.\n"+
+			prefix+"checkreg - find whether you're registered or not.\n"+
+			prefix+"usertip <userid> - tip a user or yourself every 2 hours. \n"+
 			prefix+"block - shows the semi current block number (15sec updates). \n"+
 			prefix+"getblock <number> - lookup the info of the block. \n"+
 			prefix+"tx <txhash> - lookup the info of the transaction. \n"+
@@ -653,16 +658,11 @@ bot.on('message',async message => {
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"faq - common asked questions. \n"+
 			prefix+"gamelist - list of games to play in games room. \n"+
-			prefix+"usertip <userid> - tip a user or yourself every 2 hours. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
 			prefix+"convert - get a list of realtime conversions from EGEM to another coin. \n"+
 			prefix+"botinfo - shows bot address so anyone can fund it, and its balance. \n" +
 			prefix+"roll - toss dice and returns a number from 1-12 and a random word.\n"+
-			prefix+"getid - this number is needed to use /usertip. \n"+
-			prefix+"register <address> - saves user address and name to db. \n"+
-			prefix+"changereg <address> - change your registered address.\n"+
-			prefix+"checkreg - find whether you're registered or not.\n"+
 			prefix+"coinhelp - EGEM Blockchain commands.\n"+
 			prefix+"carhelp - List of cars and there EGEM required.\n"+
 			prefix+"list - shows number of users registered for raindrops." + "```");
