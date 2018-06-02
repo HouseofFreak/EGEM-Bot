@@ -536,7 +536,7 @@ bot.on('message',async message => {
 		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		   */
 		  .setColor(0x00AE86)
-		  .setDescription("")
+		  .setDescription("..")
 		  .setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  .setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 		  /*
@@ -544,16 +544,16 @@ bot.on('message',async message => {
 		   */
 		  .setTimestamp()
 		  .setURL("https://discord.js.org/#/docs/main/indev/class/RichEmbed")
-		  .addField("Bot Address:", "")
+		  .addField("Bot Address:", "..")
 		  /*
 		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
 		   */
-		  .addField("Balance", "", true)
+		  .addField("Balance", "..", true)
 		  /*
 		   * Blank field, useful to create some space.
 		   */
 		  .addBlankField(true)
-		  .addField("Transactions", "", true);
+		  .addField("Transactions", "..", true);
 
 		  message.channel.send({embed});
 	}
