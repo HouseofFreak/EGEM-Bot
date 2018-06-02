@@ -501,16 +501,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	if(message.content === prefix + "botinfo"){
-		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
-		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
-		message.channel.send("Discord Bot Info: \n"
-		+	"Address: " + botSettings.address + " \n"
-		+ "Balance: **" + Number(balance).toFixed(8) + "** EGEM. \n"
-		+ "**" + txcount + "** transactions have been sent since its birth.");
-	}
-
-	if(message.content == prefix + "info2"){
+	if(message.content == prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		const embed = new Discord.RichEmbed()
@@ -528,7 +519,7 @@ bot.on('message',async message => {
 		   */
 		  .setTimestamp()
 		  .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-		  .addField("Bot Address:", "0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd")
+		  .addField("Bot Address:", botSettings.address)
 		  /*
 		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
 		   */
@@ -537,7 +528,7 @@ bot.on('message',async message => {
 		   * Blank field, useful to create some space.
 		   */
 		  .addBlankField(true)
-		  .addField("Transactions", "..", true);
+		  .addField("Transactions", Number(txcount), true);
 
 		  message.channel.send({embed});
 	}
