@@ -18,6 +18,7 @@ const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
 
 const img32x32 = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png";
+const img32shard = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/various/32.png";
 const egemspin = "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/animated/egem_gray_28.gif";
 
 // update data
@@ -66,7 +67,7 @@ function sendCoins(address,value,message,name){
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
-				.setThumbnail(img32x32)
+				.setThumbnail(img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -252,7 +253,7 @@ bot.on('message',async message => {
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
-				.setThumbnail(img32x32)
+				.setThumbnail(img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -280,7 +281,7 @@ bot.on('message',async message => {
 				.setColor(0x00AE86)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
-				.setThumbnail(img32x32)
+				.setThumbnail(img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -565,7 +566,7 @@ bot.on('message',async message => {
 		  .setColor(0x00E5FF)
 		  .setDescription("Current Bot Status:")
 		  .setFooter("© EGEM.io", img32x32)
-		  .setThumbnail(img32x32)
+		  .setThumbnail(img32shard)
 		  /*
 		   * Takes a Date object, defaults to current date.
 		   */
@@ -597,7 +598,7 @@ bot.on('message',async message => {
 			.setColor(0x00AE86)
 			.setDescription("User's Discord Id:")
 			.setFooter("© EGEM.io", img32x32)
-			.setThumbnail(img32x32)
+			.setThumbnail(img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
@@ -638,7 +639,7 @@ bot.on('message',async message => {
 					.setColor(0x00FF0C)
 					.setDescription("User Registration:")
 					.setFooter("© EGEM.io", img32x32)
-					.setThumbnail(img32x32)
+					.setThumbnail(img32shard)
 					/*
 					 * Takes a Date object, defaults to current date.
 					 */
@@ -664,7 +665,7 @@ bot.on('message',async message => {
 					.setColor(0xFF0000)
 					.setDescription("Registration Error:")
 					.setFooter("© EGEM.io", img32x32)
-					.setThumbnail(img32x32)
+					.setThumbnail(img32shard)
 					/*
 					 * Takes a Date object, defaults to current date.
 					 */
@@ -684,7 +685,7 @@ bot.on('message',async message => {
 				.setColor(0xFF0000)
 				.setDescription("Registration Error:")
 				.setFooter("© EGEM.io", img32x32)
-				.setThumbnail(img32x32)
+				.setThumbnail(img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -733,7 +734,7 @@ bot.on('message',async message => {
 			.setColor(0x00AE86)
 			.setDescription("Registered Users:")
 			.setFooter("© EGEM.io", img32x32)
-			.setThumbnail(img32x32)
+			.setThumbnail(img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
