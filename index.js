@@ -506,6 +506,17 @@ bot.on('message',async message => {
 		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going.");
 	}
 
+	if(message.content == prefix + "checkreg"){
+		var user = message.author.username;
+		let author = message.author.id;
+		let data = getJson();
+		if(Object.keys(data).includes(author)){
+			message.channel.send("@"+ user + " already registered, your discord ID is: " + author);
+		} else {
+			message.channel.send("You are not in the list, use **/regID** command fist.");
+		}
+	}
+
 	if(message.content.startsWith("/regID")){
 		var user = message.author.username;
 		var author = message.author.id;
@@ -531,7 +542,8 @@ bot.on('message',async message => {
 	}
 
 	if(message.content.startsWith(prefix + "changereg")){
-		var author = message.author.username;
+		var user = message.author.username;
+		var author = message.author.id;
 		var address = args[1];
 		if(web3.utils.isAddress(args[1])){
 			var data = getJson();
@@ -542,15 +554,15 @@ bot.on('message',async message => {
 				  		if (err) throw err;
 				  		console.log('The file has been changed.');
 					});
-					message.channel.send("@" + author + " changed register address to " + address);
+					message.channel.send("@" + user + " changed register address to " + address);
 				} else {
 					message.channel.send("Use another address if you're trying to change your old one.")
 				}
 			} else {
-				message.channel.send("You are not on the list, register your address via **/register** first.");
+				message.channel.send("You are not on the list, register your address via **/regID** first.");
 			}
 		} else {
-			message.channel.send("@"+author+" tried to register with wrong address. Correct format is **/register 0xAddress**");
+			message.channel.send("@"+user+" tried to register with wrong address. Correct format is **/register 0xAddress**");
 		}
 	}
 	//-------------------------------------
@@ -582,15 +594,6 @@ bot.on('message',async message => {
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
 	}
 
-	if(message.content == prefix + "checkreg"){
-		let author = message.author.username;
-		let data = getJson();
-		if(Object.keys(data).includes(author)){
-			message.channel.send("@"+author + " already registered.");
-		} else {
-			message.channel.send("You are not in the list, use **/register** command fist.");
-		}
-	}
 
 	if(message.content.startsWith(prefix + "coinhelp")){
 		message.channel.send("EGEM BlockChain Commands:\n"+
