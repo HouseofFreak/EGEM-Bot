@@ -583,7 +583,7 @@ bot.on('message',async message => {
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
-					.setColor(0x00AE86)
+					.setColor(0x00FF0C)
 					.setDescription("User Registration:")
 					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
@@ -593,7 +593,7 @@ bot.on('message',async message => {
 					.setTimestamp()
 					.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 					.addField("New User Registered:", user)
-					.addField("Discord Id:", author, true);
+					.addField("Discord Id:", author);
 
 					message.channel.send({embed});
 
@@ -609,7 +609,7 @@ bot.on('message',async message => {
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
-					.setColor(0x00AE86)
+					.setColor(0xFF0000)
 					.setDescription("Registration Error:")
 					.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 					.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
@@ -618,7 +618,7 @@ bot.on('message',async message => {
 					 */
 					.setTimestamp()
 					.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-					.addField("User Already Registered", true)
+					.addField("User Already Registered", user)
 
 					message.channel.send({embed});
 			}
@@ -629,7 +629,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0x00AE86)
+				.setColor(0xFF0000)
 				.setDescription("Registration Error:")
 				.setFooter("© EGEM.io", "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
 				.setThumbnail("https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png")
