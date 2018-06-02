@@ -524,11 +524,11 @@ bot.on('message',async message => {
 	      },
 	      {
 	        name: "Balance:",
-	        value: balance
+	        value: eval(balance)
 	      },
 	      {
 	        name: "TX Count:",
-	        value: txcount
+	        value: eval(txcount)
 	      }
 	    ],
 	    timestamp: new Date(),
