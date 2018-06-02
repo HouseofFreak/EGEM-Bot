@@ -252,7 +252,7 @@ bot.on('message',async message => {
 	}
 	//
 
-	if(message.content.startsWith(prefix + "coming ")){
+	if(message.content.startsWith(prefix + "forecast ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
 		}
@@ -501,7 +501,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	if(message.content === prefix + "fundbot"){
+	if(message.content === prefix + "botinfo"){
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going.");
 	}
@@ -653,12 +653,13 @@ bot.on('message',async message => {
 			"```" + prefix+"egem - shows the what is EGEM info. \n"+
 			prefix+"faq - common asked questions. \n"+
 			prefix+"gamelist - list of games to play in games room. \n"+
-			prefix+"usertip <user> - tip a user or yourself every 2 hours. \n"+
+			prefix+"usertip <userid> - tip a user or yourself every 2 hours. \n"+
 			prefix+"pools - show list of known EGEM pools. \n"+
 			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
 			prefix+"convert - get a list of realtime conversions from EGEM to another coin. \n"+
-			prefix+"fundbot - shows bot address so anyone can fund it, and its balance. \n" +
+			prefix+"botinfo - shows bot address so anyone can fund it, and its balance. \n" +
 			prefix+"roll - toss dice and returns a number from 1-12 and a random word.\n"+
+			prefix+"getid - this number is needed to use /usertip. \n"+
 			prefix+"register <address> - saves user address and name to db. \n"+
 			prefix+"changereg <address> - change your registered address.\n"+
 			prefix+"checkreg - find whether you're registered or not.\n"+
