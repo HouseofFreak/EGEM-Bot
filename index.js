@@ -424,7 +424,7 @@ bot.on('message',async message => {
 
 	if(message.content.startsWith(prefix + "balance")){
 		let price = getPrice()*getMPrice();
-		let author = message.author.username;
+		let author = message.author.id;
 		let address = args[1];
 		if(address == null){
 			// show registered address balance
@@ -513,11 +513,11 @@ bot.on('message',async message => {
 		if(Object.keys(data).includes(author)){
 			message.channel.send("@"+ user + " already registered, your discord ID is: " + author);
 		} else {
-			message.channel.send("You are not in the list, use **/regID** command fist.");
+			message.channel.send("You are not in the list, use **/register** command fist.");
 		}
 	}
 
-	if(message.content.startsWith("/regID")){
+	if(message.content.startsWith("/register")){
 		var user = message.author.username;
 		var author = message.author.id;
 		var address = args[1];
@@ -559,7 +559,7 @@ bot.on('message',async message => {
 					message.channel.send("Use another address if you're trying to change your old one.")
 				}
 			} else {
-				message.channel.send("You are not on the list, register your address via **/regID** first.");
+				message.channel.send("You are not on the list, register your address via **/register** first.");
 			}
 		} else {
 			message.channel.send("@"+user+" tried to register with wrong address. Correct format is **/register 0xAddress**");
