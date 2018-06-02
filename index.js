@@ -506,26 +506,36 @@ bot.on('message',async message => {
 						var balance = (result/Math.pow(10,18)).toFixed(8);
 						if(balance > 100000){
 							var title = "EGEM Super Whale :egemflash: :whale:";
+							var next = "You are at MAX rank.";
 						} else if(balance > 15000){
 							var title = "EGEM Humpback Whale :whale:";
+							var next = "100000 EGEM";
 						} else if(balance > 5000){
 							var title = "EGEM Killer Whale :whale2:";
+							var next = "15000 EGEM";
 						} else if(balance > 1500){
 							var title = "EGEM Shark :shark:";
+							var next = "5000 EGEM";
 						} else if(balance > 750){
 							var title = "EGEM Dolphin :dolphin:";
+							var next = "1500 EGEM";
 						} else if(balance > 500){
 							var title = "EGEM Puffer Fish :blowfish:";
+							var next = "750 EGEM";
 						} else if(balance > 250){
 							var title = "EGEM Octopus :octopus: ";
+							var next = "500 EGEM";
 						} else if(balance > 100){
 							var title = "EGEM Snow Crab :crab:";
+							var next = "250 EGEM";
 						} else if(balance > 50){
 							var title = "EGEM Shrimp :shrimp:";
+							var next = "100 EGEM";
 						} else if(balance > 5){
 							var title = "EGEM Plankton :seedling:";
+							var next = "50 EGEM";
 						} else if(balance == 0){
-							var title = "This balance is empty.";
+							var title = "This balance is empty. :x:";
 						} else {
 							var title = "You require more EGEM.";
 						}
@@ -545,7 +555,8 @@ bot.on('message',async message => {
 							.setTimestamp()
 							.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 							.addField("This balance has: ", balance + " EGEM")
-							.addField("This users rank is:", title, true);
+							.addField("This users rank is:", title, true)
+							.addField("Next rank level:", next, true);
 
 							message.channel.send({embed})
 					}
@@ -560,26 +571,36 @@ bot.on('message',async message => {
 					var balance = (result/Math.pow(10,18)).toFixed(8);
 					if(balance > 100000){
 						var title = "EGEM Super Whale :egemflash: :whale:";
+						var next = "You are at MAX rank.";
 					} else if(balance > 15000){
 						var title = "EGEM Humpback Whale :whale:";
+						var next = "100000 EGEM";
 					} else if(balance > 5000){
 						var title = "EGEM Killer Whale :whale2:";
+						var next = "15000 EGEM";
 					} else if(balance > 1500){
 						var title = "EGEM Shark :shark:";
+						var next = "5000 EGEM";
 					} else if(balance > 750){
 						var title = "EGEM Dolphin :dolphin:";
+						var next = "1500 EGEM";
 					} else if(balance > 500){
 						var title = "EGEM Puffer Fish :blowfish:";
+						var next = "750 EGEM";
 					} else if(balance > 250){
 						var title = "EGEM Octopus :octopus: ";
+						var next = "500 EGEM";
 					} else if(balance > 100){
 						var title = "EGEM Snow Crab :crab:";
+						var next = "250 EGEM";
 					} else if(balance > 50){
 						var title = "EGEM Shrimp :shrimp:";
+						var next = "100 EGEM";
 					} else if(balance > 5){
 						var title = "EGEM Plankton :seedling:";
+						var next = "50 EGEM";
 					} else if(balance == 0){
-						var title = "This balance is empty.";
+						var title = "This balance is empty. :x:";
 					} else {
 						var title = "You require more EGEM.";
 					}
@@ -599,7 +620,8 @@ bot.on('message',async message => {
 						.setTimestamp()
 						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 						.addField("This balance has: ", balance + " EGEM")
-						.addField("This users rank is:", title, true);
+						.addField("This users rank is:", title, true)
+						.addField("Next rank level:", next, true);
 
 						message.channel.send({embed})
 				} else {
