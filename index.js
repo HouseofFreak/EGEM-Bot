@@ -506,30 +506,8 @@ bot.on('message',async message => {
 		message.channel.send("Bot address is " + botSettings.address + " with: **" + Number(balance).toFixed(8) + "** EGEM, be sure to send some to the bot to keep the rains going.");
 	}
 
-	if(message.content.startsWith("/register")){
-		var author = message.author.username;
-		var address = args[1];
-
-		if(web3.utils.isAddress(args[1])){
-			var data = getJson();
-			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
-				data[author] = address;
-				message.channel.send("@" + author + " registered new address: " + address);
-
-				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
-				  if (err) throw err;
-				  console.log('The file has been saved.');
-				});
-
-			} else {
-				message.channel.send("You have already registered.");
-			}
-		} else {
-			message.channel.send("@" + author + " tried to register wrong address. Try another one. Correct format is **/register 0xAddress**");
-		}
-	}
-
 	if(message.content.startsWith("/regID")){
+		var user = message.author.username;
 		var author = message.author.id;
 		var address = args[1];
 
@@ -537,7 +515,7 @@ bot.on('message',async message => {
 			var data = getJson();
 			if(!Object.values(data).includes(address) && !Object.keys(data).includes(author)){
 				data[author] = address;
-				message.channel.send("@" + author + " registered new address: " + address);
+				message.channel.send("@" + user + " registered new address: " + address + "to there discord Id: " + author);
 
 				fs.writeFile(botSettings.path, JSON.stringify(data), (err) => {
 				  if (err) throw err;
@@ -548,7 +526,7 @@ bot.on('message',async message => {
 				message.channel.send("You have already registered.");
 			}
 		} else {
-			message.channel.send("@" + author + " tried to register wrong address. Try another one. Correct format is **/register 0xAddress**");
+			message.channel.send("@" + user + " tried to register wrong address. Try another one. Correct format is **/register 0xAddress**");
 		}
 	}
 
