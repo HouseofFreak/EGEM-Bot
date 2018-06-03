@@ -128,6 +128,7 @@ exports.run = (client, message, args) => {
           var title = ":space_invader: You require more EGEM.";
           var next = "5 EGEM";
         }
+        message.delete();
         const embed = new Discord.RichEmbed()
           .setTitle("EGEM Discord Bot.")
           .setAuthor("TheEGEMBot", miscSettings.egemspin)
