@@ -73,6 +73,7 @@ exports.run = (client, message, args) => {
             .setTimestamp()
             .setURL("https://github.com/TeamEGEM/EGEM-Bot")
             .addField("This balance has: ", balance + " EGEM")
+            .addField("Registered Address", data[author])
             .addField("Send TIPS to: ", author)
             .addField("This users rank is:", title, true)
             .addField("Next rank level:", next, true);
