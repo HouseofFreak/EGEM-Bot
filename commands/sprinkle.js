@@ -12,6 +12,8 @@ const randomWord = require('random-word');
 const botSettings = require("../config.json");
 const miscSettings = require("../cfgs/settings.json");
 
+function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
+
 function sendCoins(address,value,message,name){
 
 	web3.eth.sendTransaction({
