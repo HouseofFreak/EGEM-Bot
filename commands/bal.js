@@ -64,7 +64,7 @@ exports.run = (client, message, args) => {
              * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
              */
             .setColor(miscSettings.okcolor)
-            .setDescription("Account Balance:")
+            .setDescription("Account Information:")
             .setFooter("© EGEM.io", miscSettings.img32x32)
             .setThumbnail(miscSettings.coinbag)
             /*
@@ -73,6 +73,7 @@ exports.run = (client, message, args) => {
             .setTimestamp()
             .setURL("https://github.com/TeamEGEM/EGEM-Bot")
             .addField("This balance has: ", balance + " EGEM")
+            .addField("Send TIPS to: ", author)
             .addField("This users rank is:", title, true)
             .addField("Next rank level:", next, true);
 
@@ -130,7 +131,7 @@ exports.run = (client, message, args) => {
            * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
            */
           .setColor(miscSettings.okcolor)
-          .setDescription("Account Balance:")
+          .setDescription("Account Information:")
           .setFooter("© EGEM.io", miscSettings.img32x32)
           .setThumbnail(miscSettings.coinbag)
           /*
@@ -138,7 +139,8 @@ exports.run = (client, message, args) => {
            */
           .setTimestamp()
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-          .addField("This balance has: ", balance + " EGEM")
+          .addField("This balance has:", balance + " EGEM")
+          .addField("Send TIPS to:", author)
           .addField("This users rank is:", title, true)
           .addField("Next rank level:", next, true);
 
