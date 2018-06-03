@@ -2,9 +2,8 @@ const Web3 = require("web3")
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 
-exports.run = (client, message, args) => {
-  let block = args.slice(1).join(" ");
-  web3.eth.getBlock(args[1], (error,result)=>{
+exports.run = (client, message, [mention, ...block]) => {
+  web3.eth.getBlock(reason.join(" "), (error,result)=>{
     if(!error){
       if(result !== null){
         let phash = result["parentHash"];
