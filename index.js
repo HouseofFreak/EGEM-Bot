@@ -334,12 +334,6 @@ bot.on('message',async message => {
 			var prize = "Try again later."
 			var amount = "0";
 		}
-		// Adds the user to the set so that they can't talk for x
-		cooldown.add(message.author.id);
-		setTimeout(() => {
-			// Removes the user from the set after a minute
-			cooldown.delete(message.author.id);
-		}, cdseconds2);
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
 			.setAuthor("TheEGEMBot", egemspin)
@@ -360,6 +354,12 @@ bot.on('message',async message => {
 			.addField("And the random word for this roll is:", word + ".", true);
 
 			message.channel.send({embed})
+			// Adds the user to the set so that they can't talk for x
+			cooldown.add(message.author.id);
+			setTimeout(() => {
+				// Removes the user from the set after a minute
+				cooldown.delete(message.author.id);
+			}, cdseconds2);
 	}
 
 	if(message.content.startsWith(prefix + "forecast ")){
