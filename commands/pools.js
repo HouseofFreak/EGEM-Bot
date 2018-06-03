@@ -31,5 +31,5 @@ exports.run = (client, message, args) => {
     .addField("BYLT.GQ", "https://egem.bylt.gq/")
     .addField("XMINER.CF", "http://egem.xminer.cf/")
 
-    message.channel.send({embed});
-);
+    message.channel.send({embed})
+}
