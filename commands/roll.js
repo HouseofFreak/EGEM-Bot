@@ -1,5 +1,6 @@
 
 var _ = require('lodash');
+const Discord = require("discord.js");
 const randomWord = require('random-word');
 const miscSettings = require("../cfgs/settings.json");
 let rollcooldown = new Set();
