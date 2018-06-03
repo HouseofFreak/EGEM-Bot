@@ -1,6 +1,7 @@
 {
 	"web3provider": "http://localhost:16661",
 	"cdseconds": "7200000",
+	"cdroll": "3000",
 	"txgas": "120000",
 	"warningcolor": "0xFF0000",
 	"okcolor": "0x00AE86",
