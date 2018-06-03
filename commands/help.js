@@ -1,7 +1,8 @@
 
 const Discord = require("discord.js");
+const botSettings = require("../config.json");
 const miscSettings = require("../cfgs/settings.json");
-
+const prefix = botSettings.prefix;
 exports.run = (client, message, args) => {
   const embed = new Discord.RichEmbed()
     .setTitle("EGEM Discord Bot.")
