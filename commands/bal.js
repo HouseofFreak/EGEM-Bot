@@ -66,7 +66,7 @@ exports.run = (client, message, args) => {
             .setColor(miscSettings.okcolor)
             .setDescription("Account Balance:")
             .setFooter("© EGEM.io", miscSettings.img32x32)
-            .setThumbnail(miscSettings.img32shard)
+            .setThumbnail(miscSettings.coinbag)
             /*
              * Takes a Date object, defaults to current date.
              */
@@ -132,7 +132,7 @@ exports.run = (client, message, args) => {
           .setColor(miscSettings.okcolor)
           .setDescription("Account Balance:")
           .setFooter("© EGEM.io", miscSettings.img32x32)
-          .setThumbnail(miscSettings.img32shard)
+          .setThumbnail(miscSettings.coinbag)
           /*
            * Takes a Date object, defaults to current date.
            */
@@ -153,7 +153,7 @@ exports.run = (client, message, args) => {
           .setColor(miscSettings.warningcolor)
           .setDescription("Account Balance:")
           .setFooter("© EGEM.io", miscSettings.img32x32)
-          .setThumbnail(miscSettings.img32shard)
+          .setThumbnail(miscSettings.coinbag)
           /*
            * Takes a Date object, defaults to current date.
            */
@@ -174,7 +174,7 @@ exports.run = (client, message, args) => {
       .setColor(miscSettings.warningcolor)
       .setDescription("Account Balance:")
       .setFooter("© EGEM.io", miscSettings.img32x32)
-      .setThumbnail(miscSettings.img32shard)
+      .setThumbnail(miscSettings.coinbag)
       /*
        * Takes a Date object, defaults to current date.
        */

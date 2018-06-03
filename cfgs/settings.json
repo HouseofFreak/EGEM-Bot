@@ -9,5 +9,6 @@
 	"img32x32": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png",
   "img32shard": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/various/32.png",
 	"egemspin":  "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/animated/egem_gray_28.gif",
-	"dice32": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/dice32.png"
+	"dice32": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/dice32.png",
+	"coinbag": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/coinbag32.png"
 }
