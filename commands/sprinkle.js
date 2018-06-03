@@ -102,6 +102,19 @@ function raining(amount,message){
 	rainSend(latest);
 }
 
+// return array with names of online users
+function getOnline(){
+	var foo = [];
+	var users = bot.users;
+	users.keyArray().forEach((val) => {
+		var userName = users.get(val).id;
+		var status = users.get(val).presence.status;
+		if(status == "online"){
+			foo.push(userName);
+		}
+	});
+	return foo;
+}
 
 exports.run = (client, message, args) => {
   if(!message.member.hasPermission('ADMINISTRATOR')){
