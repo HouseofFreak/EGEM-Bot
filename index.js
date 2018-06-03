@@ -160,9 +160,6 @@ function getMPrice2(){
 function get24h2(){
         return JSON.parse(fs.readFileSync('data/m24h2.txt'));
 }
-function getBlock(){
-				return JSON.parse(fs.readFileSync('data/block.txt'));
-}
 function getSupply(){
         return JSON.parse(fs.readFileSync('data/supply.txt'));
 }
@@ -453,41 +450,6 @@ bot.on('message',async message => {
 		});
 	}
 
-	if(message.content === prefix + "pools"){
-		return message.channel.send(""
-		+	"List of Known Pools: \n"
-		+ "----------------------------------------------- \n"
-		+ "Dev Pool (US): https://pool.egem.io \n"
-		+ "Minerpool.net (US/EU/ASIA): http://egem.minerpool.net/ \n"
-		+ "CoMining.io (US/EU/ASIA): https://comining.io/ \n"
-		+ "Reverse Gainz: http://egem.reversegainz.info/ \n"
-		+ "Protonmine: http://egem.protonmine.io/ \n"
-		+ "Coins.Farm: https://coins.farm/pools/egem \n"
-		+ "Dopeblocks: https://dopeblocks.com/ \n"
-		+ "Clona.ru SOLO POOL: http://clona.ru/ \n"
-		+ "UPOOL.IN:  http://egem.upool.in/ \n"
-		+ "ETHASH.FARM: http://egem.ethash.farm/ \n"
-		+ "p00l.org https://egem.p00l.org/\n"
-		+ "BYLT.GQ  https://egem.bylt.gq/ \n"
-		+ "XMINER.CF http://egem.xminer.cf/ \n"
-		+ "-----------------------------------------------  \n"
-		+ "Talk to a admin to get added to this list."
-	);
-	}
-
-	if(message.content === prefix + "markets"){
-		return message.channel.send("```"
-		+	"List of Markets: \n"
-		+ "----------------------------------------------- \n"
-		+ "/btsx - shows the stats on https://bitshares.org/ \n"
-		+ "/graviex - shows the stats for https://graviex.net/ \n"
-		+ "/bitebtc - shows the stats for https://bitebtc/ \n"
-		+ "More coming in time! \n"
-		+ "-----------------------------------------------  \n"
-		+ "Having trouble contact a admin.```"
-	);
-	}
-
 	if(message.content.startsWith(prefix + "tx ")){
 		let tx = args[1];
 		web3.eth.getTransaction(args[1], (error,result)=>{
@@ -513,42 +475,6 @@ bot.on('message',async message => {
 				}
 			} else {
 				message.channel.send("Oops, a error occurred with your tx lookup try again, its /tx <txhash>.");
-			}
-		})
-	}
-
-	if(message.content.startsWith(prefix + "getblock")){
-		let block = args[1];
-		web3.eth.getBlock(args[1], (error,result)=>{
-			if(!error){
-				if(result !== null){
-					let phash = result["parentHash"];
-					let hash = result["hash"];
-					let number = result["number"];
-					let timestamp = result["timestamp"];
-					let dt = new Date(timestamp*1000);
-					let miner = result["miner"];
-					let gasUsed = result["gasUsed"];
-					let size = result["size"];
-					let nonce = result["nonce"];
-					let uncles = result["uncles"];
-					message.channel.send("Block Lookup Results: \n"
-						+ "```"
-						+ "Parent Hash: " + phash + ". \n"
-						+ "Hash: " + hash + ". \n"
-						+ "Number: " + number + ". \n"
-						+ "Timestamp: " + dt + ". \n"
-						+ "Gas Used: " + gasUsed + ". \n"
-						+ "Size: " + size + ". \n"
-						+ "Miner: " + miner + ". \n"
-						+ "Nonce: " + nonce + ". \n"
-						+ "```"
-					);
-				} else {
-					message.channel.send("Block result was null, might be a malformed attempt, please double check and retry.");
-				}
-			} else {
-				message.channel.send("Oops, a error occurred with your block lookup try again, its /getblock <number>.");
 			}
 		})
 	}
