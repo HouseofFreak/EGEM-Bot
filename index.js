@@ -29,9 +29,7 @@ let cooldown = new Set();
 
 // EtherGem web3
 var web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
-
-
+web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));
 
 const prefix = botSettings.prefix;
 const bot = new Discord.Client({disableEveryone:true});
@@ -142,40 +140,16 @@ function getOnline(){
 	return foo;
 }
 
-function getJson(){
-				return JSON.parse(fs.readFileSync('data/users.json'));
-}
-function getPrice(){
-				return JSON.parse(fs.readFileSync('data/usdprice.txt'));
-}
-function getMPrice(){
-				return JSON.parse(fs.readFileSync('data/mprice.txt'));
-}
-function get24h(){
-				return JSON.parse(fs.readFileSync('data/m24h.txt'));
-}
-function getMPrice2(){
-        return JSON.parse(fs.readFileSync('data/mprice2.txt'));
-}
-function get24h2(){
-        return JSON.parse(fs.readFileSync('data/m24h2.txt'));
-}
-function getSupply(){
-        return JSON.parse(fs.readFileSync('data/supply.txt'));
-}
-
-// This loop reads the /events/ folder and attaches each event file to the appropriate event.
-fs.readdir("./events/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`);
-    let eventName = file.split(".")[0];
-    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    client.on(eventName, (...args) => eventFunction.run(client, ...args));
-  });
-});
+function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
+function getPrice(){ return JSON.parse(fs.readFileSync('data/usdprice.txt'));}
+function getMPrice(){ return JSON.parse(fs.readFileSync('data/mprice.txt'));}
+function get24h(){ return JSON.parse(fs.readFileSync('data/m24h.txt'));}
+function getMPrice2(){ return JSON.parse(fs.readFileSync('data/mprice2.txt'));}
+function get24h2(){ return JSON.parse(fs.readFileSync('data/m24h2.txt'));}
+function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
 
 bot.on("message", message => {
+	if(message.channel.type === "dm") return;
   if (message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
 

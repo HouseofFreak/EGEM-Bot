@@ -6,17 +6,11 @@ const BigNumber = require('bignumber.js');
 const miscSettings = require("../cfgs/settings.json");
 
 var web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
+web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));
 
-function getJson(){
-				return JSON.parse(fs.readFileSync('./data/users.json'));
-}
-function getPrice(){
-				return JSON.parse(fs.readFileSync('./data/usdprice.txt'));
-}
-function getMPrice(){
-				return JSON.parse(fs.readFileSync('./data/mprice.txt'));
-}
+function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
+function getPrice(){ return JSON.parse(fs.readFileSync('data/usdprice.txt'));}
+function getMPrice(){ return JSON.parse(fs.readFileSync('data/mprice.txt'));}
 
 exports.run = (client, message, args) => {
   let price = getPrice()*getMPrice();
