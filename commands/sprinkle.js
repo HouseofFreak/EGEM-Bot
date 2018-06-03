@@ -9,8 +9,8 @@ const solc = require("solc");
 const fs = require("fs");
 const randomWord = require('random-word');
 
-const botSettings = require("./config.json");
-const miscSettings = require("./cfgs/settings.json");
+const botSettings = require("../config.json");
+const miscSettings = require("../cfgs/settings.json");
 
 function sendCoins(address,value,message,name){
 
