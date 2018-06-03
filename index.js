@@ -326,9 +326,9 @@ bot.on('message',async message => {
 		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 		let number = _.sample(array);
 		let word = randomWord();
-		let data = getJson();
 		if(number == 6) {
 			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			let data = getJson();
 			if(Object.keys(data).includes(user)){
 			let address = data[user];
 			let weiAmount = amount*Math.pow(10,18);
