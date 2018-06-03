@@ -329,6 +329,7 @@ bot.on('message',async message => {
 		let data = getJson();
 		if(number == 6) {
 			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			if(Object.keys(data).includes(user)){
 			let address = data[user];
 			let weiAmount = amount*Math.pow(10,18);
 			var prize = "Some EGEM Soon!";
@@ -340,6 +341,7 @@ bot.on('message',async message => {
 				// Removes the user from the set after a minute
 				cooldown.delete(message.author.id);
 			}, cdseconds);
+			}
 		} else {
 			var prize = "Try again later."
 			var amount = "0";
