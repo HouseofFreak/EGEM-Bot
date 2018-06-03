@@ -231,6 +231,14 @@ bot.on('message',async message => {
 		raining(amount,message);
 	}
 
+	if(message.content.startsWith(prefix + "sprinkle")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/rain' command");
+		}
+		var amount = Math.floor((Math.random() * 10) + 1);
+		raining(amount,message);
+	}
+
 	if(message.content.startsWith(prefix + "downpour")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
