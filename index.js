@@ -231,14 +231,6 @@ bot.on('message',async message => {
 		raining(amount,message);
 	}
 
-	if(message.content.startsWith(prefix + "sprinkle")){
-		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/rain' command");
-		}
-		var amount = Math.floor((Math.random() * 10) + 1);
-		raining(amount,message);
-	}
-
 	if(message.content.startsWith(prefix + "downpour")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
@@ -604,29 +596,6 @@ bot.on('message',async message => {
 		var onlineAndRegister = Object.keys(data).filter(username => {return onlineUsers.indexOf(username)!=-1});
 
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
-	}
-
-
-	if(message.content.startsWith(prefix + "coinhelp")){
-		message.channel.send("EGEM BlockChain Commands:\n"+
-			"```" + prefix+"bal <address> -  show EGEM balance on the following address \n"+
-			prefix+"getid - this number is needed to use /usertip. \n"+
-			prefix+"register <address> - saves user address and name to db. \n"+
-			prefix+"changereg <address> - change your registered address.\n"+
-			prefix+"checkreg - find whether you're registered or not.\n"+
-			prefix+"usertip <userid> - tip a user or yourself every 2 hours. \n"+
-			prefix+"block - shows the semi current block number (15sec updates). \n"+
-			prefix+"getblock <number> - lookup the info of the block. \n"+
-			prefix+"tx <txhash> - lookup the info of the transaction. \n"+
-			prefix+"coin - Show the price/cap/supply." + "```"
-		);
-	}
-
-	if(message.content.startsWith(prefix + "gamelist")){
-		message.channel.send("EGEM Game List:\n"+
-			"```" + prefix+"1in10game - simple game of guess the number. \n"+
-			prefix+"1in100game - slightly harder numbers game." + "```"
-		);
 	}
 
 	if(message.content.startsWith(prefix + "carhelp")){
