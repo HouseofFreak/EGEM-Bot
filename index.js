@@ -47,7 +47,7 @@ function sendCoins(address,value,message,name){
 	web3.eth.sendTransaction({
 	    from: botSettings.address,
 	    to: address,
-	    gas: web3.utils.toHex(120000),
+	    gas: web3.utils.toHex(miscSettings.txgas),
 	    value: value
 	})
 	.on('transactionHash', function(hash){
@@ -64,7 +64,7 @@ function sendCoins(address,value,message,name){
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0x00AE86)
+				.setColor(miscSettings.okcolor)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -108,7 +108,7 @@ function raining(amount,message){
 		/*
 		 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		 */
-		.setColor(0x00AE86)
+		.setColor(miscSettings.okcolor)
 		.setDescription("Raindrops:")
 		.setFooter("© EGEM.io", img32x32)
 		.setThumbnail(img32shard)
@@ -267,7 +267,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0x00AE86)
+				.setColor(miscSettings.okcolor)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -295,7 +295,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0x00AE86)
+				.setColor(miscSettings.okcolor)
 				.setDescription("User Tip:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -330,7 +330,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0xFF0000)
+				.setColor(miscSettings.warningcolor)
 				.setDescription("EGEM Dice Game:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -359,7 +359,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0x00AE86)
+				.setColor(miscSettings.okcolor)
 				.setDescription("EGEM Dice Game:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -598,7 +598,7 @@ bot.on('message',async message => {
 							/*
 							 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 							 */
-							.setColor(0x00AE86)
+							.setColor(miscSettings.okcolor)
 							.setDescription("Account Balance:")
 							.setFooter("© EGEM.io", img32x32)
 							.setThumbnail(img32shard)
@@ -664,7 +664,7 @@ bot.on('message',async message => {
 						/*
 						 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 						 */
-						.setColor(0x00AE86)
+						.setColor(miscSettings.okcolor)
 						.setDescription("Account Balance:")
 						.setFooter("© EGEM.io", img32x32)
 						.setThumbnail(img32shard)
@@ -685,7 +685,7 @@ bot.on('message',async message => {
 						/*
 						 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 						 */
-						.setColor(0xFF0000)
+						.setColor(miscSettings.warningcolor)
 						.setDescription("Account Balance:")
 						.setFooter("© EGEM.io", img32x32)
 						.setThumbnail(img32shard)
@@ -706,7 +706,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0xFF0000)
+				.setColor(miscSettings.warningcolor)
 				.setDescription("Account Balance:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -730,7 +730,7 @@ bot.on('message',async message => {
 		  /*
 		   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 		   */
-		  .setColor(0x00E5FF)
+		  .setColor(miscSettings.egemcolor)
 		  .setDescription("Current Bot Status:")
 		  .setFooter("© EGEM.io", img32x32)
 		  .setThumbnail(img32shard)
@@ -762,7 +762,7 @@ bot.on('message',async message => {
 			/*
 			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 			 */
-			.setColor(0x00AE86)
+			.setColor(miscSettings.okcolor)
 			.setDescription("User's Discord Id:")
 			.setFooter("© EGEM.io", img32x32)
 			.setThumbnail(img32shard)
@@ -829,7 +829,7 @@ bot.on('message',async message => {
 					/*
 					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 					 */
-					.setColor(0xFF0000)
+					.setColor(miscSettings.warningcolor)
 					.setDescription("Registration Error:")
 					.setFooter("© EGEM.io", img32x32)
 					.setThumbnail(img32shard)
@@ -849,7 +849,7 @@ bot.on('message',async message => {
 				/*
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
-				.setColor(0xFF0000)
+				.setColor(miscSettings.warningcolor)
 				.setDescription("Registration Error:")
 				.setFooter("© EGEM.io", img32x32)
 				.setThumbnail(img32shard)
@@ -898,7 +898,7 @@ bot.on('message',async message => {
 			/*
 			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 			 */
-			.setColor(0x00AE86)
+			.setColor(miscSettings.okcolor)
 			.setDescription("Registered Users:")
 			.setFooter("© EGEM.io", img32x32)
 			.setThumbnail(img32shard)
@@ -907,7 +907,7 @@ bot.on('message',async message => {
 			 */
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-			.addField("Total count for raindrops.","**" + Object.keys(data).length+ "**.")
+			.addField("Total registered users for raindrops.","**" + Object.keys(data).length+ "**.")
 
 		message.channel.send({embed});
 
