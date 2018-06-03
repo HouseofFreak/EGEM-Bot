@@ -320,7 +320,52 @@ bot.on('message',async message => {
 
     }
 	}
-	//
+
+	//roll the dice with lodash
+	if(message.content.startsWith(prefix + "roll2")){
+		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+		let number = _.sample(array);
+		let word = randomWord();
+		let data = getJson();
+		let address = data[user];
+		if(number == 6) {
+			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+
+			let weiAmount = amount*Math.pow(10,18);
+			var prize = "Some EGEM Soon!";
+
+			sendCoins(address,weiAmount,1); // main function
+			// Adds the user to the set so that they can't talk for x
+			cooldown.add(message.author.id);
+			setTimeout(() => {
+				// Removes the user from the set after a minute
+				cooldown.delete(message.author.id);
+			}, cdseconds);
+		} else {
+			var prize = "Try again later."
+			var amount = "0";
+		}
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(0x00AE86)
+			.setDescription("EGEM Dice Game:")
+			.setFooter("© EGEM.io", img32x32)
+			.setThumbnail(img32shard)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("The dice hit the table and you get:", number)
+			.addField("Roll Prize:", prize + "EGEM: " + amount)
+			.addField("And the random word for this roll is:", word + ".", true);
+
+			message.channel.send({embed})
+	}
 
 	if(message.content.startsWith(prefix + "forecast ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -382,39 +427,6 @@ bot.on('message',async message => {
 				return message.channel.send("User has been sent the address in a pm for privacy, thank you for using the EGEM split contract.");
 		    SplitInstance = instance;
 		});
-	}
-
-	//roll the dice with lodash
-	if(message.content.startsWith(prefix + "roll2")){
-		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-		let number = _.sample(array);
-		let word = randomWord();
-		if(number == 6) {
-			var prize = "Some EGEM!";
-		} else {
-			var prize = "Try again later."
-		}
-		message.channel.send("The dice hit the table and you get " + number + ", And the random word for this roll is: " + word + ".");
-		const embed = new Discord.RichEmbed()
-			.setTitle("EGEM Discord Bot.")
-			.setAuthor("TheEGEMBot", egemspin)
-			/*
-			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-			 */
-			.setColor(0x00AE86)
-			.setDescription("EGEM Dice Game:")
-			.setFooter("© EGEM.io", img32x32)
-			.setThumbnail(img32shard)
-			/*
-			 * Takes a Date object, defaults to current date.
-			 */
-			.setTimestamp()
-			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-			.addField("The dice hit the table and you get:", number)
-			.addField("Roll Prize:", prize)
-			.addField("And the random word for this roll is:", word + ".", true);
-
-			message.channel.send({embed})
 	}
 
 	if(message.content === prefix + "pools"){
