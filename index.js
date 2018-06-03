@@ -180,10 +180,10 @@ fs.readdir("./events/", (err, files) => {
 
 bot.on("message", message => {
   if (message.author.bot) return;
-  if(message.content.indexOf(config.prefix) !== 0) return;
+  if(message.content.indexOf(botSettings.prefix) !== 0) return;
 
   // This is the best way to define args. Trust me.
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(botSettings.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
   // The list of if/else is replaced with those simple 2 lines:
