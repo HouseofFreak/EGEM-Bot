@@ -3,7 +3,7 @@ var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 
 exports.run = (client, message, [mention, ...block]) => {
-  web3.eth.getBlock(reason.join(" "), (error,result)=>{
+  web3.eth.getBlock(block.join(" "), (error,result)=>{
     if(!error){
       if(result !== null){
         let phash = result["parentHash"];
