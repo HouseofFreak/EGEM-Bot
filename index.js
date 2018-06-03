@@ -11,6 +11,7 @@ const fs = require("fs");
 const randomWord = require('random-word');
 
 const botSettings = require("./config.json");
+const miscSettings = require("./settings.json");
 
 const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
@@ -28,8 +29,6 @@ setInterval(mprice,27000);
 setInterval(supply,9000);
 
 let cooldown = new Set();
-let cdseconds = 7200000;
-let cdseconds2 = 300;
 
 const prefix = botSettings.prefix;
 
@@ -314,7 +313,7 @@ bot.on('message',async message => {
 				setTimeout(() => {
 					// Removes the user from the set after a minute
 					cooldown.delete(message.author.id);
-				}, cdseconds);
+				}, miscSettings.cdseconds);
 			} else {
 				message.channel.send("This user is not registered.");
 			}
@@ -379,7 +378,7 @@ bot.on('message',async message => {
 				setTimeout(() => {
 					// Removes the user from the set after a minute
 					cooldown.delete(message.author.id);
-				}, cdseconds);
+				}, miscSettings.cdseconds);
 		}
 	}
 
