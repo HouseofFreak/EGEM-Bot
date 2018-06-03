@@ -22,20 +22,15 @@ exports.run = (client, message, args) => {
        */
       .setTimestamp()
       .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-      .addField("You need to wait to roll again", "Thank you.")
+      .addField("You need to wait 15sec to roll again", "Thank you.")
 
       message.channel.send({embed})
   } else {
     let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
     let number = _.sample(array);
     let word = randomWord();
-    if(number == 6) {
-      var prize = "Try again later."
-      var amount = "0";
-    } else {
-      var prize = "Try again later."
-      var amount = "0";
-    }
+    var prize = "No prize yet (W.I.P)."
+    var amount = "0";
     const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
       .setAuthor("TheEGEMBot", miscSettings.egemspin)
