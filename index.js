@@ -659,21 +659,5 @@ bot.on('message',async message => {
 		);
 	}
 
-	if(message.content === prefix + "help"){
-		message.channel.send("EGEM General Commands:\n"+
-			"```" + prefix+"egem - shows the what is EGEM info. \n"+
-			prefix+"faq - common asked questions. \n"+
-			prefix+"gamelist - list of games to play in games room. \n"+
-			prefix+"pools - show list of known EGEM pools. \n"+
-			prefix+"markets - show list of known place to BUY/SELL EGEM. \n"+
-			prefix+"convert - get a list of realtime conversions from EGEM to another coin. \n"+
-			prefix+"botinfo - shows bot address so anyone can fund it, and its balance. \n" +
-			prefix+"roll - toss dice and returns a number from 1-12 and a random word.\n"+
-			prefix+"coinhelp - EGEM Blockchain commands.\n"+
-			prefix+"carhelp - List of cars and there EGEM required.\n"+
-			prefix+"list - shows number of users registered for raindrops." + "```");
-	}
-})
-
 
 bot.login(botSettings.token);
