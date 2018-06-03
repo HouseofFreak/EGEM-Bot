@@ -1,12 +1,13 @@
 {
 	"web3provider": "http://localhost:16661",
 	"cdseconds": "7200000",
-	"cdroll": "3000",
+	"cdroll": "15000",
 	"txgas": "120000",
 	"warningcolor": "0xFF0000",
 	"okcolor": "0x00AE86",
 	"egemcolor": "0x00E5FF",
 	"img32x32": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/32x32.png",
   "img32shard": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/various/32.png",
-	"egemspin":  "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/animated/egem_gray_28.gif"
+	"egemspin":  "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/animated/egem_gray_28.gif",
+	"dice32": "https://raw.githubusercontent.com/TeamEGEM/meta/master/images/dice32.png"
 }

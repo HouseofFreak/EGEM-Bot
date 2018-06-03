@@ -16,7 +16,7 @@ exports.run = (client, message, args) => {
       .setColor(miscSettings.warningcolor)
       .setDescription("EGEM Dice Game:")
       .setFooter("© EGEM.io", miscSettings.img32x32)
-      .setThumbnail(miscSettings.img32shard)
+      .setThumbnail(miscSettings.dice32)
       /*
        * Takes a Date object, defaults to current date.
        */
@@ -45,7 +45,7 @@ exports.run = (client, message, args) => {
       .setColor(miscSettings.okcolor)
       .setDescription("EGEM Dice Game:")
       .setFooter("© EGEM.io", miscSettings.img32x32)
-      .setThumbnail(miscSettings.img32shard)
+      .setThumbnail(miscSettings.dice32)
       /*
        * Takes a Date object, defaults to current date.
        */
