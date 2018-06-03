@@ -11,6 +11,7 @@ web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
 
 exports.run = (client, message, args) => {
+  let user = message.author.username;
   let author = message.author.id;
   let address = args[0];
   if(address == null){
@@ -72,7 +73,7 @@ exports.run = (client, message, args) => {
              */
             .setTimestamp()
             .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-            .addField("Username: ", "@" +message.author.userName)
+            .addField("Username: ", "@" +user)
             .addField("This balance has: ", balance + " EGEM")
             .addField("Registered Address", data[author])
             .addField("Send TIPS to: ", author)
