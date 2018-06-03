@@ -1,5 +1,7 @@
 const Web3 = require("web3");
 const fs = require("fs");
+const Discord = require("discord.js");
+const BigNumber = require('bignumber.js');
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 
