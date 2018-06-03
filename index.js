@@ -379,7 +379,7 @@ bot.on('message',async message => {
 				setTimeout(() => {
 					// Removes the user from the set after a minute
 					cooldown.delete(message.author.id);
-				}, cdseconds2);
+				}, cdseconds);
 		}
 	}
 
