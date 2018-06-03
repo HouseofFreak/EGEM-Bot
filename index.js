@@ -327,14 +327,13 @@ bot.on('message',async message => {
 		let number = _.sample(array);
 		let word = randomWord();
 		let data = getJson();
-		let address = data[user];
 		if(number == 6) {
 			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-
+			let address = data[user];
 			let weiAmount = amount*Math.pow(10,18);
 			var prize = "Some EGEM Soon!";
 
-			sendCoins(address,weiAmount,1); // main function
+			sendCoins(address,weiAmount,message,1); // main function
 			// Adds the user to the set so that they can't talk for x
 			cooldown.add(message.author.id);
 			setTimeout(() => {
