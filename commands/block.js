@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function getBlock(){
 				return JSON.parse(fs.readFileSync('./data/block.txt'));
 }
