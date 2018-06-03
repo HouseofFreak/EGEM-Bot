@@ -1,4 +1,6 @@
-
+const Web3 = require("web3")
+var web3 = new Web3();
+web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 exports.run = (client, message, args) => {
   let block = args[1];
   web3.eth.getBlock(args[1], (error,result)=>{
