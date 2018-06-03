@@ -406,6 +406,9 @@ bot.on('message',async message => {
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 			.addField("The dice hit the table and you get:", number)
+			if(number == 6){
+				.addField("You won the random EGEM prize:", "null")
+			}
 			.addField("And the random word for this roll is:", word + ".", true);
 
 			message.channel.send({embed})
