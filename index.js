@@ -390,10 +390,6 @@ bot.on('message',async message => {
 
 	}
 
-	if(responseObject[message.content]) {
-    message.channel.send(responseObject[message.content]);
-  }
-
 	if(message.content === prefix + "block"){
 		message.channel.send("Current EGEM blockchain height is: " + getBlock());
 	}
