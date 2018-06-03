@@ -3,7 +3,7 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const BigNumber = require('bignumber.js');
 
-const miscSettings = require("../cfgs/settings.json");
+const miscSettings = require("cfgs/settings.json");
 
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));

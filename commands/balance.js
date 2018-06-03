@@ -3,12 +3,12 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const BigNumber = require('bignumber.js');
 
-const miscSettings = require("../cfgs/settings.json");
+const miscSettings = require("cfgs/settings.json");
 
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));
 
-function getJson(){ return JSON.parse(fs.readFileSync('../data/users.json'));}
+function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
 
 exports.run = (client, message, args) => {
   let author = message.author.id;
