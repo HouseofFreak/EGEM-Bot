@@ -60,7 +60,7 @@ exports.run = (client, message, args) => {
       rollcooldown.add(message.author.id);
       setTimeout(() => {
         // Removes the user from the set after a minute
-        cooldown.delete(message.author.id);
+        rollcooldown.delete(message.author.id);
       }, miscSettings.cdroll);
   }
 }
