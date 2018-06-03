@@ -389,6 +389,11 @@ bot.on('message',async message => {
 		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 		let number = _.sample(array);
 		let word = randomWord();
+		if(number == 6) {
+			var prize = "Some EGEM!";
+		} else {
+			var prize = "Try again later."
+		}
 		message.channel.send("The dice hit the table and you get " + number + ", And the random word for this roll is: " + word + ".");
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
@@ -406,9 +411,7 @@ bot.on('message',async message => {
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 			.addField("The dice hit the table and you get:", number)
-			if(number == 6){
-				.addField("You won the random EGEM prize:", "null")
-			}
+			.addField("Roll Prize:", "null")
 			.addField("And the random word for this roll is:", word + ".", true);
 
 			message.channel.send({embed})
