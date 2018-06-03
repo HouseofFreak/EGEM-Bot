@@ -411,7 +411,7 @@ bot.on('message',async message => {
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 			.addField("The dice hit the table and you get:", number)
-			.addField("Roll Prize:", "null")
+			.addField("Roll Prize:", prize)
 			.addField("And the random word for this roll is:", word + ".", true);
 
 			message.channel.send({embed})
