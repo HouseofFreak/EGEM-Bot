@@ -29,6 +29,7 @@ setInterval(supply,9000);
 
 let cooldown = new Set();
 let cdseconds = 7200000;
+let cdseconds2 = 300;
 
 const prefix = botSettings.prefix;
 
@@ -322,30 +323,23 @@ bot.on('message',async message => {
 	}
 
 	//roll the dice with lodash
-	if(message.content.startsWith(prefix + "roll2")){
+	if(message.content.startsWith(prefix + "roll")){
 		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 		let number = _.sample(array);
 		let word = randomWord();
 		if(number == 6) {
-			let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			let data = getJson();
-			if(Object.keys(data).includes(user)){
-			let address = data[user];
-			let weiAmount = amount*Math.pow(10,18);
-			var prize = "Some EGEM Soon!";
-
-			sendCoins(address,weiAmount,message,1); // main function
-			// Adds the user to the set so that they can't talk for x
-			cooldown.add(message.author.id);
-			setTimeout(() => {
-				// Removes the user from the set after a minute
-				cooldown.delete(message.author.id);
-			}, cdseconds);
-			}
+			var prize = "Try again later."
+			var amount = "0";
 		} else {
 			var prize = "Try again later."
 			var amount = "0";
 		}
+		// Adds the user to the set so that they can't talk for x
+		cooldown.add(message.author.id);
+		setTimeout(() => {
+			// Removes the user from the set after a minute
+			cooldown.delete(message.author.id);
+		}, cdseconds2);
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
 			.setAuthor("TheEGEMBot", egemspin)
