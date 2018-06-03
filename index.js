@@ -385,11 +385,30 @@ bot.on('message',async message => {
 	}
 
 	//roll the dice with lodash
-	if(message.content.startsWith(prefix + "roll")){
+	if(message.content.startsWith(prefix + "roll2")){
 		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 		let number = _.sample(array);
 		let word = randomWord();
 		message.channel.send("The dice hit the table and you get " + number + ", And the random word for this roll is: " + word + ".");
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(0x00AE86)
+			.setDescription("EGEM Dice Game:")
+			.setFooter("© EGEM.io", img32x32)
+			.setThumbnail(img32shard)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("The dice hit the table and you get:", number)
+			.addField("And the random word for this roll is:", word + ".", true);
+
+			message.channel.send({embed})
 	}
 
 	if(message.content === prefix + "pools"){
