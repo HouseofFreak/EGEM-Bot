@@ -304,7 +304,7 @@ bot.on('message',async message => {
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField(amount+ " EGEM has been sent to:",user )
+				.addField(amount+ " EGEM :gift: has been sent to:",user )
 
 				message.channel.send({embed})
 				sendCoins(address,weiAmount,message,1); // main function
@@ -537,7 +537,8 @@ bot.on('message',async message => {
 						} else if(balance == 0){
 							var title = "This balance is empty. :x:";
 						} else {
-							var title = "You require more EGEM.";
+							var title = ":space_invader: You require more EGEM.";
+							var next = "5 EGEM";
 						}
 						const embed = new Discord.RichEmbed()
 							.setTitle("EGEM Discord Bot.")
@@ -602,7 +603,8 @@ bot.on('message',async message => {
 					} else if(balance == 0){
 						var title = "This balance is empty. :x:";
 					} else {
-						var title = "You require more EGEM.";
+						var title = ":space_invader: You require more EGEM.";
+						var next = "5 EGEM";
 					}
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
