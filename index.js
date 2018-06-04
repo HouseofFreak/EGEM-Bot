@@ -634,7 +634,7 @@ if(message.content.startsWith(prefix + "roll")){
 		} else {
 	    let number = Math.floor((Math.random() * 12) + 1)
 	    let word = randomWord();
-			if(number = 12) {
+			if(number == 12) {
 				var prize = "Jackpot!"
 				let amount = 1;
 			} else if (number < 5) {
