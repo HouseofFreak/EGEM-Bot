@@ -606,37 +606,6 @@ bot.on('message',async message => {
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
 	}
 
-	if(message.content.startsWith(prefix + "carhelp")){
-		message.channel.send("EGEM Car List Commands:\n"+
-			"```" + prefix+"lambo - how many EGEM for a Lamborghini Aventador. \n"+
-			prefix+"bugatti - how many EGEM for a Bugatti Veyron. \n"+
-			prefix+"bmw - how many EGEM for a BMW M6 Coupé. \n"+
-			prefix+"ferrari - how many EGEM for a FERRARI 488 GTB. \n"+
-			prefix+"mercedes - how many EGEM for a Mercedes-AMG GT Roadster. \n"+
-			prefix+"tesla - how many EGEM for a Tesla Model X. \n"+
-			prefix+"subaru - how many EGEM for a Subaru WRX STI. \n"+
-			prefix+"porsche - how many EGEM for a Porsche 911. \n"+
-			prefix+"prius - how many EGEM for a Toyota Prius V." + "```"
-		);
-	}
-
-	if(message.content.startsWith(prefix + "adminhelp")){
-		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/adminhelp' command");
-		}
-		message.channel.send("EGEM Admin Commands:\n"+
-			"```" + prefix+"sendToAddress <address> <amount> - send EGEM to the following address\n"+
-			prefix+"tip <name> <amount> send EGEM to the following user\n"+
-			prefix+"rain <amount> - send EGEM to all registered and online address's.\n"+
-			prefix+"sprinkle - send 1-10 EGEM to all registered and online address's.\n"+
-			prefix+"downpour - send 10-100 EGEM to all registered and online address's.\n"+
-			prefix+"online - see list of all online and registered users for raindrops.\n"+
-			prefix+"onlinetotal - see the list of every online user.\n"+
-			prefix+"forecast <amount> <numOfHrs> - rain will be after N hours." + "```"
-		);
-	}
-
 })
-
 
 bot.login(botSettings.token);
