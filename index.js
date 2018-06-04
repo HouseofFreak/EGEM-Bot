@@ -19,14 +19,14 @@ const block = require("./gets/getblock.js");
 const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
 
-const msgtest = require("./func/msgtest.js");
-
 // Update Data
 setInterval(price,300000);
 setInterval(block,9000);
 setInterval(mprice,27000);
 setInterval(supply,9000);
 
+
+const msgtest = msgTest();
 setInterval(msgtest,9000);
 
 let cooldown = new Set();
@@ -41,6 +41,10 @@ const bot = new Discord.Client({disableEveryone:true});
 bot.on('ready', ()=>{
 	console.log("EGEM Discord Bot is Online.");
 });
+
+function msgTest(){
+  client.channels.get(438019162930151435).send('test message');
+}
 
 function sendCoins(address,value,message,name){
 
