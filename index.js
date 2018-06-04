@@ -635,42 +635,42 @@ if(message.content.startsWith(prefix + "roll")){
 			let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 	    let number = _.sample(array);
 	    let word = randomWord();
-			if( number == 12){
+			if( number == '12'){
 				var prize = "You won nothing."
-				let amount = 0;
-			} else if (number == 11) {
+				let amount = '0';
+			} else if (number == '11') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 10) {
+			} else if (number == '10') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 9) {
+			} else if (number == '9') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 8) {
+			} else if (number == '8') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 7) {
+			} else if (number == '7') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 6) {
+			} else if (number == '6') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 5) {
+			} else if (number == '5') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 4) {
+			} else if (number == '4') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 3) {
+			} else if (number == '3') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 2) {
+			} else if (number == '2') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 1) {
+			} else if (number == '1') {
 				var prize = "You won nothing."
-				let amount = 0;
+				let amount = '0';
 			}
 
 			var user = message.author.id;
@@ -698,7 +698,7 @@ if(message.content.startsWith(prefix + "roll")){
 		      .addField("And the random word for this roll is:", word + ".", true);
 
 		      message.channel.send({embed})
-					if(amount == 0) {
+					if(amount == '0') {
 						// Adds the user to the set so that they can't talk for x
 						rollcooldown.add(message.author.id);
 						setTimeout(() => {
