@@ -636,8 +636,8 @@ if(message.content.startsWith(prefix + "roll")){
 	    let number = _.sample(array);
 	    let word = randomWord();
 			if( number == '12'){
-				var prize = "You won nothing."
-				let amount = '0';
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
 			} else if (number == '11') {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
@@ -669,8 +669,8 @@ if(message.content.startsWith(prefix + "roll")){
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
 			} else if (number == '1') {
-				var prize = "You won nothing."
-				let amount = '0';
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
 			}
 
 			var user = message.author.id;
@@ -699,9 +699,8 @@ if(message.content.startsWith(prefix + "roll")){
 		      .addField("And the random word for this roll is:", word + ".", true);
 
 		      message.channel.send({embed})
-					if(weiAmount > 0) {
-						sendCoins(address,weiAmount,message,1); // main function
-					}
+
+					sendCoins(address,weiAmount,message,1); // main function
 					// Adds the user to the set so that they can't talk for x
 					rollcooldown.add(message.author.id);
 					setTimeout(() => {
