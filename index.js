@@ -40,7 +40,7 @@ bot.on('ready', ()=>{
 
 function msgTest(){
 	var channel = bot.channels.get('438019162930151435');
-	channel.sendMessage("Hello world");
+	message.channel.send("Hello world");
 }
 const msgtest = msgTest();
 setInterval(msgtest,9000);
