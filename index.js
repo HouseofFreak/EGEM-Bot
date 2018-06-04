@@ -26,6 +26,7 @@ setInterval(mprice,27000);
 setInterval(supply,9000);
 
 let cooldown = new Set();
+let rollcooldown = new Set();
 
 // EtherGem web3
 var web3 = new Web3();
@@ -605,6 +606,66 @@ bot.on('message',async message => {
 
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
 	}
+
+/*
+ * Dice Game.
+ */
+
+if(message.content == prefix + "roll"){
+	if(rollcooldown.has(message.author.id)) {
+    const embed = new Discord.RichEmbed()
+      .setTitle("EGEM Discord Bot.")
+      .setAuthor("TheEGEMBot", miscSettings.egemspin)
+      /*
+       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+       */
+      .setColor(miscSettings.warningcolor)
+      .setDescription("EGEM Dice Game:")
+      .setFooter("© EGEM.io", miscSettings.img32x32)
+      .setThumbnail(miscSettings.dice32)
+      /*
+       * Takes a Date object, defaults to current date.
+       */
+      .setTimestamp()
+      .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+      .addField("You need to wait 15sec to roll again", "Thank you.")
+
+      message.channel.send({embed})
+  } else {
+    let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+    let number = _.sample(array);
+    let word = randomWord();
+    var prize = "You won some EGEM!"
+    let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+    const embed = new Discord.RichEmbed()
+      .setTitle("EGEM Discord Bot.")
+      .setAuthor("TheEGEMBot", miscSettings.egemspin)
+      /*
+       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+       */
+      .setColor(miscSettings.okcolor)
+      .setDescription("EGEM Dice Game:")
+      .setFooter("© EGEM.io", miscSettings.img32x32)
+      .setThumbnail(miscSettings.dice32)
+      /*
+       * Takes a Date object, defaults to current date.
+       */
+      .setTimestamp()
+      .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+      .addField("The dice hit the table and you get:", number)
+      .addField("Roll Prize:", prize + " EGEM: " + amount)
+      .addField("And the random word for this roll is:", word + ".", true);
+
+      message.channel.send({embed})
+			sendCoins(address,weiAmount,message,1); // main function
+      // Adds the user to the set so that they can't talk for x
+      rollcooldown.add(message.author.id);
+      setTimeout(() => {
+        // Removes the user from the set after a minute
+        rollcooldown.delete(message.author.id);
+      }, miscSettings.cdroll);
+  }
+}
 
 })
 
