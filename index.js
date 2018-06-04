@@ -62,7 +62,7 @@ function sendCoins(address,value,message,name){
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(miscSettings.okcolor)
-				.setDescription("User Tip:")
+				.setDescription("Bot Transaction:")
 				.setFooter("© EGEM.io", miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
@@ -70,7 +70,7 @@ function sendCoins(address,value,message,name){
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Tip was sent. \n Check hash: https://explorer.egem.io/tx/"+ hash, "Please wait 2 hours to TIP again.")
+				.addField("EGEM Sent. \n Check hash: https://explorer.egem.io/tx/"+ hash, "Enjoy the coins!")
 
 				message.channel.send({embed})
 		}
