@@ -88,7 +88,7 @@ exports.run = (client, message, args) => {
             .setURL("https://github.com/TeamEGEM/EGEM-Bot")
             .addField("Username: ", "@" +user)
             .addField("This balance has: ", balance + " EGEM")
-            .addField("Registered Address", data[author])
+            .addField("Registered Address:", "["+data[author]+"](https://explorer.egem.io/addr/" +data[author]+ ")")
             .addField("Send TIPS to: ", author)
             .addField("This users rank is:", title, true)
             .addField("Next rank level:", next, true);
@@ -152,7 +152,7 @@ exports.run = (client, message, args) => {
           var title = ":space_invader: You require more EGEM.";
           var next = "5 EGEM";
         }
-        
+
         const embed = new Discord.RichEmbed()
           .setTitle("EGEM Discord Bot.")
           .setAuthor("TheEGEMBot", miscSettings.egemspin)
