@@ -635,43 +635,9 @@ if(message.content.startsWith(prefix + "roll")){
 			let array = [1,2,3,4,5,6,7,8,9,10,11,12];
 	    let number = _.sample(array);
 	    let word = randomWord();
-			if( number == 12){
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 11) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 10) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 9) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 8) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 7) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 6) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 5) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 4) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 3) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 2) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			} else if (number == 1) {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-			}
+
+			var prize = "You won some EGEM!"
+			let amount = (Math.random() * (0.080 - 0.0100) + 0.0100).toFixed(4);
 
 			var user = message.author.id;
 			let weiAmount = amount*Math.pow(10,18);
