@@ -22,7 +22,7 @@ const supply = require("./gets/getsup.js");
 // Update Data
 setInterval(price,300000);
 setInterval(block,9000);
-setInterval(mprice,27000);
+//setInterval(mprice,27000);
 setInterval(supply,9000);
 
 let cooldown = new Set();
@@ -682,7 +682,7 @@ if(message.content.startsWith(prefix + "roll")){
 						/*
 						 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 						 */
-						.setColor(miscSettings.okcolor)
+						.setColor(miscSettings.warningcolor)
 						.setDescription("EGEM Dice Game:")
 						.setFooter("© EGEM.io", miscSettings.img32x32)
 						.setThumbnail(miscSettings.dice32)
