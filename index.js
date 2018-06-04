@@ -632,7 +632,7 @@ if(message.content.startsWith(prefix + "roll")){
 						.addField("The dice hit the table and you get:", number)
 						.addField("Roll Prize:", prize)
 						.addField("EGEM:", amount)
-						
+
 						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")", true);
 						message.channel.send({embed})
 
@@ -664,7 +664,7 @@ if(message.content.startsWith(prefix + "roll")){
 						.addField("The dice hit the table and you get:", number)
 						.addField("Roll Prize:", prize)
 						.addField("EGEM:", amount)
-						.addField("And the random word for this roll is:", word + ".", true);
+						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")", true);
 
 						message.channel.send({embed})
 
