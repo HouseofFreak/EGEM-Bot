@@ -364,35 +364,6 @@ bot.on('message',async message => {
 		});
 	}
 
-	if(message.content.startsWith(prefix + "tx ")){
-		let tx = args[1];
-		web3.eth.getTransaction(args[1], (error,result)=>{
-			if(!error){
-				if(result !== null){
-					let minedBlock = result["blockNumber"];
-					let from = result["from"];
-					let to = result["to"];
-					let valueRaw = result["value"];
-					let value = (valueRaw/Math.pow(10,18)).toFixed(8);
-					let nonce = result["nonce"];
-					message.channel.send("Transaction Lookup Results: \n"
-						+ "```"
-						+ "Mined in Block: " + minedBlock + ". \n"
-						+ "From: " + from + ". \n"
-						+ "To: " + to + ". \n"
-						+ "Value: " + value + " EGEM \n"
-						+ "Nonce: " + nonce + ". \n"
-						+ "```"
-					);
-				} else {
-					message.channel.send("Transaction result was null, might be a malformed attempt, please double check and retry.");
-				}
-			} else {
-				message.channel.send("Oops, a error occurred with your tx lookup try again, its /tx <txhash>.");
-			}
-		})
-	}
-
 	if(message.content == prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
