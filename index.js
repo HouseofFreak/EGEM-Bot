@@ -637,7 +637,7 @@ if(message.content.startsWith(prefix + "roll")){
 	    let word = randomWord();
 
 			var prize = "You won some EGEM!"
-			let amount = (Math.random() * (0.030 - 0.0100) + 0.0100).toFixed(4);
+			let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
 
 			var user = message.author.id;
 			let weiAmount = amount*Math.pow(10,18);
