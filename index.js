@@ -151,7 +151,7 @@ function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
 
 bot.on("message", message => {
 	if(message.channel.type === "dm") return;
-  if (message.author.bot) return;
+  if(message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
 
   // This is the best way to define args. Trust me.
