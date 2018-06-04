@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const botSettings = require("../config.json");
 const miscSettings = require("../cfgs/settings.json");
 var web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
+web3.setProvider(new web3.providers.HttpProvider(miscSettings.web3provider));
 
 exports.run = (client, message, args) => {
   let block = args[0];
@@ -37,11 +37,11 @@ exports.run = (client, message, args) => {
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
           .addField("Parent Hash:", phash)
           .addField("Hash:", hash)
-          .addField("Number:", number)
+          .addField("Number:", "["+number+"](http://explorer.egem.io/block/" +number+ ")")
           .addField("Timestamp:", dt)
           .addField("Gas Used:", gasUsed)
           .addField("Size:", size)
-          .addField("Miner:", miner)
+          .addField("Miner:", "["+miner+"](http://explorer.egem.io/addr/" +miner+ ")")
           .addField("Nonce:", nonce)
 
           message.channel.send({embed})
