@@ -677,7 +677,7 @@ if(message.content.startsWith(prefix + "roll")){
 							// Removes the user from the set after a minute
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
-				} else (number < 6) {
+				} else {
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
