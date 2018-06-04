@@ -698,7 +698,7 @@ if(message.content.startsWith(prefix + "roll")){
 		      .addField("And the random word for this roll is:", word + ".", true);
 
 		      message.channel.send({embed})
-					if(ammunt == 0) {
+					if(amount == 0) {
 						// Adds the user to the set so that they can't talk for x
 						rollcooldown.add(message.author.id);
 						setTimeout(() => {
