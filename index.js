@@ -640,7 +640,7 @@ if(message.content.startsWith(prefix + "roll")){
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
-				if(number > 6) {
+				if(number >= 6) {
 					let prize = "You won some coins";
 					let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
 					let weiAmount = amount*Math.pow(10,18);
