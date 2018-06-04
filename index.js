@@ -632,7 +632,7 @@ if(message.content.startsWith(prefix + "roll")){
 
       message.channel.send({embed})
 		} else {
-			let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+			let array = [1,2,3,4,5,6,7,8,9,10,11,12];
 	    let number = _.sample(array);
 	    let word = randomWord();
 			if( number == 12){
