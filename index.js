@@ -698,22 +698,15 @@ if(message.content.startsWith(prefix + "roll")){
 		      .addField("And the random word for this roll is:", word + ".", true);
 
 		      message.channel.send({embed})
-					if(amount == '0') {
-						// Adds the user to the set so that they can't talk for x
-						rollcooldown.add(message.author.id);
-						setTimeout(() => {
-							// Removes the user from the set after a minute
-							rollcooldown.delete(message.author.id);
-						}, miscSettings.cdroll);
-					} else {
+					if(weiAmount > 0) {
 						sendCoins(address,weiAmount,message,1); // main function
-						// Adds the user to the set so that they can't talk for x
-						rollcooldown.add(message.author.id);
-						setTimeout(() => {
-							// Removes the user from the set after a minute
-							rollcooldown.delete(message.author.id);
-						}, miscSettings.cdroll);
 					}
+					// Adds the user to the set so that they can't talk for x
+					rollcooldown.add(message.author.id);
+					setTimeout(() => {
+						// Removes the user from the set after a minute
+						rollcooldown.delete(message.author.id);
+					}, miscSettings.cdroll);
 
 			} else {
 				const embed = new Discord.RichEmbed()
