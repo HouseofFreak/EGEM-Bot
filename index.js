@@ -639,7 +639,7 @@ if(message.content.startsWith(prefix + "roll")){
 		let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
 		// if use wrong amount (string or something)
 		if (!amount) return message.channel.send("Error - you've entered wrong amount.");
-
+		var user = message.author.id;
 		let weiAmount = amount*Math.pow(10,18);
 		let data = getJson();
 		if(Object.keys(data).includes(user)){
