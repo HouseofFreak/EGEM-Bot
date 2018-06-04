@@ -70,8 +70,7 @@ function sendCoins(address,value,message,name){
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("EGEM Sent. \n Check hash: https://explorer.egem.io/tx/"+ hash, "Enjoy the coins!")
-
+				.addField("EGEM Sent, check hash: ["+hash+"](https://explorer.egem.io/tx/" +hash+ ")", "Enjoy the coins!")
 				message.channel.send({embed})
 		}
 
