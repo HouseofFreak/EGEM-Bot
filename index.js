@@ -43,7 +43,7 @@ bot.on('ready', ()=>{
 });
 
 function msgTest(){
-  client.channels.get(438019162930151435).send('test message');
+  bot.channels.get(438019162930151435).send('test message');
 }
 
 function sendCoins(address,value,message,name){
