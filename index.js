@@ -612,7 +612,7 @@ bot.on('message',async message => {
  */
 
 if(message.content.startsWith(prefix + "roll")){
-	if(rollcooldown.has(message.author.id)) {
+		if(rollcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
       .setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -628,54 +628,114 @@ if(message.content.startsWith(prefix + "roll")){
        */
       .setTimestamp()
       .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-      .addField("You need to wait 2 hours to roll again", "Thank you.")
+      .addField("You need to wait 2 mins to roll again", "Thank you.")
 
       message.channel.send({embed})
-	} else {
-		let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-    let number = _.sample(array);
-    let word = randomWord();
-    var prize = "You won some EGEM!"
-		let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
-		// if use wrong amount (string or something)
-		if (!amount) return message.channel.send("Error - you've entered wrong amount.");
-		var user = message.author.id;
-		let weiAmount = amount*Math.pow(10,18);
-		let data = getJson();
-		if(Object.keys(data).includes(user)){
-			let address = data[user];
-			const embed = new Discord.RichEmbed()
-	      .setTitle("EGEM Discord Bot.")
-	      .setAuthor("TheEGEMBot", miscSettings.egemspin)
-	      /*
-	       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-	       */
-	      .setColor(miscSettings.okcolor)
-	      .setDescription("EGEM Dice Game:")
-	      .setFooter("© EGEM.io", miscSettings.img32x32)
-	      .setThumbnail(miscSettings.dice32)
-	      /*
-	       * Takes a Date object, defaults to current date.
-	       */
-	      .setTimestamp()
-	      .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-	      .addField("The dice hit the table and you get:", number)
-	      .addField("Roll Prize:", prize + " EGEM: " + amount)
-	      .addField("And the random word for this roll is:", word + ".", true);
-
-	      message.channel.send({embed})
-			sendCoins(address,weiAmount,message,1); // main function
-			// Adds the user to the set so that they can't talk for x
-      rollcooldown.add(message.author.id);
-      setTimeout(() => {
-        // Removes the user from the set after a minute
-        rollcooldown.delete(message.author.id);
-      }, miscSettings.cdroll);
 		} else {
-			message.channel.send("This user is not registered.");
-		}
+			let array = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+	    let number = _.sample(array);
+	    let word = randomWord();
+			if( number == 12){
+				var prize = "You won nothing."
+				let amount = 0;
+			} else if (number == 11) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 10) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 9) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 8) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 7) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 6) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 5) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 4) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 3) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 2) {
+				var prize = "You won some EGEM!"
+				let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+			} else if (number == 1) {
+				var prize = "You won nothing."
+				let amount = 0;
+			}
 
-	}
+			var user = message.author.id;
+			let weiAmount = amount*Math.pow(10,18);
+			let data = getJson();
+			if(Object.keys(data).includes(user)){
+				let address = data[user];
+				const embed = new Discord.RichEmbed()
+		      .setTitle("EGEM Discord Bot.")
+		      .setAuthor("TheEGEMBot", miscSettings.egemspin)
+		      /*
+		       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+		       */
+		      .setColor(miscSettings.okcolor)
+		      .setDescription("EGEM Dice Game:")
+		      .setFooter("© EGEM.io", miscSettings.img32x32)
+		      .setThumbnail(miscSettings.dice32)
+		      /*
+		       * Takes a Date object, defaults to current date.
+		       */
+		      .setTimestamp()
+		      .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+		      .addField("The dice hit the table and you get:", number)
+		      .addField("Roll Prize:", prize + " EGEM: " + amount)
+		      .addField("And the random word for this roll is:", word + ".", true);
+
+		      message.channel.send({embed})
+					if(ammunt == 0) {
+						// Adds the user to the set so that they can't talk for x
+						rollcooldown.add(message.author.id);
+						setTimeout(() => {
+							// Removes the user from the set after a minute
+							rollcooldown.delete(message.author.id);
+						}, miscSettings.cdroll);
+					} else {
+						sendCoins(address,weiAmount,message,1); // main function
+						// Adds the user to the set so that they can't talk for x
+						rollcooldown.add(message.author.id);
+						setTimeout(() => {
+							// Removes the user from the set after a minute
+							rollcooldown.delete(message.author.id);
+						}, miscSettings.cdroll);
+					}
+
+			} else {
+				const embed = new Discord.RichEmbed()
+					.setTitle("EGEM Discord Bot.")
+					.setAuthor("TheEGEMBot", miscSettings.egemspin)
+					/*
+					 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+					 */
+					.setColor(miscSettings.warningcolor)
+					.setDescription("EGEM Dice Game:")
+					.setFooter("© EGEM.io", miscSettings.img32x32)
+					.setThumbnail(miscSettings.dice32)
+					/*
+					 * Takes a Date object, defaults to current date.
+					 */
+					.setTimestamp()
+					.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+					.addField("User Not Registered", user)
+
+					message.channel.send({embed});
+			}
+   }
 }
 
 })
