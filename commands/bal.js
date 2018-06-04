@@ -23,17 +23,29 @@ exports.run = (client, message, args) => {
           var title = "null";
           var balance = (result/Math.pow(10,18)).toFixed(8);
           if(balance > 100000){
-            var title = "EGEM Super Whale :egemflash: :whale:";
+            var title = "EGEM Grand Dragon :dragon:";
             var next = "You are at MAX rank.";
-          } else if(balance > 15000){
-            var title = "EGEM Humpback Whale :whale:";
+          } else if(balance > 50000){
+            var title = "EGEM Unicorn :unicorn:";
             var next = "100000 EGEM";
-          } else if(balance > 5000){
+          } else if(balance > 25000){
+            var title = "EGEM Humpback Whale :whale:";
+            var next = "50000 EGEM";
+          } else if(balance > 15000){
+            var title = "EGEM Elephant :elephant:";
+            var next = "25000 EGEM";
+          } else if(balance > 7500){
             var title = "EGEM Killer Whale :whale2:";
             var next = "15000 EGEM";
-          } else if(balance > 1500){
+          } else if(balance > 5000){
+            var title = "EGEM Turtle :turtle:";
+            var next = "7500 EGEM";
+          } else if(balance > 2500){
             var title = "EGEM Shark :shark:";
             var next = "5000 EGEM";
+          } else if(balance > 1500){
+            var title = "EGEM Crocodile :crocodile:";
+            var next = "2500 EGEM";
           } else if(balance > 750){
             var title = "EGEM Dolphin :dolphin:";
             var next = "1500 EGEM";
@@ -58,7 +70,7 @@ exports.run = (client, message, args) => {
             var title = ":space_invader: You require more EGEM.";
             var next = "5 EGEM";
           }
-          
+
           const embed = new Discord.RichEmbed()
             .setTitle("EGEM Discord Bot.")
             .setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -93,17 +105,29 @@ exports.run = (client, message, args) => {
         var title = "null";
         var balance = (result/Math.pow(10,18)).toFixed(8);
         if(balance > 100000){
-          var title = "EGEM Super Whale :egemflash: :whale:";
+          var title = "EGEM Grand Dragon :dragon:";
           var next = "You are at MAX rank.";
-        } else if(balance > 15000){
-          var title = "EGEM Humpback Whale :whale:";
+        } else if(balance > 50000){
+          var title = "EGEM Unicorn :unicorn:";
           var next = "100000 EGEM";
-        } else if(balance > 5000){
+        } else if(balance > 25000){
+          var title = "EGEM Humpback Whale :whale:";
+          var next = "50000 EGEM";
+        } else if(balance > 15000){
+          var title = "EGEM Elephant :elephant:";
+          var next = "25000 EGEM";
+        } else if(balance > 7500){
           var title = "EGEM Killer Whale :whale2:";
           var next = "15000 EGEM";
-        } else if(balance > 1500){
+        } else if(balance > 5000){
+          var title = "EGEM Turtle :turtle:";
+          var next = "7500 EGEM";
+        } else if(balance > 2500){
           var title = "EGEM Shark :shark:";
           var next = "5000 EGEM";
+        } else if(balance > 1500){
+          var title = "EGEM Crocodile :crocodile:";
+          var next = "2500 EGEM";
         } else if(balance > 750){
           var title = "EGEM Dolphin :dolphin:";
           var next = "1500 EGEM";
@@ -128,6 +152,7 @@ exports.run = (client, message, args) => {
           var title = ":space_invader: You require more EGEM.";
           var next = "5 EGEM";
         }
+        
         const embed = new Discord.RichEmbed()
           .setTitle("EGEM Discord Bot.")
           .setAuthor("TheEGEMBot", miscSettings.egemspin)
