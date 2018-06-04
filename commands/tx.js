@@ -32,7 +32,7 @@ exports.run = (client, message, args) => {
           .setTimestamp()
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
           .addField("Mined in Block:", minedBlock)
-          .addField("From:", from)
+          .addField("From:", "["+from+"](http://explorer.egem/addr/" +from + ")")
           .addField("To:", to)
           .addField("Value:", value)
           .addField("Nonce:", nonce)
