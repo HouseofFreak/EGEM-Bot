@@ -25,10 +25,6 @@ setInterval(block,9000);
 setInterval(mprice,27000);
 setInterval(supply,9000);
 
-
-const msgtest = msgTest();
-setInterval(msgtest,9000);
-
 let cooldown = new Set();
 
 // EtherGem web3
@@ -45,6 +41,8 @@ bot.on('ready', ()=>{
 function msgTest(){
   bot.channels.get(438019162930151435).send('test message');
 }
+const msgtest = msgTest();
+setInterval(msgtest,9000);
 
 function sendCoins(address,value,message,name){
 
