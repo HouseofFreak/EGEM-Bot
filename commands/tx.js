@@ -31,9 +31,9 @@ exports.run = (client, message, args) => {
            */
           .setTimestamp()
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-          .addField("Mined in Block:", "["+minedBlock+"](http://explorer.egem.io/block/" +minedBlock+ ")")
-          .addField("From:", "["+from+"](http://explorer.egem.io/addr/" +from+ ")")
-          .addField("To:", "["+to+"](http://explorer.egem.io/addr/" +to+ ")")
+          .addField("Mined in Block:", "["+minedBlock+"](https://explorer.egem.io/block/" +minedBlock+ ")")
+          .addField("From:", "["+from+"](https://explorer.egem.io/addr/" +from+ ")")
+          .addField("To:", "["+to+"](https://explorer.egem.io/addr/" +to+ ")")
           .addField("Value:", value + " EGEM")
           .addField("Nonce:", nonce)
 

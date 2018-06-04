@@ -22,7 +22,7 @@ exports.run = (client, message, args) => {
      */
     .setTimestamp()
     .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-    .addField("The the most recent block is:", "["+getblock+"](http://explorer.egem.io/block/" +getblock+ ")")
+    .addField("The the most recent block is:", "["+getblock+"](https://explorer.egem.io/block/" +getblock+ ")")
 
     message.channel.send({embed})
 }

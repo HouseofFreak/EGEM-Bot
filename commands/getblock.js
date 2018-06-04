@@ -37,11 +37,11 @@ exports.run = (client, message, args) => {
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
           .addField("Parent Hash:", phash)
           .addField("Hash:", hash)
-          .addField("Number:", "["+number+"](http://explorer.egem.io/block/" +number+ ")")
+          .addField("Number:", "["+number+"](https://explorer.egem.io/block/" +number+ ")")
           .addField("Timestamp:", dt)
           .addField("Gas Used:", gasUsed)
           .addField("Size:", size)
-          .addField("Miner:", "["+miner+"](http://explorer.egem.io/addr/" +miner+ ")")
+          .addField("Miner:", "["+miner+"](https://explorer.egem.io/addr/" +miner+ ")")
           .addField("Nonce:", nonce)
 
           message.channel.send({embed})
