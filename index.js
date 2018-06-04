@@ -62,7 +62,7 @@ function sendCoins(address,value,message,name){
 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
 				 */
 				.setColor(miscSettings.okcolor)
-				.setDescription("Bot Transaction:")
+				.setDescription("Bot Transaction")
 				.setFooter("© EGEM.io", miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
@@ -611,7 +611,7 @@ if(message.content.startsWith(prefix + "roll")){
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
 				if(number >= 6) {
-					let prize = "You won some coins";
+					let prize = "You won some coins! :trophy:";
 					let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
 					let weiAmount = amount*Math.pow(10,18);
 					const embed = new Discord.RichEmbed()
@@ -632,8 +632,8 @@ if(message.content.startsWith(prefix + "roll")){
 						.addField("The dice hit the table and you get:", number)
 						.addField("Roll Prize:", prize)
 						.addField("EGEM:", amount)
-						.addField("And the random word for this roll is:", word + ".", true);
-
+						
+						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")", true);
 						message.channel.send({embed})
 
 						sendCoins(address,weiAmount,message,1); // main function
