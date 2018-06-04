@@ -38,12 +38,6 @@ bot.on('ready', ()=>{
 	console.log("EGEM Discord Bot is Online.");
 });
 
-function msgTest(){
-	bot.sendMessage('438019162930151435', 'bots message');
-}
-const msgtest = msgTest();
-setInterval(msgtest,9000);
-
 function sendCoins(address,value,message,name){
 
 	web3.eth.sendTransaction({
