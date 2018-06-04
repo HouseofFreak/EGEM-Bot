@@ -39,7 +39,7 @@ bot.on('ready', ()=>{
 });
 
 function msgTest(){
-	var channel = client.channels.get('438019162930151435');
+	var channel = bot.channels.get('438019162930151435');
 	channel.sendMessage("Hello world");
 }
 const msgtest = msgTest();
