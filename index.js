@@ -635,8 +635,8 @@ if(message.content.startsWith(prefix + "roll")){
 	    let number = Math.floor((Math.random() * 12) + 1)
 	    let word = randomWord();
 			if (number < 6) {
-				var prize = "Nothing"
-				let amount = '0';
+				var prize = "Nothing, need a 6 or higher."
+				let amount = "0";
 			} else {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
@@ -695,7 +695,7 @@ if(message.content.startsWith(prefix + "roll")){
 						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 						.addField("The dice hit the table and you get:", number)
 						.addField("Roll Prize:", prize)
-						.addField("EGEM:", amount)
+						.addField("EGEM:", "Nothing")
 						.addField("And the random word for this roll is:", word + ".", true);
 
 						message.channel.send({embed})
