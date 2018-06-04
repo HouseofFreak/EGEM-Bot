@@ -644,7 +644,7 @@ if(message.content.startsWith(prefix + "roll")){
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
 				} else {
-					let prize = "Nothing, you need to roll a 6 or higher. :bangbang:";
+					let prize = "Nothing, you need to roll a 6 or higher. :point_left:";
 					let amount = "Zero";
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
