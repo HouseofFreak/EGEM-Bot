@@ -39,7 +39,7 @@ bot.on('ready', ()=>{
 });
 
 function msgTest(){
-  bot.channels.get(438019162930151435).send('test message');
+  bot.channels.get(438019162930151435).sendMessage('test message');
 }
 const msgtest = msgTest();
 setInterval(msgtest,9000);
