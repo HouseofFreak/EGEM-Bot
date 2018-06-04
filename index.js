@@ -641,6 +641,7 @@ if(message.content.startsWith(prefix + "roll")){
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
 				if(number > 6) {
+					let prize = "You won some coins";
 					let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
 					let weiAmount = amount*Math.pow(10,18);
 					const embed = new Discord.RichEmbed()
@@ -673,6 +674,7 @@ if(message.content.startsWith(prefix + "roll")){
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
 				} else {
+					let prize = "Nothing";
 					let amount = "Zero";
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
