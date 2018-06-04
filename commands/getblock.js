@@ -1,4 +1,7 @@
 const Web3 = require("web3")
+const Discord = require("discord.js");
+const botSettings = require("../config.json");
+const miscSettings = require("../cfgs/settings.json");
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:16661'));
 
@@ -17,18 +20,31 @@ exports.run = (client, message, args) => {
         let size = result["size"];
         let nonce = result["nonce"];
         let uncles = result["uncles"];
-        message.channel.send("Block Lookup Results: \n"
-          + "```"
-          + "Parent Hash: " + phash + ". \n"
-          + "Hash: " + hash + ". \n"
-          + "Number: " + number + ". \n"
-          + "Timestamp: " + dt + ". \n"
-          + "Gas Used: " + gasUsed + ". \n"
-          + "Size: " + size + ". \n"
-          + "Miner: " + miner + ". \n"
-          + "Nonce: " + nonce + ". \n"
-          + "```"
-        );
+        const embed = new Discord.RichEmbed()
+          .setTitle("EGEM Discord Bot.")
+          .setAuthor("TheEGEMBot", miscSettings.egemspin)
+          /*
+           * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+           */
+          .setColor(miscSettings.okcolor)
+          .setDescription("Block Lookup Results:")
+          .setFooter("© EGEM.io", miscSettings.img32x32)
+          .setThumbnail(miscSettings.img32shard)
+          /*
+           * Takes a Date object, defaults to current date.
+           */
+          .setTimestamp()
+          .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+          .addField("Parent Hash:", phash)
+          .addField("Hash:", hash)
+          .addField("Number:", number)
+          .addField("Timestamp:", dt)
+          .addField("Gas Used:", gasUsed)
+          .addField("Size:", size)
+          .addField("Miner:", miner)
+          .addField("Nonce:", nonce)
+
+          message.channel.send({embed})
       } else {
         message.channel.send("Block result was null, might be a malformed attempt, please double check and retry.");
       }
