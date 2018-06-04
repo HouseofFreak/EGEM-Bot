@@ -23,7 +23,7 @@ exports.run = (client, message, args) => {
            * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
            */
           .setColor(miscSettings.okcolor)
-          .setDescription("Block Lookup Results:")
+          .setDescription("Transaction Lookup Results:")
           .setFooter("© EGEM.io", miscSettings.img32x32)
           .setThumbnail(miscSettings.img32shard)
           /*
