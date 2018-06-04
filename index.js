@@ -634,10 +634,7 @@ if(message.content.startsWith(prefix + "roll")){
 		} else {
 	    let number = Math.floor((Math.random() * 12) + 1)
 	    let word = randomWord();
-			if(number == 12) {
-				var prize = "Jackpot!"
-				let amount = 1;
-			} else if (number < 5) {
+			if (number < 6) {
 				var prize = "Nothing"
 				let amount = 0;
 			} else {
@@ -650,7 +647,7 @@ if(message.content.startsWith(prefix + "roll")){
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
-				if(number = 12) {
+				if(number > 6) {
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -680,7 +677,7 @@ if(message.content.startsWith(prefix + "roll")){
 							// Removes the user from the set after a minute
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
-				} else if (number < 5) {
+				} else (number < 6) {
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
