@@ -636,7 +636,7 @@ if(message.content.startsWith(prefix + "roll")){
 	    let word = randomWord();
 			if (number < 6) {
 				var prize = "Nothing"
-				let amount = 0;
+				let amount = '0';
 			} else {
 				var prize = "You won some EGEM!"
 				let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
