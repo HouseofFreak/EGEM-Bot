@@ -634,20 +634,15 @@ if(message.content.startsWith(prefix + "roll")){
 		} else {
 	    let number = Math.floor((Math.random() * 12) + 1)
 	    let word = randomWord();
-			if (number < 6) {
-				var prize = "Nothing, need a 6 or higher."
-				let amount = "0";
-			} else {
-				var prize = "You won some EGEM!"
-				let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
-			}
 
 			var user = message.author.id;
-			let weiAmount = amount*Math.pow(10,18);
+
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
 				if(number > 6) {
+					let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
+					let weiAmount = amount*Math.pow(10,18);
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -678,6 +673,7 @@ if(message.content.startsWith(prefix + "roll")){
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
 				} else {
+					let amount = "Zero";
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -695,7 +691,7 @@ if(message.content.startsWith(prefix + "roll")){
 						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 						.addField("The dice hit the table and you get:", number)
 						.addField("Roll Prize:", prize)
-						.addField("EGEM:", "Nothing")
+						.addField("EGEM:", amount)
 						.addField("And the random word for this roll is:", word + ".", true);
 
 						message.channel.send({embed})
