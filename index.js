@@ -637,6 +637,10 @@ if(message.content == prefix + "roll"){
     let word = randomWord();
     var prize = "You won some EGEM!"
     let amount = (Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(4);
+		let weiAmount = amount*Math.pow(10,18);
+		let data = getJson();
+	if(Object.keys(data).includes(user)){
+		let address = data[user];
     const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
       .setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -664,6 +668,9 @@ if(message.content == prefix + "roll"){
         // Removes the user from the set after a minute
         rollcooldown.delete(message.author.id);
       }, miscSettings.cdroll);
+		} else {
+			message.channel.send("This user is not registered.");
+		}
   }
 }
 
