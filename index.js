@@ -637,7 +637,7 @@ if(message.content.startsWith(prefix + "roll")){
 			if(number = 12) {
 				var prize = "Jackpot!"
 				let amount = 1;
-			} else if (number =< 5) {
+			} else if (number < 5) {
 				var prize = "Nothing"
 				let amount = 0;
 			} else {
@@ -680,7 +680,7 @@ if(message.content.startsWith(prefix + "roll")){
 							// Removes the user from the set after a minute
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
-				} else if (number =< 5) {
+				} else if (number < 5) {
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
