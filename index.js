@@ -585,7 +585,7 @@ if(message.content == prefix + "timetrial"){
 	message.channel.send('If you get the correct number in the time limit you win!')
 		.then(() => {
 			var number = Math.floor((Math.random() * 12) + 1)
-	  	message.channel.awaitMessages(response => response.content === number, {
+	  	message.channel.awaitMessages(response => response.content === Number(number), {
 	    max: 1,
 	    time: 30000,
 	    errors: ['time'],
