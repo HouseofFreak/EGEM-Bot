@@ -581,13 +581,15 @@ if(message.content == prefix + "vote"){
 	if(!message.member.hasPermission('ADMINISTRATOR')){
 		return message.channel.send("You cannot use '/online' command");
 	}
-	message.channel.send("Cast admin ballot with !vote.");
+	message.channel.send("Cast admin ballot with !vote.")
 	// Await !vote messages
 	const filter = m => m.content.startsWith('!vote');
+	.then(() => {
 	// Errors: ['time'] treats ending because of the time limit as an error
 	channel.awaitMessages(filter, { max: 4, time: 60000, errors: ['time'] })
 	  .then(collected => console.log(collected.size))
 	  .catch(collected => console.log(`After a minute, only ${collected.size} out of 4 voted.`));
+		});
 }
 
 /*
@@ -609,7 +611,6 @@ if(message.content == prefix + "timetrial"){
     .catch(() => {
       message.channel.send('There was no correct answer within the time limit!');
     });
-	});
 }
 
 /*
