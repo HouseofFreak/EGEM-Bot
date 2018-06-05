@@ -582,7 +582,7 @@ bot.on('message',async message => {
 */
 
 	if(message.content == prefix + "timetrial"){
-		let number = Math.floor((Math.random() * 12) + 1)
+		var number = Math.floor((Math.random() * 12) + 1)
 		message.channel.send('If you get the correct number in the time limit you win!')
 			.then(() => {
 		  message.channel.awaitMessages(response => response.content === number, {
