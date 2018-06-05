@@ -596,6 +596,7 @@ if(message.content == prefix + "timetrial"){
     .catch(() => {
       message.channel.send('There was no correct answer within the time limit!');
     });
+	});
 }
 
 /*
