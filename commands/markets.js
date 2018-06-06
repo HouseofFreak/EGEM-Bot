@@ -18,7 +18,6 @@ exports.run = (client, message, args) => {
      */
     .setTimestamp()
     .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-    .addField("/btsx - Bitshares", "https://bitshares.org/")
     .addField("/graviex - Graviex", "https://graviex.net/")
     .addField("/bitebtc - BiteBTC", "https://bitebtc.com/")
 

@@ -151,8 +151,8 @@ function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
 // Function to turn files into commands.
 bot.on("message", message => {
-	if(message.channel.name != '👾-the-egem-bot') return;
-	//if(message.channel.name != 'bots') return;
+	//if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name != 'bots') return;
 	if(message.channel.type === "dm") return;
   if(message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
@@ -175,8 +175,8 @@ bot.on("message", message => {
 bot.on('message',async message => {
 
 	// Not admins cannot use bot in general channel
-	if(message.channel.name != '👾-the-egem-bot') return;
-	//if(message.channel.name != 'bots') return;
+	//if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name != 'bots') return;
 	if(message.author.bot) return;
 	if(message.channel.type === "dm") return;
 
@@ -404,6 +404,19 @@ bot.on('message',async message => {
 
 		  message.channel.send({embed});
 	}
+
+// write exchange message
+	if(message.content.startsWith(prefix + "xm1 ")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/xm1' command");
+		}
+		var editedFile = args[1];
+	  fs.writeFile("data/xmg1.txt",editedFile, 'ascii',(err)=>{
+	    if(err) throw err;
+	  });
+		console.log('Message saved!');
+	}
+
 // Status of the coin.
 	if(message.content == prefix + "coin"){
 
@@ -705,7 +718,7 @@ if(message.content == prefix + "timetrial"){
 				 */
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("WINNER! "+ Number(amount)+" EGEM", "@" + message.author.username + " The correct number is: " +number)
+				.addField("WINNER! :first_place: "+ Number(amount)+" EGEM", "@" + message.author.username + " The correct number is: " +number)
 
 			message.channel.send({embed})
 			sendCoins(address,weiAmount,message,1); // main function
