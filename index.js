@@ -14,18 +14,18 @@ const randomWord = require('random-word');
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
 
-const price = require("./gets/btcprice.js");
-const block = require("./gets/getblock.js");
-const supply = require("./gets/getsup.js");
-const egemprice = require("./gets/getegemprice.js");
+const btcprice = require("./functions/btcprice.js");
+const egemprice = require("./functions/getegemprice.js");
+const block = require("./functions/getblock.js");
+const supply = require("./functions/getsup.js");
 
 var getJSON = require('get-json');
 
 // Update Data
-setInterval(price,120000);
+setInterval(btcprice,60000);
+setInterval(egemprice,60000);
 setInterval(block,10000);
 setInterval(supply,15000);
-setInterval(egemprice,60000);
 
 let cooldown = new Set();
 let rollcooldown = new Set();
@@ -38,7 +38,7 @@ const prefix = botSettings.prefix;
 const bot = new Discord.Client({disableEveryone:true});
 
 bot.on('ready', ()=>{
-	console.log("EGEM Discord Bot is Online.");
+	console.log("**EGEM BOT** Discord Bot is Online.");
 });
 
 function sendCoins(address,value,message,name){
