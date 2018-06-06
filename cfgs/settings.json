@@ -1,8 +1,9 @@
 {
 	"web3provider": "http://localhost:16661",
 	"tickerSymbol": "EGEM",
-	"cdseconds": "7200000",
+	"cdusertip": "7200000",
 	"cdroll": "120000",
+	"cdtimetrial": "60000",
 	"txgas": "120000",
 	"warningcolor": "0xFF0000",
 	"okcolor": "0x00AE86",

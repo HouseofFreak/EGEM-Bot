@@ -29,6 +29,7 @@ setInterval(supply,15000);
 
 let cooldown = new Set();
 let rollcooldown = new Set();
+let trialcooldown = new Set();
 
 // EtherGem web3
 var web3 = new Web3();
@@ -309,7 +310,7 @@ bot.on('message',async message => {
 				setTimeout(() => {
 					// Removes the user from the set after a minute
 					cooldown.delete(message.author.id);
-				}, miscSettings.cdseconds);
+				}, miscSettings.cdusertip);
 			} else {
 				message.channel.send("This user is not registered.");
 			}
@@ -627,26 +628,135 @@ bot.on('message',async message => {
 	}
 
 /*
-* Time Game.
+* Time Trial Game.
 */
 
 if(message.content == prefix + "timetrial"){
-	message.channel.send('If you get the correct number in the time limit you win!')
+		if(trialcooldown.has(message.author.id)) {
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(miscSettings.warningcolor)
+			.setDescription("EGEM Time Trial Game:")
+			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setThumbnail(miscSettings.dice32)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("You need to wait 60s to play again.", "Thank you.")
+
+			message.channel.send({embed})
+			return;
+		}
+
+		var user = message.author.id;
+		let data = getJson();
+		if(Object.keys(data).includes(user)){
+		let address = data[user];
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(miscSettings.okcolor)
+			.setDescription("EGEM Time Trial:")
+			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setThumbnail(miscSettings.img32shard)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("START!", "You have 15 Seconds to get the correct number between 1 - 30")
+
+		message.channel.send({embed})
 		.then(() => {
-			var number = Math.floor((Math.random() * 12) + 1)
-	  	message.channel.awaitMessages(response => response.content === Number(number), {
+			var number = Math.floor((Math.random() * 30) + 1)
+			console.log(number)
+	  	message.channel.awaitMessages(response => response.content == Number(number), {
 	    max: 1,
-	    time: 30000,
+	    time: 15000,
 	    errors: ['time'],
-	  })
+		})
 	  .then((collected) => {
-	    message.channel.send(`The correct response was: ${collected.first().content}`);
-	  })
+			let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
+			let weiAmount = amount*Math.pow(10,18);
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", miscSettings.egemspin)
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(miscSettings.okcolor)
+				.setDescription("EGEM Time Trial Game:")
+				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setThumbnail(miscSettings.img32shard)
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("WINNER! "+ Number(amount)+" EGEM", "@" + message.author.username + " The correct number is: " +number)
+
+			message.channel.send({embed})
+			sendCoins(address,weiAmount,message,1); // main function
+			// Adds the user to the set so that they can't talk for x
+			trialcooldown.add(message.author.id);
+			setTimeout(() => {
+				// Removes the user from the set after a minute
+				trialcooldown.delete(message.author.id);
+			}, miscSettings.cdtimetrial);
+		})
     .catch(() => {
-      message.channel.send('There was no correct answer within the time limit!');
+      message.channel.send('');
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", miscSettings.egemspin)
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(miscSettings.warningcolor)
+				.setDescription("EGEM Time Trial Game:")
+				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setThumbnail(miscSettings.img32shard)
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("NO WINNER!", "There was no correct answer within the time limit!")
+
+			message.channel.send({embed})
     });
 	});
-}
+	} else {
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(miscSettings.warningcolor)
+			.setDescription("EGEM Dice Game:")
+			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setThumbnail(miscSettings.dice32)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("User Not Registered", user)
+
+			message.channel.send({embed});
+	}
+	}
+
 
 /*
 * Dice Game.
