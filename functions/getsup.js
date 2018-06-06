@@ -11,12 +11,12 @@ function getSupply(){
 			var resultFinal = result1 - 5000;
 
 			console.log('**EGEM BOT** Supply has been logged to the file. ' + resultFinal);
-			fs.writeFile("data/supply.txt",resultFinal,(err)=>{
+			// fs.writeFile("data/supply.txt",resultFinal,(err)=>{
+			// 	if(err) throw err;
+			// });
+			fs.writeFile("/home/ubuntu/ridz/EGEM-Site/supply.txt",resultFinal,(err)=>{
 				if(err) throw err;
 			});
-			// 		fs.writeFile("/home/ubuntu/ridz/EGEM-Site/supply.txt",result,(err)=>{
-			// 			if(err) throw err;
-			// 		});
 	})
 }
 
