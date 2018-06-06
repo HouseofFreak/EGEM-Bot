@@ -16,14 +16,16 @@ const miscSettings = require("./cfgs/settings.json");
 
 const price = require("./gets/btcprice.js");
 const block = require("./gets/getblock.js");
-const mprice = require("./gets/getprice.js");
 const supply = require("./gets/getsup.js");
+const egemprice = require("./gets/getegemprice.js");
+
+var getJSON = require('get-json');
 
 // Update Data
-setInterval(price,300000);
-setInterval(block,9000);
-//setInterval(mprice,27000);
-setInterval(supply,9000);
+setInterval(price,120000);
+setInterval(block,10000);
+setInterval(supply,15000);
+setInterval(egemprice,60000);
 
 let cooldown = new Set();
 let rollcooldown = new Set();
@@ -140,6 +142,11 @@ function getOnline(){
 	return foo;
 }
 
+
+
+
+function getEgemPrice(){ return JSON.parse(fs.readFileSync('data/egemprice.txt'));}
+
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
 function getPrice(){ return JSON.parse(fs.readFileSync('data/usdprice.txt'));}
 function getMPrice(){ return JSON.parse(fs.readFileSync('data/mprice.txt'));}
@@ -147,6 +154,7 @@ function get24h(){ return JSON.parse(fs.readFileSync('data/m24h.txt'));}
 function getMPrice2(){ return JSON.parse(fs.readFileSync('data/mprice2.txt'));}
 function get24h2(){ return JSON.parse(fs.readFileSync('data/m24h2.txt'));}
 function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
+function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
 bot.on("message", message => {
 	if(message.channel.type === "dm") return;
@@ -364,7 +372,7 @@ bot.on('message',async message => {
 	}
 
 	if(message.content == prefix + "botinfo"){
-		let txcount = await web3.eth.getTransactionCount("0x9b41c5d87deb2fedc2ef419411cf82e6827cbcbd");
+		let txcount = await web3.eth.getTransactionCount(botSettings.address);
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 		const embed = new Discord.RichEmbed()
 		  .setTitle("EGEM Discord Bot.")
@@ -393,6 +401,47 @@ bot.on('message',async message => {
 		  .addField("Transactions", Number(txcount), true);
 
 		  message.channel.send({embed});
+	}
+
+	if(message.content == prefix + "coin"){
+
+		var block = getBlock();
+		var supply = getBlock()*9-5000;
+		var priceAvg = "W.I.P";
+		var fPrice = getEgemPrice()*getPrice();
+		var mCap = fPrice*supply;
+
+		try {
+
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", miscSettings.egemspin)
+				/*
+				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+				 */
+				.setColor(miscSettings.egemcolor)
+				.setDescription("Coin Status:")
+				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setThumbnail(miscSettings.img32shard)
+				/*
+				 * Takes a Date object, defaults to current date.
+				 */
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("Ticker:", miscSettings.tickerSymbol, true)
+
+				.addField("Current Block:", "["+block+"](https://explorer.egem.io/block/" +block+ ")", true)
+				.addField("Current Supply:", supply, true)
+				.addField("Market Cap:", "$" +Number(mCap).toFixed(2)+" USD", true)
+				.addField("USD Price:", await Number(fPrice).toFixed(4) + " USD", true)
+				.addField("BTC Price:", getEgemPrice(), true)
+
+				message.channel.send({embed});
+		}
+		catch(err) {
+			console.log(err)
+		}
+
 	}
 
 	if(message.content == prefix + "getid"){
