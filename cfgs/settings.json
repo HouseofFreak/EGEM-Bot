@@ -1,5 +1,6 @@
 {
-	"web3provider": "http://localhost:16661",
+	"web3provider": "http://localhost:8545",
+	"tickerSymbol": "EGEM",
 	"cdseconds": "7200000",
 	"cdroll": "120000",
 	"txgas": "120000",
