@@ -20,8 +20,7 @@ exports.run = (client, message, args) => {
     .setTimestamp()
     .setURL("https://github.com/TeamEGEM/EGEM-Bot")
     .addField(prefix+"roll", "The EGEM Dice game. :game_die:")
-    .addField(prefix+"1in100game", "Simple game of guess the number. :question:")
-    .addField(prefix+"1in1000game", "Slightly harder numbers game. :question:")
+    .addField(prefix+"timetrial", "Get the correct number in timelimit. :question:")
 
     message.channel.send({embed})
 }
