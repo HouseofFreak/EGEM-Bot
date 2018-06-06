@@ -1,6 +1,7 @@
 "use strcit";
 
 // Settings and Requires
+var getJSON = require('get-json');
 var _ = require('lodash');
 const Web3 = require("web3");
 const Discord = require("discord.js");
@@ -10,16 +11,12 @@ const ContractFactory = require("ethereum-contracts");
 const solc = require("solc");
 const fs = require("fs");
 const randomWord = require('random-word');
-
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
-
 const btcprice = require("./functions/btcprice.js");
 const egemprice = require("./functions/getegemprice.js");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
-
-var getJSON = require('get-json');
 
 // Update Data
 setInterval(btcprice,60000);
@@ -42,8 +39,8 @@ bot.on('ready', ()=>{
 	console.log("**EGEM BOT** Discord Bot is Online.");
 });
 
+// Main sending function.
 function sendCoins(address,value,message,name){
-
 	web3.eth.sendTransaction({
 	    from: botSettings.address,
 	    to: address,
@@ -81,6 +78,7 @@ function sendCoins(address,value,message,name){
 	.on('error', console.error);
 }
 
+// Raining command to send users coin.
 function raining(amount,message){
 	// registered users
 	var data = getJson();
@@ -143,20 +141,15 @@ function getOnline(){
 	return foo;
 }
 
-
-
-
+// Get data from files.
 function getEgemPrice(){ return JSON.parse(fs.readFileSync('data/egemprice.txt'));}
-
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
 function getPrice(){ return JSON.parse(fs.readFileSync('data/usdprice.txt'));}
-function getMPrice(){ return JSON.parse(fs.readFileSync('data/mprice.txt'));}
-function get24h(){ return JSON.parse(fs.readFileSync('data/m24h.txt'));}
-function getMPrice2(){ return JSON.parse(fs.readFileSync('data/mprice2.txt'));}
-function get24h2(){ return JSON.parse(fs.readFileSync('data/m24h2.txt'));}
 function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
 function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
+
+// Function to turn files into commands.
 bot.on("message", message => {
 	if(message.channel.name != '👾-the-egem-bot') return;
 	//if(message.channel.name != 'bots') return;
@@ -173,10 +166,12 @@ bot.on("message", message => {
     let commandFile = require(`./commands/${command}.js`);
     commandFile.run(bot, message, args);
   } catch (err) {
-    console.error(err);
+		console.log("**EGEM BOT** No file for that command, prolly other system in use.")
+    //console.error(err);
   }
 });
 
+// Main file bot commands
 bot.on('message',async message => {
 
 	// Not admins cannot use bot in general channel
@@ -189,6 +184,7 @@ bot.on('message',async message => {
 	var message = message;
 	let args = message.content.split(' ');
 
+// Send to specific address
 	if(message.content.startsWith(prefix + "sendToAddress ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/send' command.");
@@ -212,6 +208,7 @@ bot.on('message',async message => {
 		}
 	}
 
+// Admin tip a user.
 	if(message.content.startsWith(prefix + "tip ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/send' command.");
@@ -233,6 +230,7 @@ bot.on('message',async message => {
 
 	}
 
+// Rain on the online and registered users.
 	if(message.content.startsWith(prefix + "rain")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
@@ -242,7 +240,7 @@ bot.on('message',async message => {
 		// main func
 		raining(amount,message);
 	}
-
+// Sprinkle on some users.
 	if(message.content.startsWith(prefix + "sprinkle")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
@@ -250,7 +248,7 @@ bot.on('message',async message => {
 		var amount = Math.floor((Math.random() * 10) + 1);
 		raining(amount,message);
 	}
-
+// Downpour on users
 	if(message.content.startsWith(prefix + "downpour")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
@@ -258,7 +256,7 @@ bot.on('message',async message => {
 		var amount = Math.floor((Math.random() * 100) + 10);
 		raining(amount,message);
 	}
-
+// Users can tip each other every 2 hours.
 	if(message.content.startsWith(prefix + "usertip ")){
 		if(cooldown.has(message.author.id)) {
 			const embed = new Discord.RichEmbed()
@@ -320,7 +318,7 @@ bot.on('message',async message => {
 
     }
 	}
-
+// Set it to rain after X amount of time.
 	if(message.content.startsWith(prefix + "forecast ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/rain' command");
@@ -339,7 +337,7 @@ bot.on('message',async message => {
 		},time);
 
 	}
-
+// Pulls info from blockchain and decodes then spits it were needed.
 	if(message.content === prefix + "egem"){
 		let txlink = "0x0ee61199c26766809dc5146d30fa7f54876f36f958fc31350abf0d0d9f9dea5b";
 		web3.eth.getTransaction(txlink, (error,result)=>{
@@ -354,7 +352,7 @@ bot.on('message',async message => {
 		})
 	}
 
-	// Deploy Reward Spliting Contract
+// Deploy Reward Spliting Contract
 	if(message.content.startsWith(prefix + "split ")){
 		var user1 = args[1];
 		var user2 = args[2];
@@ -374,7 +372,7 @@ bot.on('message',async message => {
 		    SplitInstance = instance;
 		});
 	}
-
+// Displays the bots info.
 	if(message.content == prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount(botSettings.address);
 		let balance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
@@ -406,7 +404,7 @@ bot.on('message',async message => {
 
 		  message.channel.send({embed});
 	}
-
+// Status of the coin.
 	if(message.content == prefix + "coin"){
 
 		var block = getBlock();
@@ -447,7 +445,7 @@ bot.on('message',async message => {
 		}
 
 	}
-
+// Get discord user id.
 	if(message.content == prefix + "getid"){
 		var user = message.author.username;
 		let author = message.author.id;
@@ -471,7 +469,7 @@ bot.on('message',async message => {
 
 			message.channel.send({embed});
 	}
-
+// Check to see if registered.
 	if(message.content == prefix + "checkreg"){
 		var user = message.author.username;
 		let author = message.author.id;
@@ -482,7 +480,7 @@ bot.on('message',async message => {
 			message.channel.send("You are not in the list, use **/register** command fist.");
 		}
 	}
-
+// Register with the bot.
 	if(message.content.startsWith("/register")){
 		var user = message.author.username;
 		var author = message.author.id;
@@ -558,7 +556,7 @@ bot.on('message',async message => {
 				message.channel.send({embed});
 		}
 	}
-
+// Change registration with bot.
 	if(message.content.startsWith(prefix + "changereg")){
 		var user = message.author.username;
 		var author = message.author.id;
@@ -584,7 +582,7 @@ bot.on('message',async message => {
 		}
 	}
 
-	//-------------------------------------
+// Lists the number of users that are registered.
 	if(message.content == prefix + "list"){
 		var data = getJson();
 		const embed = new Discord.RichEmbed()
@@ -607,7 +605,7 @@ bot.on('message',async message => {
 		message.channel.send({embed});
 
 	}
-
+// Shows all online users
 	if(message.content == prefix + "onlinetotal"){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/onlinetotal' command");
@@ -615,7 +613,7 @@ bot.on('message',async message => {
 		var online = getOnline();
 		message.channel.send("Total list of online users are **" + online+ "**.");
 	}
-
+// Shows online users for rain drops.
 	if(message.content == prefix + "online"){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/online' command");
@@ -629,6 +627,8 @@ bot.on('message',async message => {
 
 		message.channel.send("Total list of registered and online users are **" + onlineAndRegister+ "**.");
 	}
+
+// Start of the games section.
 
 /*
 * Time Trial Game.
@@ -760,7 +760,6 @@ if(message.content == prefix + "timetrial"){
 	}
 	}
 
-
 /*
 * Dice Game.
 */
@@ -885,4 +884,5 @@ if(message.content.startsWith(prefix + "roll")){
 
 })
 
+// Login the bot.
 bot.login(botSettings.token);
