@@ -1,6 +1,12 @@
 {
 	"web3provider": "http://localhost:16661",
 	"tickerSymbol": "EGEM",
+	"botChannelId": "423555330799042560",
+	"motdDelay": "900000",
+	"btcpriceDelay": "60000",
+	"egempriceDelay": "60000",
+	"blockDelay": "10000",
+	"supplyDelay": "15000",
 	"cdusertip": "7200000",
 	"cdroll": "120000",
 	"cdtimetrial": "60000",

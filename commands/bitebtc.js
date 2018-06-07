@@ -38,7 +38,6 @@ exports.run = (client, message, args) => {
         .addField("Average", average+" BTC", true)
         .addField("Percent", percent+" %", true)
         .addField("Bitcoin Pair", "[EGEM/BTC :scales:](https://bitebtc.com/trade/egem_btc)", true)
-        .addField("Timestamp", dt+".", true)
 
         message.channel.send({embed})
 		} else {

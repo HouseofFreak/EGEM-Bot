@@ -18,11 +18,12 @@ const egemprice = require("./functions/getegemprice.js");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
 
+
 // Update Data
-setInterval(btcprice,60000);
-setInterval(egemprice,60000);
-setInterval(block,10000);
-setInterval(supply,15000);
+setInterval(btcprice,miscSettings.btcpriceDelay);
+setInterval(egemprice,miscSettings.egempriceDelay);
+setInterval(block,miscSettings.blockDelay);
+setInterval(supply,miscSettings.supplyDelay);
 
 let cooldown = new Set();
 let rollcooldown = new Set();
@@ -36,8 +37,21 @@ const prefix = botSettings.prefix;
 const bot = new Discord.Client({disableEveryone:true});
 
 bot.on('ready', ()=>{
-	console.log("**EGEM BOT** Discord Bot is Online.");
+	console.log("**EGEM BOT** is now Online.");
+	bot.channels.get(miscSettings.botChannelId).send("is now **Online.**");
 });
+
+// Motd
+const motd = function sendMotd(){
+	fs.readFile('data/xmg1.txt', 'utf8', function (err,data) {
+	  if (err) {
+	    return console.log(err);
+	  }
+	  //console.log(data);
+		bot.channels.get(miscSettings.botChannelId).send(data);
+	});
+};
+setInterval(motd,miscSettings.motdDelay);
 
 // Main sending function.
 function sendCoins(address,value,message,name){
@@ -152,7 +166,6 @@ function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 // Function to turn files into commands.
 bot.on("message", message => {
 	if(message.channel.name != '👾-the-egem-bot') return;
-	//if(message.channel.name != 'bots') return;
 	if(message.channel.type === "dm") return;
   if(message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
@@ -176,10 +189,8 @@ bot.on('message',async message => {
 
 	// Not admins cannot use bot in general channel
 	if(message.channel.name != '👾-the-egem-bot') return;
-	//if(message.channel.name != 'bots') return;
 	if(message.author.bot) return;
 	if(message.channel.type === "dm") return;
-
 
 	var message = message;
 	let args = message.content.split(' ');
@@ -410,7 +421,7 @@ bot.on('message',async message => {
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/xm1' command");
 		}
-		var editedFile = args[1];
+		var editedFile = args.slice(1).join(" ");
 	  fs.writeFile("data/xmg1.txt",editedFile, 'ascii',(err)=>{
 	    if(err) throw err;
 	  });
@@ -701,7 +712,7 @@ if(message.content == prefix + "timetrial"){
 	    errors: ['time'],
 		})
 	  .then((collected) => {
-			let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
+			let amount = (Math.random() * (0.200 - 0.0100) + 0.0100).toFixed(8);
 			let weiAmount = amount*Math.pow(10,18);
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
@@ -798,7 +809,7 @@ if(message.content.startsWith(prefix + "roll")){
 
       message.channel.send({embed})
 		} else {
-	    let number = Math.floor((Math.random() * 12) + 1)
+	    let number = Math.floor((Math.random() * 16) + 1)
 	    let word = randomWord();
 
 			var user = message.author.id;
@@ -806,9 +817,10 @@ if(message.content.startsWith(prefix + "roll")){
 			let data = getJson();
 			if(Object.keys(data).includes(user)){
 				let address = data[user];
-				if(number >= 6) {
-					let prize = "You won some coins! :trophy:";
-					let amount = (Math.random() * (0.020 - 0.0100) + 0.0100).toFixed(8);
+				if(number >= 12) {
+					let prize = "You won some coins! Congrats! :trophy:";
+					let score = "High roll! :game_die:"
+					let amount = (Math.random() * (0.030 - 0.0150) + 0.0150).toFixed(8);
 					let weiAmount = amount*Math.pow(10,18);
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
@@ -825,11 +837,49 @@ if(message.content.startsWith(prefix + "roll")){
 						 */
 						.setTimestamp()
 						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-						.addField("The dice hit the table and you get:", number)
+						.addField("The dice hit the table and you get:", "**"+number+"**", true)
+						.addField("Winner:", message.author.username, true)
+						.addField("Reward Score:", score)
 						.addField("Roll Prize:", prize)
 						.addField("EGEM:", amount)
+						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")")
 
-						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")", true);
+						message.channel.send({embed})
+
+						sendCoins(address,weiAmount,message,1); // main function
+						// Adds the user to the set so that they can't talk for x
+						rollcooldown.add(message.author.id);
+						setTimeout(() => {
+							// Removes the user from the set after a minute
+							rollcooldown.delete(message.author.id);
+						}, miscSettings.cdroll);
+				} else if (number >= 8) {
+					let prize = "You won some coins! Congrats! :trophy:";
+					let score = "Medium roll! :game_die:"
+					let amount = (Math.random() * (0.010 - 0.0050) + 0.0100).toFixed(8);
+					let weiAmount = amount*Math.pow(10,18);
+					const embed = new Discord.RichEmbed()
+						.setTitle("EGEM Discord Bot.")
+						.setAuthor("TheEGEMBot", miscSettings.egemspin)
+						/*
+						 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+						 */
+						.setColor(miscSettings.okcolor)
+						.setDescription("EGEM Dice Game:")
+						.setFooter("© EGEM.io", miscSettings.img32x32)
+						.setThumbnail(miscSettings.dice32)
+						/*
+						 * Takes a Date object, defaults to current date.
+						 */
+						.setTimestamp()
+						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+						.addField("The dice hit the table and you get:", "**"+number+"**", true)
+						.addField("Winner:", message.author.username, true)
+						.addField("Reward Score:", score)
+						.addField("Roll Prize:", prize)
+						.addField("EGEM:", amount)
+						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")")
+
 						message.channel.send({embed})
 
 						sendCoins(address,weiAmount,message,1); // main function
@@ -840,8 +890,9 @@ if(message.content.startsWith(prefix + "roll")){
 							rollcooldown.delete(message.author.id);
 						}, miscSettings.cdroll);
 				} else {
-					let prize = "Nothing, you need to roll a 6 or higher. :point_left:";
+					let prize = "Nothing, you need to roll a 8 or higher. :point_left:";
 					let amount = "Zero";
+					let score = "Low roll! :game_die:"
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
 						.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -857,10 +908,12 @@ if(message.content.startsWith(prefix + "roll")){
 						 */
 						.setTimestamp()
 						.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-						.addField("The dice hit the table and you get:", number)
+						.addField("The dice hit the table and you get:", "**"+number+"**", true)
+						.addField("You Lost:", message.author.username, true)
+						.addField("Reward Score:", score)
 						.addField("Roll Prize:", prize)
 						.addField("EGEM:", amount)
-						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")", true);
+						.addField("And the random word for this roll is:", ":satellite: " +"["+word+"](https://www.google.ca/search?q=" +word+ ")")
 
 						message.channel.send({embed})
 
