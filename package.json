@@ -1,8 +1,13 @@
 {
   "name": "the-egem-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Made with love, and coffee.",
+  "author": "TeamEGEM <info@egem.io>",
   "main": "index.js",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/TeamEGEM/EGEM-Bot.git"
+  },
   "scripts": {
     "start": "node index.js"
   },
