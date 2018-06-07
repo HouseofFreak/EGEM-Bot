@@ -1,5 +1,7 @@
 {
 	"web3provider": "http://localhost:16661",
+	"websiteLink": "https://egem.io/",
+	"forumLink": "https://forum.egem.io/",
 	"tickerSymbol": "EGEM",
 	"botChannelId": "423555330799042560",
 	"motdDelay": "900000",

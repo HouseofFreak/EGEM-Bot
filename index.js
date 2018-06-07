@@ -43,12 +43,30 @@ bot.on('ready', ()=>{
 
 // Motd
 const motd = function sendMotd(){
-	fs.readFile('data/xmg1.txt', 'utf8', function (err,data) {
+	fs.readFile('data/motd.txt', 'utf8', function (err,data) {
 	  if (err) {
 	    return console.log(err);
 	  }
 	  //console.log(data);
-		bot.channels.get(miscSettings.botChannelId).send(data);
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+			/*
+			 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			 */
+			.setColor(miscSettings.okcolor)
+			.setDescription("Message of the day.")
+			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setThumbnail(miscSettings.img32shard)
+			/*
+			 * Takes a Date object, defaults to current date.
+			 */
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("News & Updates:", data)
+			.addField("Website:", miscSettings.websiteLink + " :pushpin: ")
+			.addField("Forums:", miscSettings.forumLink + " :pushpin: ")
+		bot.channels.get(miscSettings.botChannelId).send({embed});
 	});
 };
 setInterval(motd,miscSettings.motdDelay);
@@ -416,16 +434,17 @@ bot.on('message',async message => {
 		  message.channel.send({embed});
 	}
 
-// write exchange message
-	if(message.content.startsWith(prefix + "xm1 ")){
+// Change MOTD message.
+	if(message.content.startsWith(prefix + "motd ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
-			return message.channel.send("You cannot use '/xm1' command");
+			return message.channel.send("You cannot use '/motd' command");
 		}
 		var editedFile = args.slice(1).join(" ");
-	  fs.writeFile("data/xmg1.txt",editedFile, 'ascii',(err)=>{
+	  fs.writeFile("data/motd.txt",editedFile, 'ascii',(err)=>{
 	    if(err) throw err;
 	  });
-		console.log('Message saved!');
+		//console.log('Message saved!');
+		message.channel.send("Message saved!");
 	}
 
 // Status of the coin.
