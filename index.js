@@ -66,7 +66,7 @@ const motd = function sendMotd(){
 			.addField("News & Updates:", data)
 			.addField("Website:", miscSettings.websiteLink + " :pushpin: ")
 			.addField("Forums:", miscSettings.forumLink + " :pushpin: ")
-		bot.channels.get(miscSettings.botChannelId).send({embed});
+		bot.channels.get(miscSettings.generalChannelId).send({embed});
 	});
 };
 setInterval(motd,miscSettings.motdDelay);

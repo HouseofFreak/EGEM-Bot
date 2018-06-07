@@ -4,6 +4,7 @@
 	"forumLink": "https://forum.egem.io/",
 	"tickerSymbol": "EGEM",
 	"botChannelId": "423555330799042560",
+	"generalChannelId": "409528861353574401",
 	"motdDelay": "900000",
 	"btcpriceDelay": "60000",
 	"egempriceDelay": "60000",
