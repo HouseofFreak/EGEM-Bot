@@ -183,7 +183,7 @@ function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
 // Function to turn files into commands.
 bot.on("message", message => {
-	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR') && ) return;
+	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR')) return;
 	//if(message.channel.name != '👾-the-egem-bot') return;
 	if(message.channel.type === "dm") return;
   if(message.author.bot) return;
