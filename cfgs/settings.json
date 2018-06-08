@@ -5,7 +5,7 @@
 	"tickerSymbol": "EGEM",
 	"botChannelId": "423555330799042560",
 	"generalChannelId": "409528861353574401",
-	"motdDelay": "1800000",
+	"motdDelay": "7200000",
 	"btcpriceDelay": "60000",
 	"egempriceDelay": "60000",
 	"blockDelay": "10000",
