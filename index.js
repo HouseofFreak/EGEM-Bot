@@ -183,7 +183,8 @@ function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
 // Function to turn files into commands.
 bot.on("message", message => {
-	if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR') && ) return;
+	//if(message.channel.name != '👾-the-egem-bot') return;
 	if(message.channel.type === "dm") return;
   if(message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
@@ -206,7 +207,8 @@ bot.on("message", message => {
 bot.on('message',async message => {
 
 	// Not admins cannot use bot in general channel
-	if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR') && ) return;
+	//if(message.channel.name != '👾-the-egem-bot') return;
 	if(message.author.bot) return;
 	if(message.channel.type === "dm") return;
 
