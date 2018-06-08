@@ -15,7 +15,7 @@ exports.run = (client, message, args) => {
      */
     .setColor(miscSettings.okcolor)
     .setDescription("Admin Command List:")
-    .setFooter("© EGEM.io", miscSettings.img32x32)
+    .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
     .setThumbnail(miscSettings.img32shard)
     /*
      * Takes a Date object, defaults to current date.
@@ -30,6 +30,7 @@ exports.run = (client, message, args) => {
     .addField(prefix+"online", "see list of all online and registered users for raindrops.")
     .addField(prefix+"onlinetotal", "see the list of every online user.")
     .addField(prefix+"forecast <amount> <numOfHrs>", "rain will be after N hours.")
+    .addField(prefix+"purge <number>", "cleans last X posts from channel.")
 
     message.channel.send({embed})
 }

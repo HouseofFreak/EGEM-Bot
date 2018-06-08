@@ -3,6 +3,7 @@
 	"websiteLink": "https://egem.io/",
 	"forumLink": "https://forum.egem.io/",
 	"tickerSymbol": "EGEM",
+	"footerBranding": "© EGEM.io",
 	"botChannelId": "423555330799042560",
 	"generalChannelId": "409528861353574401",
 	"motdDelay": "7200000",

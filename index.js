@@ -56,7 +56,7 @@ const motd = function sendMotd(){
 			 */
 			.setColor(miscSettings.okcolor)
 			.setDescription("Message of the day.")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -95,7 +95,7 @@ function sendCoins(address,value,message,name){
 				 */
 				.setColor(miscSettings.okcolor)
 				.setDescription("Bot Transaction")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -137,7 +137,7 @@ function raining(amount,message){
 		 */
 		.setColor(miscSettings.okcolor)
 		.setDescription("Raindrops:")
-		.setFooter("© EGEM.io", miscSettings.img32x32)
+		.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 		.setThumbnail(miscSettings.img32shard)
 		/*
 		 * Takes a Date object, defaults to current date.
@@ -236,7 +236,24 @@ bot.on('message',async message => {
 			message.channel.send("Wrong address to send.");
 		}
 	}
-
+	if(message.content.startsWith(prefix + "purge ")){
+		if(!message.member.hasPermission('ADMINISTRATOR')){
+			return message.channel.send("You cannot use '/purge' command.");
+		}
+	const user = message.mentions.users.first();
+	const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+	if (!amount) return message.reply('Must specify an amount to delete!');
+	if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
+	message.channel.fetchMessages({
+	 limit: amount,
+	}).then((messages) => {
+	 if (user) {
+	 const filterBy = user ? user.id : Client.user.id;
+	 messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+	 }
+	 message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+	});
+}
 // Admin tip a user.
 	if(message.content.startsWith(prefix + "tip ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -296,7 +313,7 @@ bot.on('message',async message => {
 				 */
 				.setColor(miscSettings.okcolor)
 				.setDescription("User Tip:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -324,7 +341,7 @@ bot.on('message',async message => {
 				 */
 				.setColor(miscSettings.okcolor)
 				.setDescription("User Tip:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -413,7 +430,7 @@ bot.on('message',async message => {
 		   */
 		  .setColor(miscSettings.egemcolor)
 		  .setDescription("Current Bot Status:")
-		  .setFooter("© EGEM.io", miscSettings.img32x32)
+		  .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 		  .setThumbnail(miscSettings.img32shard)
 		  /*
 		   * Takes a Date object, defaults to current date.
@@ -424,12 +441,12 @@ bot.on('message',async message => {
 		  /*
 		   * Inline fields may not display as inline if the thumbnail and/or image is too big.
 		   */
-		  .addField("Balance", Number(balance).toFixed(8), true)
+		  .addField("Balance:", Number(balance).toFixed(8), true)
 		  /*
 		   * Blank field, useful to create some space.
 		   */
 		  .addBlankField(true)
-		  .addField("Transactions", Number(txcount), true);
+		  .addField("Transactions:", Number(txcount), true);
 
 		  message.channel.send({embed});
 	}
@@ -466,7 +483,7 @@ bot.on('message',async message => {
 				 */
 				.setColor(miscSettings.egemcolor)
 				.setDescription("Coin Status:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -500,7 +517,7 @@ bot.on('message',async message => {
 			 */
 			.setColor(miscSettings.okcolor)
 			.setDescription("User's Discord Id:")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -541,7 +558,7 @@ bot.on('message',async message => {
 					 */
 					.setColor(0x00FF0C)
 					.setDescription("User Registration:")
-					.setFooter("© EGEM.io", miscSettings.img32x32)
+					.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 					.setThumbnail(miscSettings.img32shard)
 					/*
 					 * Takes a Date object, defaults to current date.
@@ -567,7 +584,7 @@ bot.on('message',async message => {
 					 */
 					.setColor(miscSettings.warningcolor)
 					.setDescription("Registration Error:")
-					.setFooter("© EGEM.io", miscSettings.img32x32)
+					.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 					.setThumbnail(miscSettings.img32shard)
 					/*
 					 * Takes a Date object, defaults to current date.
@@ -587,7 +604,7 @@ bot.on('message',async message => {
 				 */
 				.setColor(miscSettings.warningcolor)
 				.setDescription("Registration Error:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -636,7 +653,7 @@ bot.on('message',async message => {
 			 */
 			.setColor(miscSettings.okcolor)
 			.setDescription("Registered Users:")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -687,7 +704,7 @@ if(message.content == prefix + "timetrial"){
 			 */
 			.setColor(miscSettings.warningcolor)
 			.setDescription("EGEM Time Trial Game:")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.dice32)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -712,7 +729,7 @@ if(message.content == prefix + "timetrial"){
 			 */
 			.setColor(miscSettings.okcolor)
 			.setDescription("EGEM Time Trial:")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.img32shard)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -741,7 +758,7 @@ if(message.content == prefix + "timetrial"){
 				 */
 				.setColor(miscSettings.okcolor)
 				.setDescription("EGEM Time Trial Game:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -769,7 +786,7 @@ if(message.content == prefix + "timetrial"){
 				 */
 				.setColor(miscSettings.warningcolor)
 				.setDescription("EGEM Time Trial Game:")
-				.setFooter("© EGEM.io", miscSettings.img32x32)
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 				.setThumbnail(miscSettings.img32shard)
 				/*
 				 * Takes a Date object, defaults to current date.
@@ -790,7 +807,7 @@ if(message.content == prefix + "timetrial"){
 			 */
 			.setColor(miscSettings.warningcolor)
 			.setDescription("EGEM Dice Game:")
-			.setFooter("© EGEM.io", miscSettings.img32x32)
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 			.setThumbnail(miscSettings.dice32)
 			/*
 			 * Takes a Date object, defaults to current date.
@@ -817,7 +834,7 @@ if(message.content.startsWith(prefix + "roll")){
        */
       .setColor(miscSettings.warningcolor)
       .setDescription("EGEM Dice Game:")
-      .setFooter("© EGEM.io", miscSettings.img32x32)
+      .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
       .setThumbnail(miscSettings.dice32)
       /*
        * Takes a Date object, defaults to current date.
@@ -849,7 +866,7 @@ if(message.content.startsWith(prefix + "roll")){
 						 */
 						.setColor(miscSettings.okcolor)
 						.setDescription("EGEM Dice Game:")
-						.setFooter("© EGEM.io", miscSettings.img32x32)
+						.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 						.setThumbnail(miscSettings.dice32)
 						/*
 						 * Takes a Date object, defaults to current date.
@@ -885,7 +902,7 @@ if(message.content.startsWith(prefix + "roll")){
 						 */
 						.setColor(miscSettings.okcolor)
 						.setDescription("EGEM Dice Game:")
-						.setFooter("© EGEM.io", miscSettings.img32x32)
+						.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 						.setThumbnail(miscSettings.dice32)
 						/*
 						 * Takes a Date object, defaults to current date.
@@ -920,7 +937,7 @@ if(message.content.startsWith(prefix + "roll")){
 						 */
 						.setColor(miscSettings.warningcolor)
 						.setDescription("EGEM Dice Game:")
-						.setFooter("© EGEM.io", miscSettings.img32x32)
+						.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 						.setThumbnail(miscSettings.dice32)
 						/*
 						 * Takes a Date object, defaults to current date.
@@ -953,7 +970,7 @@ if(message.content.startsWith(prefix + "roll")){
 					 */
 					.setColor(miscSettings.warningcolor)
 					.setDescription("EGEM Dice Game:")
-					.setFooter("© EGEM.io", miscSettings.img32x32)
+					.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
 					.setThumbnail(miscSettings.dice32)
 					/*
 					 * Takes a Date object, defaults to current date.

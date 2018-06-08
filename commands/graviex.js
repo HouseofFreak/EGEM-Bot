@@ -22,7 +22,7 @@ exports.run = (client, message, args) => {
          */
         .setColor(miscSettings.okcolor)
         .setDescription(":ledger: Graviex Market Data:")
-        .setFooter("© EGEM.io", miscSettings.img32x32)
+        .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
         .setThumbnail(miscSettings.img32shard)
         /*
          * Takes a Date object, defaults to current date.
