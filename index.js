@@ -463,7 +463,7 @@ bot.on('message',async message => {
 	    if(err) throw err;
 	  });
 		//console.log('Message saved!');
-		message.channel.send("Message saved!");
+		message.channel.send("Message of the day has been saved!");
 	}
 
 // Status of the coin.
@@ -697,6 +697,7 @@ bot.on('message',async message => {
 */
 
 if(message.content == prefix + "timetrial"){
+	if(message.channel.name != '👾-the-egem-bot') return;
 		if(trialcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
@@ -707,7 +708,7 @@ if(message.content == prefix + "timetrial"){
 			.setColor(miscSettings.warningcolor)
 			.setDescription("EGEM Time Trial Game:")
 			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-			.setThumbnail(miscSettings.dice32)
+			.setThumbnail(miscSettings.stopwatch)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
@@ -732,7 +733,7 @@ if(message.content == prefix + "timetrial"){
 			.setColor(miscSettings.okcolor)
 			.setDescription("EGEM Time Trial:")
 			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-			.setThumbnail(miscSettings.img32shard)
+			.setThumbnail(miscSettings.stopwatch)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
@@ -761,7 +762,7 @@ if(message.content == prefix + "timetrial"){
 				.setColor(miscSettings.okcolor)
 				.setDescription("EGEM Time Trial Game:")
 				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-				.setThumbnail(miscSettings.img32shard)
+				.setThumbnail(miscSettings.stopwatch)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -789,7 +790,7 @@ if(message.content == prefix + "timetrial"){
 				.setColor(miscSettings.warningcolor)
 				.setDescription("EGEM Time Trial Game:")
 				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-				.setThumbnail(miscSettings.img32shard)
+				.setThumbnail(miscSettings.stopwatch)
 				/*
 				 * Takes a Date object, defaults to current date.
 				 */
@@ -810,7 +811,7 @@ if(message.content == prefix + "timetrial"){
 			.setColor(miscSettings.warningcolor)
 			.setDescription("EGEM Dice Game:")
 			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-			.setThumbnail(miscSettings.dice32)
+			.setThumbnail(miscSettings.stopwatch)
 			/*
 			 * Takes a Date object, defaults to current date.
 			 */
@@ -827,6 +828,7 @@ if(message.content == prefix + "timetrial"){
 */
 
 if(message.content.startsWith(prefix + "roll")){
+	if(message.channel.name != '👾-the-egem-bot') return;
 		if(rollcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
