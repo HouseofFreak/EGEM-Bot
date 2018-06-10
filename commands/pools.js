@@ -30,6 +30,7 @@ exports.run = (client, message, args) => {
     .addField("p00l.org", "https://egem.p00l.org/")
     .addField("BYLT.GQ", "https://egem.bylt.gq/")
     .addField("XMINER.CF", "http://egem.xminer.cf/")
+    .addField("CUBEPOOL.EU", "https://egem.cubepool.eu/")
 
     message.channel.send({embed})
 }
