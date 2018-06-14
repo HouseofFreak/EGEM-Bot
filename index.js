@@ -387,6 +387,7 @@ bot.on('message',async message => {
 	}
 // Pulls info from blockchain and decodes then spits it were needed.
 	if(message.content === prefix + "egem"){
+		if(message.channel.name != '👾-the-egem-bot') return;
 		let txlink = "0x0ee61199c26766809dc5146d30fa7f54876f36f958fc31350abf0d0d9f9dea5b";
 		web3.eth.getTransaction(txlink, (error,result)=>{
 			let data2decode = result["input"];
