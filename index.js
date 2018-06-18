@@ -467,47 +467,46 @@ bot.on('message',async message => {
 		message.channel.send("Message of the day has been saved!");
 	}
 
-// Status of the coin.
-	if(message.content == prefix + "coin"){
-
-		var block = getBlock();
-		var supply = getBlock()*9-5000;
-		var priceAvg = "W.I.P";
-		var fPrice = getEgemPrice()*getPrice();
-		var mCap = fPrice*supply;
-
-		try {
-
-			const embed = new Discord.RichEmbed()
-				.setTitle("EGEM Discord Bot.")
-				.setAuthor("TheEGEMBot", miscSettings.egemspin)
-				/*
-				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-				 */
-				.setColor(miscSettings.egemcolor)
-				.setDescription("Coin Status:")
-				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-				.setThumbnail(miscSettings.img32shard)
-				/*
-				 * Takes a Date object, defaults to current date.
-				 */
-				.setTimestamp()
-				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("Ticker:", miscSettings.tickerSymbol, true)
-
-				.addField("Current Block:", "["+block+"](https://explorer.egem.io/block/" +block+ ")", true)
-				.addField("Current Supply:", supply, true)
-				.addField("Market Cap:", "$" +Number(mCap).toFixed(2)+" USD", true)
-				.addField("USD Price:", await Number(fPrice).toFixed(4) + " USD", true)
-				.addField("BTC Price:", getEgemPrice(), true)
-
-				message.channel.send({embed});
-		}
-		catch(err) {
-			console.log(err)
-		}
-
-	}
+// // Status of the coin.
+// 	if(message.content == prefix + "coin"){
+//
+// 		var block = getBlock();
+// 		var supply = getBlock()*9-5000;
+// 		var priceAvg = "W.I.P";
+// 		var fPrice = getEgemPrice()*getPrice();
+// 		var mCap = fPrice*supply;
+//
+// 		try {
+// 			const embed = new Discord.RichEmbed()
+// 				.setTitle("EGEM Discord Bot.")
+// 				.setAuthor("TheEGEMBot", miscSettings.egemspin)
+// 				/*
+// 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+// 				 */
+// 				.setColor(miscSettings.egemcolor)
+// 				.setDescription("Coin Status:")
+// 				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+// 				.setThumbnail(miscSettings.img32shard)
+// 				/*
+// 				 * Takes a Date object, defaults to current date.
+// 				 */
+// 				.setTimestamp()
+// 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+// 				.addField("Ticker:", miscSettings.tickerSymbol, true)
+//
+// 				.addField("Current Block:", "["+block+"](https://explorer.egem.io/block/" +block+ ")", true)
+// 				.addField("Current Supply:", supply, true)
+// 				.addField("Market Cap:", "$" +Number(mCap).toFixed(2)+" USD", true)
+// 				.addField("USD Price:", await Number(fPrice).toFixed(4) + " USD", true)
+// 				.addField("BTC Price:", getEgemPrice(), true)
+//
+// 				message.channel.send({embed});
+// 		}
+// 		catch(err) {
+// 			console.log(err)
+// 		}
+//
+// 	}
 // Get discord user id.
 	if(message.content == prefix + "getid"){
 		var user = message.author.username;
