@@ -13,15 +13,10 @@ const fs = require("fs");
 const randomWord = require('random-word');
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
-const btcprice = require("./functions/btcprice.js");
-const egemprice = require("./functions/getegemprice.js");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
 
-
 // Update Data
-setInterval(btcprice,miscSettings.btcpriceDelay);
-setInterval(egemprice,miscSettings.egempriceDelay);
 setInterval(block,miscSettings.blockDelay);
 setInterval(supply,miscSettings.supplyDelay);
 
@@ -174,12 +169,9 @@ function getOnline(){
 }
 
 // Get data from files.
-function getEgemPrice(){ return JSON.parse(fs.readFileSync('data/egemprice.txt'));}
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
-function getPrice(){ return JSON.parse(fs.readFileSync('data/usdprice.txt'));}
 function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
 function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
-
 
 // Function to turn files into commands.
 bot.on("message", message => {
@@ -467,46 +459,6 @@ bot.on('message',async message => {
 		message.channel.send("Message of the day has been saved!");
 	}
 
-// // Status of the coin.
-// 	if(message.content == prefix + "coin"){
-//
-// 		var block = getBlock();
-// 		var supply = getBlock()*9-5000;
-// 		var priceAvg = "W.I.P";
-// 		var fPrice = getEgemPrice()*getPrice();
-// 		var mCap = fPrice*supply;
-//
-// 		try {
-// 			const embed = new Discord.RichEmbed()
-// 				.setTitle("EGEM Discord Bot.")
-// 				.setAuthor("TheEGEMBot", miscSettings.egemspin)
-// 				/*
-// 				 * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-// 				 */
-// 				.setColor(miscSettings.egemcolor)
-// 				.setDescription("Coin Status:")
-// 				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-// 				.setThumbnail(miscSettings.img32shard)
-// 				/*
-// 				 * Takes a Date object, defaults to current date.
-// 				 */
-// 				.setTimestamp()
-// 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-// 				.addField("Ticker:", miscSettings.tickerSymbol, true)
-//
-// 				.addField("Current Block:", "["+block+"](https://explorer.egem.io/block/" +block+ ")", true)
-// 				.addField("Current Supply:", supply, true)
-// 				.addField("Market Cap:", "$" +Number(mCap).toFixed(2)+" USD", true)
-// 				.addField("USD Price:", await Number(fPrice).toFixed(4) + " USD", true)
-// 				.addField("BTC Price:", getEgemPrice(), true)
-//
-// 				message.channel.send({embed});
-// 		}
-// 		catch(err) {
-// 			console.log(err)
-// 		}
-//
-// 	}
 // Get discord user id.
 	if(message.content == prefix + "getid"){
 		var user = message.author.username;
