@@ -19,7 +19,7 @@ exports.run = (client, message, args) => {
     .setTimestamp()
     .setURL("https://github.com/TeamEGEM/EGEM-Bot")
     .addField("/graviex - Graviex", "https://graviex.net/")
-    .addField("/bitebtc - BiteBTC", "https://bitebtc.com/")
+    .addField("/maple - MapleChange", "https://maplechange.com/")
 
     message.channel.send({embed})
 }
