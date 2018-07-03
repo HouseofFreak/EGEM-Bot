@@ -4,7 +4,7 @@ const miscSettings = require("../cfgs/settings.json");
 var getJSON = require('get-json');
 
 exports.run = (client, message, args) => {
-  var btcPrice = getJSON('http://api.egem.io/api/v1/egem_prices', function(error, response){
+  var btcPrice = getJSON('https://api.egem.io/api/v1/egem_prices', function(error, response){
 		if(!error) {
       var supply = response["TOTAL_EGEM_SUPPLY"];
       var avgUSD = response["AVERAGEUSD"];
