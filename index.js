@@ -605,8 +605,13 @@ bot.on('message',async message => {
 if(message.content.startsWith(prefix + "onehandbj")){
 
 	// get the cards for the hands
-	let dealerhand = Math.floor((Math.random() * 21) + 1);
-	let playerhand = Math.floor((Math.random() * 21) + 1);
+	let dealerhand1 = Math.floor((Math.random() * 13) + 1);
+	let playerhand1 = Math.floor((Math.random() * 13) + 1);
+	let dealerhand2 = Math.floor((Math.random() * 13) + 1);
+	let playerhand2 = Math.floor((Math.random() * 13) + 1);
+
+	var dealerhand = dealerhand1+dealerhand2;
+	var playerhand = playerhand1+playerhand2;
 
 	// set and check amount
 	let amount = args[1];
@@ -662,12 +667,23 @@ if(message.content.startsWith(prefix + "onehandbj")){
 		if (playerhand < 2) { let playerhand = 2; }
 
 		if (playerhand <= dealerhand) {
-			var dealresults = "You lost, the dealer had the higher or equal hand. ❌";
-			var winamount = 0;
+			if (dealerhand <= 21) {
+				var dealresults = "You lost, the dealer had the higher or equal hand. ❌";
+				var winamount = 0;
+			} else {
+				var dealresults = "You Won, the dealer has busted. 🏆";
+				var winamount = amount;
+				sendCoins(address,weiAmount,message,1); // main function
+			}
 		} else {
-			var dealresults = "You beat the dealer this hand. 🏆";
-			var winamount = amount;
-			sendCoins(address,weiAmount,message,1); // main function
+			if (playerhand <= 21) {
+				var dealresults = "You beat the dealer this hand. 🏆";
+				var winamount = amount;
+				sendCoins(address,weiAmount,message,1); // main function
+			} else {
+				var dealresults = "You lost, you have busted. ❌";
+				var winamount = 0;
+			}
 		}
 
 		const embed = new Discord.RichEmbed()
@@ -682,8 +698,8 @@ if(message.content.startsWith(prefix + "onehandbj")){
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 			.addField("Dealer shuffles the deck.", "Here are your cards for this round.")
-			.addField("🤖 Dealer Hand:", dealerhand + " 🃏")
-			.addField("👤 Player Hand:", playerhand + " 🃏")
+			.addField("🧙 Dealer Hand:", "🃏 " + dealerhand1 + " 🃏 " + dealerhand2 + " = " + "( " + dealerhand + " )")
+			.addField("🧟 Player Hand:", "🃏 " + playerhand1 + " 🃏 " + playerhand2 + " = " + "( " + playerhand + " )")
 			.addField("Results:", dealresults)
 			.addField("Winnings:", winamount + " EGEM")
 
