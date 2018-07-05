@@ -13,6 +13,7 @@ const fs = require("fs");
 const randomWord = require('random-word');
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
+const botChans = require("./cfgs/botchans.json");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
 
@@ -23,6 +24,7 @@ setInterval(supply,miscSettings.supplyDelay);
 let cooldown = new Set();
 let rollcooldown = new Set();
 let trialcooldown = new Set();
+let blackjackcooldown = new Set();
 
 // EtherGem web3
 var web3 = new Web3();
@@ -33,7 +35,7 @@ const bot = new Discord.Client({disableEveryone:true});
 
 bot.on('ready', ()=>{
 	console.log("**EGEM BOT** is now Online.");
-	bot.channels.get(miscSettings.botChannelId).send("is now **Online.**");
+	bot.channels.get(botChans.botChannelId).send("is now **Online.**");
 });
 
 // Motd
@@ -61,7 +63,7 @@ const motd = function sendMotd(){
 			.addField("News & Updates:", data)
 			.addField("Website:", miscSettings.websiteLink + " :pushpin: ")
 			.addField("Forums:", miscSettings.forumLink + " :pushpin: ")
-		bot.channels.get(miscSettings.generalChannelId).send({embed});
+		bot.channels.get(botChans.generalChannelId).send({embed});
 	});
 };
 setInterval(motd,miscSettings.motdDelay);
@@ -176,7 +178,7 @@ function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 // Function to turn files into commands.
 bot.on("message", message => {
 	if(message.channel.name === '🌐🗣-general') return;
-	if(message.channel.name === 'coinbot') return;
+	if(message.channel.name === 'coincheckbot') return;
 	if(message.channel.type === "dm") return;
   if(message.author.bot) return;
   if(message.content.indexOf(botSettings.prefix) !== 0) return;
@@ -200,7 +202,7 @@ bot.on('message',async message => {
 
 	// Not admins cannot use bot in general channel
 	if(message.channel.name === '🌐🗣-general' && !message.member.hasPermission('ADMINISTRATOR')) return;
-	if(message.channel.name === 'coinbot') return;
+	if(message.channel.name === 'coincheckbot') return;
 	if(message.author.bot) return;
 	if(message.channel.type === "dm") return;
 
@@ -645,11 +647,127 @@ bot.on('message',async message => {
 // Start of the games section.
 
 /*
+* One hand of blackjack
+*/
+
+if(message.content.startsWith(prefix + "onehandbj")){
+
+	// get the cards for the hands
+	let dealerhand = Math.floor((Math.random() * 21) + 1);
+	let playerhand = Math.floor((Math.random() * 21) + 1);
+
+	// set and check amount
+	let amount = args[1];
+	// if no amount exit
+	if (!amount) return;
+  // if amount more than 10 exit
+	if(amount > 5) {
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+			.setColor(miscSettings.warningcolor)
+			.setDescription("EGEM One Hand Of BlackJack Game:")
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+			.setThumbnail(miscSettings.blackjack)
+
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("Only noobs try to cheat, MAX 5 EGEM.", "Thank you.")
+
+			message.channel.send({embed})
+			return;
+	}
+	//convert amount to wei
+	let weiAmount = amount*Math.pow(10,18);
+
+	if(message.channel.name != 'blackjack') return;
+		if(blackjackcooldown.has(message.author.id)) {
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+			.setColor(miscSettings.warningcolor)
+			.setDescription("EGEM One Hand Of BlackJack Game:")
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+			.setThumbnail(miscSettings.blackjack)
+
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("You need to wait 5 mins to play again.", "Thank you.")
+
+			message.channel.send({embed})
+			return;
+		}
+
+		var user = message.author.id;
+		let data = getJson();
+		if(Object.keys(data).includes(user)){
+		let address = data[user];
+
+		// never less than two.
+		if (dealerhand < 2) { let dealerhand = 2; }
+		if (playerhand < 2) { let playerhand = 2; }
+
+		if (playerhand <= dealerhand) {
+			var dealresults = "You lost, the dealer had the higher or equal hand.";
+			var winamount = 0;
+		} else {
+			var dealresults = "You beat the dealer this hand.";
+			var winamount = amount;
+			sendCoins(address,weiAmount,message,1); // main function
+		}
+
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+			.setColor(miscSettings.okcolor)
+			.setDescription("EGEM One Hand Of BlackJack Game:")
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+			.setThumbnail(miscSettings.blackjack)
+
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("Dealer shuffles the deck.", "Here are your cards for this round.")
+			.addField("Dealer Hand:", dealerhand)
+			.addField("Player Hand:", playerhand)
+			.addField("Results:", dealresults)
+			.addField("Winnings:", winamount + " EGEM")
+
+		message.channel.send({embed})
+		//sendCoins(address,weiAmount,message,1); // main function
+		// Adds the user to the set so that they can't talk for x
+		blackjackcooldown.add(message.author.id);
+		setTimeout(() => {
+			// Removes the user from the set after a minute
+			blackjackcooldown.delete(message.author.id);
+		}, miscSettings.cdblackjack);
+
+	} else {
+		const embed = new Discord.RichEmbed()
+			.setTitle("EGEM Discord Bot.")
+			.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+			.setColor(miscSettings.warningcolor)
+			.setDescription("EGEM One Hand Of BlackJack Game:")
+			.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+			.setThumbnail(miscSettings.blackjack)
+
+			.setTimestamp()
+			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+			.addField("User Not Registered", user)
+
+			message.channel.send({embed});
+	}
+}
+
+/*
 * Time Trial Game.
 */
 
 if(message.content == prefix + "timetrial"){
-	if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name != 'timetrial') return;
 		if(trialcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
@@ -780,7 +898,7 @@ if(message.content == prefix + "timetrial"){
 */
 
 if(message.content.startsWith(prefix + "roll")){
-	if(message.channel.name != '👾-the-egem-bot') return;
+	if(message.channel.name != 'roll') return;
 		if(rollcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
