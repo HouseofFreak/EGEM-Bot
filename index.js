@@ -681,7 +681,7 @@ if(message.content.startsWith(prefix + "onehandbj")){
 	//convert amount to wei
 	let weiAmount = amount*Math.pow(10,18);
 
-	if(message.channel.name != 'blackjack') return;
+	if(message.channel.name != '🃏-blackjack') return;
 		if(blackjackcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
@@ -767,7 +767,7 @@ if(message.content.startsWith(prefix + "onehandbj")){
 */
 
 if(message.content == prefix + "timetrial"){
-	if(message.channel.name != 'timetrial') return;
+	if(message.channel.name != '🏁-timetrial') return;
 		if(trialcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
@@ -898,7 +898,7 @@ if(message.content == prefix + "timetrial"){
 */
 
 if(message.content.startsWith(prefix + "roll")){
-	if(message.channel.name != 'roll') return;
+	if(message.channel.name != '🎲-roll') return;
 		if(rollcooldown.has(message.author.id)) {
 		const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
