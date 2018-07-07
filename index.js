@@ -741,7 +741,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 									.addField("You Won!", "You doubled your wager.")
 									.addField("Roll Results:", "You rolled a " + roll + ".")
-									.addField("Amount Won:", amount + " EGEM.")
+									.addField("Amount Won:", winAmount + " EGEM.")
 
 								message.channel.send({embed})
 
