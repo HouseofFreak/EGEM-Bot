@@ -16,6 +16,7 @@ const miscSettings = require("./cfgs/settings.json");
 const botChans = require("./cfgs/botchans.json");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
+const BN = require('bn.js');
 
 // Update Data
 setInterval(block,miscSettings.blockDelay);
@@ -160,6 +161,7 @@ function getOnline(){
 
 // Get data from files.
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
+function getTXJson(){ return JSON.parse(fs.readFileSync('data/txlist.json'));}
 function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
 function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
@@ -220,24 +222,27 @@ bot.on('message',async message => {
 			message.channel.send("Wrong address to send.");
 		}
 	}
+
+// Purge chat messages.
 	if(message.content.startsWith(prefix + "purge ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
 			return message.channel.send("You cannot use '/purge' command.");
 		}
-	const user = message.mentions.users.first();
-	const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
-	if (!amount) return message.reply('Must specify an amount to delete!');
-	if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
-	message.channel.fetchMessages({
-	 limit: amount,
-	}).then((messages) => {
-	 if (user) {
-	 const filterBy = user ? user.id : Client.user.id;
-	 messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
-	 }
-	 message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
-	});
-}
+		const user = message.mentions.users.first();
+		const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+		if (!amount) return message.reply('Must specify an amount to delete!');
+		if (!amount && !user) return message.reply('Must specify a user and amount, or just an amount, of messages to purge!');
+		message.channel.fetchMessages({
+		 limit: amount,
+		}).then((messages) => {
+		 if (user) {
+		 const filterBy = user ? user.id : Client.user.id;
+		 messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+		 }
+		 message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+		});
+	}
+
 // Admin tip a user.
 	if(message.content.startsWith(prefix + "tip ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -270,6 +275,7 @@ bot.on('message',async message => {
 		// main func
 		raining(amount,message);
 	}
+
 // Sprinkle on some users.
 	if(message.content.startsWith(prefix + "sprinkle")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -278,6 +284,7 @@ bot.on('message',async message => {
 		var amount = Math.floor((Math.random() * 10) + 1);
 		raining(amount,message);
 	}
+
 // Downpour on users
 	if(message.content.startsWith(prefix + "downpour")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -286,6 +293,7 @@ bot.on('message',async message => {
 		var amount = Math.floor((Math.random() * 100) + 10);
 		raining(amount,message);
 	}
+
 // Users can tip each other every 2 hours.
 	if(message.content.startsWith(prefix + "usertip ")){
 		if(cooldown.has(message.author.id)) {
@@ -340,6 +348,7 @@ bot.on('message',async message => {
 
     }
 	}
+
 // Set it to rain after X amount of time.
 	if(message.content.startsWith(prefix + "forecast ")){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -359,6 +368,7 @@ bot.on('message',async message => {
 		},time);
 
 	}
+
 // Pulls info from blockchain and decodes then spits it were needed.
 	if(message.content === prefix + "egem"){
 		if(message.channel.name != '👾-the-egem-bot') return;
@@ -453,6 +463,7 @@ bot.on('message',async message => {
 
 			message.channel.send({embed});
 	}
+
 // Check to see if registered.
 	if(message.content == prefix + "checkreg"){
 		var user = message.author.username;
@@ -464,6 +475,7 @@ bot.on('message',async message => {
 			message.channel.send("You are not in the list, use **/register** command fist.");
 		}
 	}
+
 // Register with the bot.
 	if(message.content.startsWith("/register")){
 		var user = message.author.username;
@@ -528,6 +540,7 @@ bot.on('message',async message => {
 				message.channel.send({embed});
 		}
 	}
+
 // Change registration with bot.
 	if(message.content.startsWith(prefix + "changereg")){
 		var user = message.author.username;
@@ -573,6 +586,7 @@ bot.on('message',async message => {
 		message.channel.send({embed});
 
 	}
+
 // Shows all online users
 	if(message.content == prefix + "onlinetotal"){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -581,6 +595,7 @@ bot.on('message',async message => {
 		var online = getOnline();
 		message.channel.send("Total list of online users are **" + online+ "**.");
 	}
+
 // Shows online users for rain drops.
 	if(message.content == prefix + "online"){
 		if(!message.member.hasPermission('ADMINISTRATOR')){
@@ -597,6 +612,143 @@ bot.on('message',async message => {
 	}
 
 // Start of the games section.
+
+/*
+* Risk it All
+*/
+
+if(message.content.startsWith(prefix + "riskit ")){
+	if(message.channel.name != '🎰-risk-it-all') return;
+	var author = message.author.id;
+	var tx = args[1];
+	let txdata = getTXJson();
+		if(Object.keys(txdata).includes(tx)){
+			const embed = new Discord.RichEmbed()
+				.setTitle("EGEM Discord Bot.")
+				.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+				.setColor(miscSettings.warningcolor)
+				.setDescription("EGEM Risk It All Game:")
+				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+				.setThumbnail(miscSettings.blackjack)
+
+				.setTimestamp()
+				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+				.addField("This TX has been claimed, and is no longer valid. please send a new TX to the bot.", "Thank you.")
+
+			return message.channel.send({embed});
+		} else {
+		web3.eth.getTransaction(args[1], (error,result)=>{
+	    if(!error){
+	      if(result !== null){
+						let to = result["to"];
+						let from = result["from"];
+		        let valueRaw = result["value"];
+		        let value = (valueRaw/Math.pow(10,18)).toFixed(8);
+						txdata[tx] = author;
+						var amount = value*2;
+
+						var weiAmount = amount*Math.pow(10,18);
+						let roll = Math.floor((Math.random() * 10) + 1);
+						let bot = web3.utils.toChecksumAddress(botSettings.address);
+						let address = web3.utils.toChecksumAddress(args[2]);
+
+						if(!web3.utils.isAddress(args[2])){
+							const embed = new Discord.RichEmbed()
+								.setTitle("EGEM Discord Bot.")
+								.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+								.setColor(miscSettings.warningcolor)
+								.setDescription("EGEM Risk It All Game:")
+								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+								.setThumbnail(miscSettings.blackjack)
+
+								.setTimestamp()
+								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+								.addField("Address didn't pass checksum.", "Thank you.")
+
+							return message.channel.send({embed});
+						}
+
+						if (to !== bot) {
+							const embed = new Discord.RichEmbed()
+								.setTitle("EGEM Discord Bot.")
+								.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+								.setColor(miscSettings.warningcolor)
+								.setDescription("EGEM Risk It All Game:")
+								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+								.setThumbnail(miscSettings.blackjack)
+
+								.setTimestamp()
+								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+								.addField("You can't claim this TX, please send a new TX to the bot.", "Thank you.")
+
+							return message.channel.send({embed});
+						}
+
+						if (from !== address) {
+							const embed = new Discord.RichEmbed()
+								.setTitle("EGEM Discord Bot.")
+								.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+								.setColor(miscSettings.warningcolor)
+								.setDescription("EGEM Risk It All Game:")
+								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+								.setThumbnail(miscSettings.blackjack)
+
+								.setTimestamp()
+								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+								.addField("The return address must match the TX address, prevents others from claiming.", "Thank you.")
+
+							return message.channel.send({embed});
+						}
+
+						if (roll >= 7) {
+								const embed = new Discord.RichEmbed()
+									.setTitle("EGEM Discord Bot.")
+									.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+									.setColor(miscSettings.okcolor)
+									.setDescription("EGEM Risk It All Game:")
+									.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+									.setThumbnail(miscSettings.blackjack)
+
+									.setTimestamp()
+									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+									.addField("You Won!", "You doubled your wager. " + amount + " EGEM")
+
+								message.channel.send({embed})
+
+								sendCoins(address,weiAmount,message,1); // main function
+						} else {
+								const embed = new Discord.RichEmbed()
+									.setTitle("EGEM Discord Bot.")
+									.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+									.setColor(miscSettings.warningcolor)
+									.setDescription("EGEM Risk It All Game:")
+									.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+									.setThumbnail(miscSettings.blackjack)
+
+									.setTimestamp()
+									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+									.addField("Sorry you didnt win, better luck next time.", "Thank you.")
+
+								message.channel.send({embed})
+						}
+						console.log(value);
+						console.log(txdata);
+						console.log(to);
+						console.log(roll);
+
+						fs.writeFile(miscSettings.txlistpath, JSON.stringify(txdata), (err) => {
+							if (err) throw err;
+						});
+				}
+			}})
+		}
+}
 
 /*
 * One hand of blackjack

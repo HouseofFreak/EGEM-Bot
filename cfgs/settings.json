@@ -2,6 +2,7 @@
 	"web3provider": "http://localhost:16661",
 	"websiteLink": "https://egem.io/",
 	"forumLink": "https://forum.egem.io/",
+	"txlistpath": "data/txlist.json",
 	"tickerSymbol": "EGEM",
 	"footerBranding": "© EGEM.io",
 	"motdDelay": "7200000",

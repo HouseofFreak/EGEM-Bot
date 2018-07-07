@@ -5,17 +5,17 @@
   "author": "TeamEGEM <info@egem.io>",
   "main": "index.js",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/TeamEGEM/EGEM-Bot.git"
+    "type": "git",
+    "url": "https://github.com/TeamEGEM/EGEM-Bot.git"
   },
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.0",
     "bignumber.js": "^6.0.0",
+    "bn.js": "^4.11.8",
     "discord.js": "^11.3.0",
     "ethereum-common": "^0.2.1",
     "ethereum-contracts": "^1.0.0",
@@ -27,6 +27,7 @@
     "nonce": "^1.0.4",
     "random-word": "^2.0.0",
     "solc": "^0.4.21",
-    "web3": "^1.0.0-beta.30"
+    "web3": "^1.0.0-beta.34",
+    "web3-utils": "^1.0.0-beta.34"
   }
 }
