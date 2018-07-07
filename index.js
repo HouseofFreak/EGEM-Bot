@@ -647,7 +647,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 		        let value = (valueRaw/Math.pow(10,18)).toFixed(8);
 						txdata[tx] = author;
 						var winAmount = value*2;
-						var lossAmount = value/2;
+						var lossAmount = value/4;
 
 						var winWeiAmount = winAmount*Math.pow(10,18);
 						var lossWeiAmount = lossAmount*Math.pow(10,18);
