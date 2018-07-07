@@ -618,6 +618,7 @@ bot.on('message',async message => {
 
 if(message.content.startsWith(prefix + "riskit ")){
 	if(message.channel.name != '🎰-risk-it-all') return;
+	let botBalance = await web3.eth.getBalance(botSettings.address)/Math.pow(10,18);
 	var author = message.author.id;
 	var tx = args[1];
 	let txdata = getTXJson();
@@ -645,12 +646,35 @@ if(message.content.startsWith(prefix + "riskit ")){
 		        let valueRaw = result["value"];
 		        let value = (valueRaw/Math.pow(10,18)).toFixed(8);
 						txdata[tx] = author;
-						var amount = value*2;
+						var winAmount = value*2;
+						var lossAmount = value/2;
 
-						var weiAmount = amount*Math.pow(10,18);
+						var winWeiAmount = winAmount*Math.pow(10,18);
+						var lossWeiAmount = lossAmount*Math.pow(10,18);
 						let roll = Math.floor((Math.random() * 10) + 1);
 						let bot = web3.utils.toChecksumAddress(botSettings.address);
 						let address = web3.utils.toChecksumAddress(args[2]);
+
+						let safeBet = winAmount*2;
+
+						if (botBalance <= safeBet) {
+							const embed = new Discord.RichEmbed()
+								.setTitle("EGEM Discord Bot.")
+								.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+								.setColor(miscSettings.warningcolor)
+								.setDescription("EGEM Risk It All Game:")
+								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+								.setThumbnail(miscSettings.dice32)
+
+								.setTimestamp()
+								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+								.addField("Bot cant cover the bet, try when it has more funds.", "Thank you for playing.")
+								.addField("Player's Bet: ", value)
+								.addField("Bot Balance: ", botBalance)
+
+							return message.channel.send({embed});
+						}
 
 						if(!web3.utils.isAddress(args[2])){
 							const embed = new Discord.RichEmbed()
@@ -721,7 +745,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 
 								message.channel.send({embed})
 
-								sendCoins(address,weiAmount,message,1); // main function
+								sendCoins(address,winWeiAmount,message,1); // main function
 						} else {
 								const embed = new Discord.RichEmbed()
 									.setTitle("EGEM Discord Bot.")
@@ -736,14 +760,16 @@ if(message.content.startsWith(prefix + "riskit ")){
 									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 									.addField("Sorry you didnt win, better luck next time.", "Thank you for playing.")
 									.addField("Roll Results:", "You rolled a " + roll + ".")
-									.addField("Amount Lost:", value + " EGEM.")
+									.addField("Amount Won:", lossAmount + " EGEM.")
 
 								message.channel.send({embed})
+								sendCoins(address,lossWeiAmount,message,1); // main function
 						}
 						//console.log(value);
 						//console.log(txdata);
 						//console.log(to);
 						//console.log(roll);
+						//console.log(botBalance);
 
 						fs.writeFile(miscSettings.txlistpath, JSON.stringify(txdata), (err) => {
 							if (err) throw err;
