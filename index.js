@@ -10,7 +10,6 @@ const Tx = require("ethereumjs-tx");
 const ContractFactory = require("ethereum-contracts");
 const fs = require("fs");
 const randomWord = require('random-word');
-var BN = web3.utils.BN;
 
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
