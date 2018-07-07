@@ -8,15 +8,14 @@ const Discord = require("discord.js");
 const BigNumber = require('bignumber.js');
 const Tx = require("ethereumjs-tx");
 const ContractFactory = require("ethereum-contracts");
-const solc = require("solc");
 const fs = require("fs");
 const randomWord = require('random-word');
+
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
 const botChans = require("./cfgs/botchans.json");
 const block = require("./functions/getblock.js");
 const supply = require("./functions/getsup.js");
-const BN = require('bn.js');
 
 // Update Data
 setInterval(block,miscSettings.blockDelay);
@@ -630,11 +629,11 @@ if(message.content.startsWith(prefix + "riskit ")){
 				.setColor(miscSettings.warningcolor)
 				.setDescription("EGEM Risk It All Game:")
 				.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-				.setThumbnail(miscSettings.blackjack)
+				.setThumbnail(miscSettings.dice32)
 
 				.setTimestamp()
 				.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-				.addField("This TX has been claimed, and is no longer valid. please send a new TX to the bot.", "Thank you.")
+				.addField("This TX has been claimed, and is no longer valid. please send a new TX to the bot.", "Thank you for playing.")
 
 			return message.channel.send({embed});
 		} else {
@@ -661,11 +660,11 @@ if(message.content.startsWith(prefix + "riskit ")){
 								.setColor(miscSettings.warningcolor)
 								.setDescription("EGEM Risk It All Game:")
 								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-								.setThumbnail(miscSettings.blackjack)
+								.setThumbnail(miscSettings.dice32)
 
 								.setTimestamp()
 								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-								.addField("Address didn't pass checksum.", "Thank you.")
+								.addField("Address didn't pass checksum.", "Thank you for playing.")
 
 							return message.channel.send({embed});
 						}
@@ -678,11 +677,11 @@ if(message.content.startsWith(prefix + "riskit ")){
 								.setColor(miscSettings.warningcolor)
 								.setDescription("EGEM Risk It All Game:")
 								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-								.setThumbnail(miscSettings.blackjack)
+								.setThumbnail(miscSettings.dice32)
 
 								.setTimestamp()
 								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-								.addField("You can't claim this TX, please send a new TX to the bot.", "Thank you.")
+								.addField("You can't claim this TX, please send a new TX to the bot.", "Thank you for playing.")
 
 							return message.channel.send({embed});
 						}
@@ -695,11 +694,11 @@ if(message.content.startsWith(prefix + "riskit ")){
 								.setColor(miscSettings.warningcolor)
 								.setDescription("EGEM Risk It All Game:")
 								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-								.setThumbnail(miscSettings.blackjack)
+								.setThumbnail(miscSettings.dice32)
 
 								.setTimestamp()
 								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-								.addField("The return address must match the TX address, prevents others from claiming.", "Thank you.")
+								.addField("The return address must match the TX address, prevents others from claiming.", "Thank you for playing.")
 
 							return message.channel.send({embed});
 						}
@@ -712,11 +711,13 @@ if(message.content.startsWith(prefix + "riskit ")){
 									.setColor(miscSettings.okcolor)
 									.setDescription("EGEM Risk It All Game:")
 									.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-									.setThumbnail(miscSettings.blackjack)
+									.setThumbnail(miscSettings.dice32)
 
 									.setTimestamp()
 									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-									.addField("You Won!", "You doubled your wager. " + amount + " EGEM")
+									.addField("You Won!", "You doubled your wager.")
+									.addField("Roll Results:", "You rolled a " + roll + ".")
+									.addField("Amount Won:", amount + " EGEM.")
 
 								message.channel.send({embed})
 
@@ -729,18 +730,20 @@ if(message.content.startsWith(prefix + "riskit ")){
 									.setColor(miscSettings.warningcolor)
 									.setDescription("EGEM Risk It All Game:")
 									.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-									.setThumbnail(miscSettings.blackjack)
+									.setThumbnail(miscSettings.dice32)
 
 									.setTimestamp()
 									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-									.addField("Sorry you didnt win, better luck next time.", "Thank you.")
+									.addField("Sorry you didnt win, better luck next time.", "Thank you for playing.")
+									.addField("Roll Results:", "You rolled a " + roll + ".")
+									.addField("Amount Lost:", value + " EGEM.")
 
 								message.channel.send({embed})
 						}
-						console.log(value);
-						console.log(txdata);
-						console.log(to);
-						console.log(roll);
+						//console.log(value);
+						//console.log(txdata);
+						//console.log(to);
+						//console.log(roll);
 
 						fs.writeFile(miscSettings.txlistpath, JSON.stringify(txdata), (err) => {
 							if (err) throw err;
