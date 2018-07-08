@@ -435,6 +435,7 @@ bot.on('message',async message => {
 		    SplitInstance = instance;
 		});
 	}
+
 // Displays the bots info.
 	if(message.content == prefix + "botinfo"){
 		let txcount = await web3.eth.getTransactionCount(botSettings.address);
@@ -682,6 +683,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 						let to = result["to"];
 						let from = result["from"];
 		        let valueRaw = result["value"];
+						let minedBlock = result["blockNumber"];
 		        let value = (valueRaw/Math.pow(10,18)).toFixed(8);
 						txdata[tx] = author;
 						var winAmount = value*2;
@@ -689,8 +691,6 @@ if(message.content.startsWith(prefix + "riskit ")){
 
 						var winWeiAmount = (winAmount*Math.pow(10,18)).toString();
 						var lossWeiAmount = (lossAmount*Math.pow(10,18)).toString();
-						//var lossWeiAmount = lossAmount*10000000000000000000;
-						//var winWeiAmount = winAmount*Math.pow(10,18);
 						let roll = Math.floor((Math.random() * 10) + 1);
 						let bot = web3.utils.toChecksumAddress(botSettings.address);
 						let address = web3.utils.toChecksumAddress(args[2]);
@@ -698,6 +698,23 @@ if(message.content.startsWith(prefix + "riskit ")){
 						let safeBet = winAmount*1.01;
 						let safeBet2 = Number(safeBet).toFixed(0);
 						let botBalance2 = Number(botBalance).toFixed(0);
+
+						if (minedBlock == null) {
+							const embed = new Discord.RichEmbed()
+								.setTitle("EGEM Discord Bot.")
+								.setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+								.setColor(miscSettings.warningcolor)
+								.setDescription("EGEM Risk It All Game:")
+								.setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+								.setThumbnail(miscSettings.dice32)
+
+								.setTimestamp()
+								.setURL("https://github.com/TeamEGEM/EGEM-Bot")
+								.addField("Transaction not mined yet please wait.", "Thank you for playing.")
+
+							return message.channel.send({embed});
+						}
 
 						if (botBalance2 < safeBet2) {
 							console.log(safeBet2);
