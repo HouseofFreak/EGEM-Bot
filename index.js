@@ -10,6 +10,7 @@ const Tx = require("ethereumjs-tx");
 const ContractFactory = require("ethereum-contracts");
 const fs = require("fs");
 const randomWord = require('random-word');
+//const BN = require('bn.js');
 
 const botSettings = require("./config.json");
 const miscSettings = require("./cfgs/settings.json");
@@ -70,7 +71,7 @@ function sendCoins(address,value,message,name){
 	    from: botSettings.address,
 	    to: address,
 	    gas: web3.utils.toHex(miscSettings.txgas),
-	    value: value
+	    value: numberToString(value)
 	})
 	.on('transactionHash', function(hash){
 		// sent pm with their tx
@@ -97,6 +98,36 @@ function sendCoins(address,value,message,name){
 
 	})
 	.on('error', console.error);
+}
+
+// Number to string work around for bignumber and scientific-notation.
+function numberToString(num){
+    let numStr = String(num);
+
+    if (Math.abs(num) < 1.0)
+    {
+        let e = parseInt(num.toString().split('e-')[1]);
+        if (e)
+        {
+            let negative = num < 0;
+            if (negative) num *= -1
+            num *= Math.pow(10, e - 1);
+            numStr = '0.' + (new Array(e)).join('0') + num.toString().substring(2);
+            if (negative) numStr = "-" + numStr;
+        }
+    }
+    else
+    {
+        let e = parseInt(num.toString().split('+')[1]);
+        if (e > 20)
+        {
+            e -= 20;
+            num /= Math.pow(10, e);
+            numStr = num.toString() + (new Array(e + 1)).join('0');
+        }
+    }
+
+    return numStr;
 }
 
 // Raining command to send users coin.
@@ -210,8 +241,8 @@ bot.on('message',async message => {
 		let weiAmount = amount*Math.pow(10,18);
 
 		if(web3.utils.isAddress(args[1])){
-			if(amount>100){
-				message.channel.send("You can't send more than 100 EGEM.");
+			if(amount>100000){
+				message.channel.send("You can't send more than 100000 EGEM.");
 			} else {
 				// main function
 				message.channel.send("You try to send " + amount + " EGEM to " + address + " address.");
@@ -612,6 +643,13 @@ bot.on('message',async message => {
 
 // Start of the games section.
 
+if(message.content.startsWith(prefix + "bnout ")){
+	var bn = args[1];
+	var bigN = web3.utils.toBN(bn).toString();
+	console.log(bigN)
+}
+
+
 /*
 * Risk it All
 */
@@ -649,15 +687,20 @@ if(message.content.startsWith(prefix + "riskit ")){
 						var winAmount = value*2;
 						var lossAmount = value/4;
 
-						var winWeiAmount = winAmount*Math.pow(10,18);
-						var lossWeiAmount = lossAmount*Math.pow(10,18);
+						var winWeiAmount = (winAmount*Math.pow(10,18)).toString();
+						var lossWeiAmount = (lossAmount*Math.pow(10,18)).toString();
+						//var lossWeiAmount = lossAmount*10000000000000000000;
+						//var winWeiAmount = winAmount*Math.pow(10,18);
 						let roll = Math.floor((Math.random() * 10) + 1);
 						let bot = web3.utils.toChecksumAddress(botSettings.address);
 						let address = web3.utils.toChecksumAddress(args[2]);
 
-						let safeBet = winAmount*2;
+						let safeBet = winAmount*1.01;
+						let safeBet2 = Number(safeBet).toFixed(0);
+						let botBalance2 = Number(botBalance).toFixed(0);
 
-						if (botBalance <= safeBet) {
+						if (botBalance2 < safeBet2) {
+							console.log(safeBet2);
 							const embed = new Discord.RichEmbed()
 								.setTitle("EGEM Discord Bot.")
 								.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -760,7 +803,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 									.setURL("https://github.com/TeamEGEM/EGEM-Bot")
 									.addField("Sorry you didnt win, better luck next time.", "Thank you for playing.")
 									.addField("Roll Results:", "You rolled a " + roll + ".")
-									.addField("Amount Won:", lossAmount + " EGEM.")
+									.addField("Amount Returned:", lossAmount + " EGEM.")
 
 								message.channel.send({embed})
 								sendCoins(address,lossWeiAmount,message,1); // main function
@@ -769,7 +812,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 						//console.log(txdata);
 						//console.log(to);
 						//console.log(roll);
-						//console.log(botBalance);
+
 
 						fs.writeFile(miscSettings.txlistpath, JSON.stringify(txdata), (err) => {
 							if (err) throw err;
