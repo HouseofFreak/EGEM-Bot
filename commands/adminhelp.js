@@ -18,7 +18,7 @@ exports.run = (client, message, args) => {
 
     .setTimestamp()
     .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-    .addField(prefix+"sendToAddress <address> <amount>", "send EGEM to the following address. MAX 100/per TX")
+    .addField(prefix+"sendToAddress <address> <amount>", "send EGEM to the following address. MAX 100000/per TX")
     .addField(prefix+"tip <name> <amount>", "send EGEM to the following user. MAX 100/per TX")
     .addField(prefix+"rain <amount>", "send EGEM to all registered and online address's.")
     .addField(prefix+"sprinkle", "send 1-10 EGEM to all registered and online address's")
