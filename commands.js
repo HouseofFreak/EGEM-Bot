@@ -26,6 +26,12 @@ bot.on('ready', ()=>{
 	bot.channels.get(botChans.botChannelId).send("**COMMAND THREAD** is now **Online.**");
 });
 
+// Thread console heartbeat
+const threadHB = function sendHB(){
+	console.log("**COMMAND THREAD** is ACTIVE");
+};
+setInterval(threadHB,miscSettings.HBDelay);
+
 // Function to turn files into commands.
 bot.on("message", message => {
 	if(message.channel.name === '🌐🗣-general') return;

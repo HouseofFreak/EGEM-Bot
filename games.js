@@ -39,6 +39,11 @@ bot.on('ready', ()=>{
 	bot.channels.get(botChans.botChannelId).send("**GAME THREAD** is now **Online.**");
 });
 
+// Thread console heartbeat
+const threadHB = function sendHB(){
+	console.log("**GAME THREAD** is ACTIVE");
+};
+setInterval(threadHB,miscSettings.HBDelay);
 
 // Main sending function.
 function sendCoins(address,value,message,name){

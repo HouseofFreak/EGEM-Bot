@@ -65,6 +65,12 @@ const motd = function sendMotd(){
 };
 setInterval(motd,miscSettings.motdDelay);
 
+// Thread console heartbeat
+const threadHB = function sendHB(){
+	console.log("**MAIN THREAD** is ACTIVE");
+};
+setInterval(threadHB,miscSettings.HBDelay);
+
 // Main sending function.
 function sendCoins(address,value,message,name){
 	web3.eth.sendTransaction({

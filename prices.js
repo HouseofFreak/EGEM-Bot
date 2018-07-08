@@ -39,5 +39,11 @@ bot.on('ready', ()=>{
 	bot.channels.get(botChans.botChannelId).send("**PRICE THREAD** is now **Online.**");
 });
 
+// Thread console heartbeat
+const threadHB = function sendHB(){
+	console.log("**PRICE THREAD** is ACTIVE");
+};
+setInterval(threadHB,miscSettings.HBDelay);
+
 // Login the bot.
 bot.login(botSettings.token);
