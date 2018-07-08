@@ -167,8 +167,6 @@ function getOnline(){
 // Get data from files.
 function getJson(){ return JSON.parse(fs.readFileSync('data/users.json'));}
 function getTXJson(){ return JSON.parse(fs.readFileSync('data/txlist.json'));}
-function getSupply(){ return JSON.parse(fs.readFileSync('data/supply.txt'));}
-function getBlock(){ return JSON.parse(fs.readFileSync('./data/block.txt'));}
 
 // Main file bot commands
 bot.on('message',async message => {
@@ -183,13 +181,6 @@ bot.on('message',async message => {
 	let args = message.content.split(' ');
 
 // Start of the games section.
-
-if(message.content.startsWith(prefix + "bnout ")){
-	var bn = args[1];
-	var bigN = web3.utils.toBN(bn).toString();
-	console.log(bigN)
-}
-
 
 /*
 * Risk it All
