@@ -10,7 +10,7 @@ function getSupply(){
 				var reward = "9";
 				var result1 = blockHeight*reward;
 				var resultFinal = result1 - 5000;
-				console.log('**EGEM BOT** Supply has been logged to the file. ' + resultFinal);
+				//console.log('**EGEM BOT** Supply has been logged to the file. ' + resultFinal);
 				//write to data folder
 				fs.writeFile("data/supply.txt",resultFinal,(err)=>{
 					if(err) throw err;
