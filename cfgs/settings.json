@@ -6,6 +6,7 @@
 	"tickerSymbol": "EGEM",
 	"footerBranding": "© EGEM.io",
 	"motdDelay": "7200000",
+	"HBDelay": "30000",
 	"btcpriceDelay": "60000",
 	"egempriceDelay": "60000",
 	"blockDelay": "10000",
