@@ -60,6 +60,7 @@ const motd = function sendMotd(){
 			.addField("News & Updates:", data)
 			.addField("Website:", miscSettings.websiteLink + " :pushpin: ")
 			.addField("Forums:", miscSettings.forumLink + " :pushpin: ")
+			.addField("Looking for Info?:", "We use the forums as a central hub, please register.")
 		bot.channels.get(botChans.generalChannelId).send({embed});
 	});
 };
