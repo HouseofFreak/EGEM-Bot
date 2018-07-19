@@ -231,8 +231,8 @@ if(message.content.startsWith(prefix + "riskit ")){
 						let bot = web3.utils.toChecksumAddress(botSettings.address);
 
 						let safeBet = winAmount*1.01;
-						let safeBet2 = Number(safeBet).toFixed(4);
-						let botBalance2 = Number(botBalance).toFixed(4);
+						let safeBet2 = Number(safeBet);
+						let botBalance2 = Number(botBalance);
 
 						if (args[2] !== "") {
 							var address = web3.utils.toChecksumAddress(args[2]);
