@@ -589,7 +589,6 @@ if(message.content == prefix + "timetrial"){
 			}, miscSettings.cdtimetrial);
 		})
     .catch(() => {
-      message.channel.send('');
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
 				.setAuthor("TheEGEMBot", miscSettings.egemspin)
