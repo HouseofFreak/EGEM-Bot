@@ -2,6 +2,7 @@ const Web3 = require("web3");
 const fs = require("fs");
 const Discord = require("discord.js");
 const BigNumber = require('bignumber.js');
+var getJSON = require('get-json');
 
 const miscSettings = require("../cfgs/settings.json");
 
@@ -71,29 +72,38 @@ exports.run = (client, message, args) => {
             var next = "5 EGEM";
           }
 
-          const embed = new Discord.RichEmbed()
-            .setTitle("EGEM Discord Bot.")
-            .setAuthor("TheEGEMBot", miscSettings.egemspin)
-            /*
-             * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-             */
-            .setColor(miscSettings.okcolor)
-            .setDescription("Account Information:")
-            .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-            .setThumbnail(miscSettings.coinbag)
-            /*
-             * Takes a Date object, defaults to current date.
-             */
-            .setTimestamp()
-            .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-            .addField("Username: ", "@" +user)
-            .addField("This balance has: ", balance + " EGEM")
-            .addField("Registered Address:", "["+data[author]+"](https://explorer.egem.io/addr/" +data[author]+ ")")
-            .addField("Send TIPS to: ", author)
-            .addField("This users rank is:", title, true)
-            .addField("Next rank level:", next, true);
+          getJSON('https://api.egem.io/api/v1/egem_prices', function(error, response){
+            if(!error) {
+              var priceAverage = response["AVERAGEUSD"];
+              let balanceUSD = balance*priceAverage;
 
-            message.channel.send({embed})
+              const embed = new Discord.RichEmbed()
+                .setTitle("EGEM Discord Bot.")
+                .setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+                .setColor(miscSettings.okcolor)
+                .setDescription("Account Information:")
+                .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+                .setThumbnail(miscSettings.coinbag)
+
+                .setTimestamp()
+                .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+                .addField("Username: ", "@" +user)
+                .addField("This balance has: ", balance + " EGEM" + " | " + "$ " + Number(balanceUSD).toFixed(4) + " USD")
+                .addField("Registered Address:", "["+data[author]+"](https://explorer.egem.io/addr/" +data[author]+ ")")
+                .addField("Send TIPS to: ", author)
+                .addField("This users rank is:", title, true)
+                .addField("Next rank level:", next, true);
+
+                message.channel.send({embed})
+
+
+            } else {
+              return console.log('**EGEM BOT** MARKET API ISSUE!');
+            }
+          })
+
+
         }
       })
       return
@@ -153,41 +163,46 @@ exports.run = (client, message, args) => {
           var next = "5 EGEM";
         }
 
-        const embed = new Discord.RichEmbed()
-          .setTitle("EGEM Discord Bot.")
-          .setAuthor("TheEGEMBot", miscSettings.egemspin)
-          /*
-           * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-           */
-          .setColor(miscSettings.okcolor)
-          .setDescription("Account Information:")
-          .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
-          .setThumbnail(miscSettings.coinbag)
-          /*
-           * Takes a Date object, defaults to current date.
-           */
-          .setTimestamp()
-          .setURL("https://github.com/TeamEGEM/EGEM-Bot")
-          .addField("This balance has:", balance + " EGEM")
-          .addField("Send TIPS to:", author)
-          .addField("This users rank is:", title, true)
-          .addField("Next rank level:", next, true);
 
-          message.channel.send({embed})
+          getJSON('https://api.egem.io/api/v1/egem_prices', function(error, response){
+            if(!error) {
+              var priceAverage = response["AVERAGEUSD"];
+              let balanceUSD = balance*priceAverage;
+
+              const embed = new Discord.RichEmbed()
+                .setTitle("EGEM Discord Bot.")
+                .setAuthor("TheEGEMBot", miscSettings.egemspin)
+
+                .setColor(miscSettings.okcolor)
+                .setDescription("Account Information:")
+                .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
+                .setThumbnail(miscSettings.coinbag)
+
+                .setTimestamp()
+                .setURL("https://github.com/TeamEGEM/EGEM-Bot")
+                .addField("This balance has: ", balance + " EGEM" + " | " + "$ " + Number(balanceUSD).toFixed(4) + " USD")
+                .addField("Send TIPS to:", author)
+                .addField("This users rank is:", title, true)
+                .addField("Next rank level:", next, true);
+
+                message.channel.send({embed})
+
+
+            } else {
+              return console.log('**EGEM BOT** MARKET API ISSUE!');
+            }
+          })
+
       } else {
         const embed = new Discord.RichEmbed()
           .setTitle("EGEM Discord Bot.")
           .setAuthor("TheEGEMBot", miscSettings.egemspin)
-          /*
-           * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-           */
+
           .setColor(miscSettings.warningcolor)
           .setDescription("Account Balance:")
           .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
           .setThumbnail(miscSettings.coinbag)
-          /*
-           * Takes a Date object, defaults to current date.
-           */
+
           .setTimestamp()
           .setURL("https://github.com/TeamEGEM/EGEM-Bot")
           .addField("Oops, some problem occured with your address.", "Please try again.")
@@ -199,16 +214,12 @@ exports.run = (client, message, args) => {
     const embed = new Discord.RichEmbed()
       .setTitle("EGEM Discord Bot.")
       .setAuthor("TheEGEMBot", miscSettings.egemspin)
-      /*
-       * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-       */
+
       .setColor(miscSettings.warningcolor)
       .setDescription("Account Balance:")
       .setFooter(miscSettings.footerBranding, miscSettings.img32x32)
       .setThumbnail(miscSettings.coinbag)
-      /*
-       * Takes a Date object, defaults to current date.
-       */
+
       .setTimestamp()
       .setURL("https://github.com/TeamEGEM/EGEM-Bot")
       .addField("Wrong address, or not registered.", "The command is /register <address> or to check a specific balance its /balance <address>.")

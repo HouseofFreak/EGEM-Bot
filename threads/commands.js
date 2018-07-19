@@ -10,9 +10,9 @@ const fs = require("fs");
 const randomWord = require('random-word');
 //const BN = require('bn.js');
 
-const botSettings = require("./config.json");
-const miscSettings = require("./cfgs/settings.json");
-const botChans = require("./cfgs/botchans.json");
+const botSettings = require("../config.json");
+const miscSettings = require("../cfgs/settings.json");
+const botChans = require("../cfgs/botchans.json");
 
 // EtherGem web3
 var web3 = new Web3();
@@ -46,7 +46,7 @@ bot.on("message", message => {
 
   // The list of if/else is replaced with those simple 2 lines:
   try {
-    let commandFile = require(`./commands/${command}.js`);
+    let commandFile = require(`../commands/${command}.js`);
     commandFile.run(bot, message, args);
   } catch (err) {
 		console.log("**EGEM BOT** No file for that command, prolly other system in use.")

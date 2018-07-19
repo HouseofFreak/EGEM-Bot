@@ -9,10 +9,7 @@
     "url": "https://github.com/TeamEGEM/EGEM-Bot.git"
   },
   "scripts": {
-    "startmain": "node index.js",
-    "startcmds": "node commands.js",
-    "startprices": "node prices.js",
-    "start": "concurrently \"node index.js\" \"node commands.js\" \"node games.js\" \"node prices.js\""
+    "start": "concurrently \"node threads\\main.js\" \"node threads\\commands.js\" \"node threads\\games.js\" \"node threads\\prices.js\" \"node threads\\cars.js\""
   },
   "license": "ISC",
   "dependencies": {

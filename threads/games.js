@@ -12,11 +12,11 @@ const fs = require("fs");
 const randomWord = require('random-word');
 //const BN = require('bn.js');
 
-const botSettings = require("./config.json");
-const miscSettings = require("./cfgs/settings.json");
-const botChans = require("./cfgs/botchans.json");
-const block = require("./functions/getblock.js");
-const supply = require("./functions/getsup.js");
+const botSettings = require("../config.json");
+const miscSettings = require("../cfgs/settings.json");
+const botChans = require("../cfgs/botchans.json");
+const block = require("../functions/getblock.js");
+const supply = require("../functions/getsup.js");
 
 // Update Data
 //setInterval(block,miscSettings.blockDelay);
