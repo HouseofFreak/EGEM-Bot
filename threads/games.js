@@ -329,7 +329,7 @@ if(message.content.startsWith(prefix + "riskit ")){
 							return message.channel.send({embed});
 						}
 
-						if (roll >= 7) {
+						if (roll >= 9) {
 								const embed = new Discord.RichEmbed()
 									.setTitle("EGEM Discord Bot.")
 									.setAuthor("TheEGEMBot", miscSettings.egemspin)
