@@ -54,6 +54,6 @@ bot.on("message", message => {
   }
 });
 
-
+bot.on('error', console.error);
 // Login the bot.
 bot.login(botSettings.token);

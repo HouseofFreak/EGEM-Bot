@@ -770,5 +770,6 @@ if(message.content.startsWith(prefix + "roll")){
 
 })
 
+bot.on('error', console.error);
 // Login the bot.
 bot.login(botSettings.token);

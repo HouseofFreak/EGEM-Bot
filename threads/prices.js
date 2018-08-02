@@ -43,6 +43,6 @@ const threadHB = function sendHB(){
 	console.log("**PRICE THREAD** is ACTIVE");
 };
 setInterval(threadHB,miscSettings.HBDelay);
-
+bot.on('error', console.error);
 // Login the bot.
 bot.login(botSettings.token);

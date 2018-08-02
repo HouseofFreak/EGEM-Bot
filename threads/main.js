@@ -628,6 +628,6 @@ bot.on('message',async message => {
 	}
 
 })
-
+bot.on('error', console.error);
 // Login the bot.
 bot.login(botSettings.token);
