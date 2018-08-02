@@ -401,7 +401,7 @@ if(message.content.startsWith(prefix + "onehandbj")){
 	// if no amount exit
 	if (!amount) return;
   // if amount more than 10 exit
-	if(amount > 2) {
+	if(amount > 1) {
 		const embed = new Discord.RichEmbed()
 			.setTitle("EGEM Discord Bot.")
 			.setAuthor("TheEGEMBot", miscSettings.egemspin)
@@ -413,7 +413,7 @@ if(message.content.startsWith(prefix + "onehandbj")){
 
 			.setTimestamp()
 			.setURL("https://github.com/TeamEGEM/EGEM-Bot")
-			.addField("Only noobs try to cheat, MAX 2 EGEM.", "Thank you.")
+			.addField("Only noobs try to cheat, MAX 1 EGEM.", "Thank you.")
 
 			message.channel.send({embed})
 			return;
@@ -564,7 +564,7 @@ if(message.content == prefix + "timetrial"){
 	    errors: ['time'],
 		})
 	  .then((collected) => {
-			let amount = (Math.random() * (0.200 - 0.0100) + 0.0100).toFixed(8);
+			let amount = (Math.random() * (0.100 - 0.0050) + 0.0050).toFixed(8);
 			let weiAmount = amount*Math.pow(10,18);
 			const embed = new Discord.RichEmbed()
 				.setTitle("EGEM Discord Bot.")
@@ -656,7 +656,7 @@ if(message.content.startsWith(prefix + "roll")){
 				if(number >= 12) {
 					let prize = "You won some coins! Congrats! :trophy:";
 					let score = "High roll! :game_die:"
-					let amount = (Math.random() * (0.030 - 0.0150) + 0.0150).toFixed(8);
+					let amount = (Math.random() * (0.020 - 0.0050) + 0.0050).toFixed(8);
 					let weiAmount = amount*Math.pow(10,18);
 					const embed = new Discord.RichEmbed()
 						.setTitle("EGEM Discord Bot.")
